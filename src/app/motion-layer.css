@@ -23,46 +23,38 @@
 /* #work is too tall for a slice glitch; its header and rows glitch on their own */
 #work[data-glitch="1"] { animation: dg-flip 350ms steps(1, end); }
 
-/* ===== 2. Ambient crackle flicker (12fps feel) ===== */
-/* Own properties (transform, filter) so it multiplies with the eruption's scale/opacity instead of replacing them,
-   and starts after the eruption via its delay. */
+/* ===== 2. Ambient crackle flicker (12fps feel) =====
+   Kept deliberately light: only every 3rd hero crackle cluster, opacity/transform only (no filters), and no drifting
+   dot layers. It starts after the eruption via its delay. */
 @keyframes crk-flick {
-  0%, 100% { transform: none; filter: none; }
-  40% { transform: scale(1.04); filter: opacity(.88); }
-  46% { transform: none; filter: none; }
-  71% { transform: scale(1.04); filter: opacity(.88); }
-  75% { transform: none; filter: none; }
+  0%, 100% { transform: none; opacity: 1; }
+  40% { transform: scale(1.04); opacity: .88; }
+  46% { transform: none; opacity: 1; }
+  71% { transform: scale(1.04); opacity: .88; }
+  75% { transform: none; opacity: 1; }
 }
-@keyframes dot-drift { from { translate: -3px -2px; } to { translate: 3px 2px; } }
-
-svg.crk-load path {
+svg.crk-load path:nth-child(3n) {
   animation:
     crk-pop 250ms steps(3) calc(var(--t) * 450ms + 1s) backwards,
     crk-flick calc(2.4s + var(--t) * 2s) steps(1, end) calc(var(--t) * 450ms + 1.8s) infinite;
 }
-svg.hero-print {
-  animation: print-in 400ms cubic-bezier(.2, .7, .2, 1) backwards, dot-drift 8s ease-in-out 1.2s infinite alternate;
-}
-svg.hero-print-m {
-  animation:
-    print-in 400ms cubic-bezier(.2, .7, .2, 1) 80ms backwards,
-    print-settle 400ms cubic-bezier(.34, 1.56, .64, 1) 80ms backwards,
-    dot-drift 9s ease-in-out 1.2s infinite alternate-reverse;
-}
 @supports (animation-timeline: view()) {
-  svg.crk-scroll path {
-    animation: crk-pop steps(3) both, crk-flick calc(2.4s + var(--t) * 2s) steps(1, end) calc(var(--t) * 450ms + 1.8s) infinite;
-    animation-timeline: --crk, auto;
-    animation-range: entry calc(10% + var(--t) * 20%) cover 35%, normal;
-  }
   svg.dots-print {
-    animation: print-in ease-out both, dot-drift 8s ease-in-out infinite alternate;
-    animation-timeline: view(), auto;
-    animation-range: entry 10% cover 35%, normal;
+    animation: print-in ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 35%;
   }
-  /* magenta layer drifts the opposite way so the off-register offset breathes */
-  svg.dots-print:not(:first-of-type) { animation-direction: normal, alternate-reverse; animation-duration: auto, 10s; }
 }
+
+/* ===== 2b. Live glitch: small elements cut and RGB-split for ~240ms (ScrollGlitch adds data-live) ===== */
+@keyframes dg-mini {
+  0%   { translate: -6px 0; clip-path: inset(0 -16px 58% -16px);   text-shadow: 5px 0 #00B7EB, -5px 0 #FF2D87; }
+  25%  { translate: 7px 0;  clip-path: inset(40% -16px 20% -16px); text-shadow: -5px 0 #00B7EB, 5px 0 #FF2D87; }
+  50%  { translate: -4px 0; clip-path: inset(66% -16px -16px -16px); text-shadow: 4px 0 #00B7EB, -4px 0 #FF2D87; }
+  75%  { translate: 3px 0;  clip-path: inset(-16px);               text-shadow: -3px 0 #00B7EB, 3px 0 #FF2D87; }
+}
+/* body prefix beats the single-class animation rules that load after this file */
+body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
 
 /* ===== 3. Cursor effects ===== */
 .cur-layer { position: fixed; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
@@ -80,6 +72,6 @@ svg.hero-print-m {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-glitch], svg.crk-load path, svg.crk-scroll path, svg.dots-print, svg.hero-print, svg.hero-print-m { animation: none !important; }
+  [data-glitch], [data-live], svg.crk-load path, svg.crk-scroll path, svg.dots-print, svg.hero-print, svg.hero-print-m { animation: none !important; }
   .cur-layer { display: none; }
 }
