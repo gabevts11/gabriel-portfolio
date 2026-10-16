@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./style-layer.css";
+@import "./motion-layer.css";
 
 @theme inline {
   --color-paper: #f4eedc;

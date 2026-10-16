@@ -99,7 +99,7 @@ export function Comic({
   return (
     <Tag
       {...rest}
-      className={`font-display inline-block border-[3px] border-ink ${className}`}
+      className={`font-display rough inline-block border-[3px] border-ink ${className}`}
       style={{
         background: bg,
         boxShadow: shadow ? `${shadow}px ${shadow}px 0 ${shadowColor}` : undefined,

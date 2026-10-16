@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { benDay, crackleRing } from "@/lib/comic-art";
 import { Art, Comic, Fit, Streams } from "./art";
+import { SpeedLines } from "./SpeedLines";
+import { ThoughtBubble } from "./ThoughtBubble";
 
 const nav = [
   ["WORK", "#work"],
@@ -12,7 +14,7 @@ function Portrait({ src }: { src?: string }) {
   const d = benDay({ width: 370, height: 500, spacing: 12, maxR: 4.6, minR: 0.8, origin: { x: 370, y: 500 }, falloff: 430 });
   return (
     <div
-      className="hero-portrait absolute overflow-hidden border-[6px] border-ink bg-paper"
+      className="hero-portrait rough absolute overflow-hidden border-[6px] border-ink bg-paper"
       style={{ left: 135, top: 62, width: 370, height: 500, boxShadow: "10px 10px 0 #111", transform: "rotate(2.5deg)", transformOrigin: "top left" }}
     >
       <Art w={370} h={500} d={d} fill="#FF2D87" opacity={0.45} blend className="inset-0" />
@@ -36,6 +38,8 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
     />
   );
   return (
+    <div className="relative">
+    <ThoughtBubble className="absolute -top-6 left-0 z-20 sm:-top-2">(is that a real portrait? not yet!)</ThoughtBubble>
     <Fit w={640} h={760} className="[--s:.5] sm:[--s:.75] lg:[--s:1]">
       <Streams
         mode="load"
@@ -56,7 +60,7 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
         style={{ left: 90, top: 150, width: 500, height: 600, transform: "rotate(-3deg)", transformOrigin: "top left" }}
       />
       <div
-        className="hero-frame absolute box-border overflow-hidden border-[6px] border-ink bg-purple"
+        className="hero-frame rough absolute box-border overflow-hidden border-[6px] border-ink bg-purple"
         style={{ left: 70, top: 130, width: 500, height: 600, transform: "rotate(-3deg)", transformOrigin: "top left" }}
       >
         <Art w={500} h={600} d={benDay({ ...dots, origin: { x: 0, y: 0 } })} fill="#00B7EB" opacity={0.95} className="inset-0" />
@@ -71,6 +75,7 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
       {ghost(144, "#E8202A")}
       <Portrait src={portraitSrc} />
     </Fit>
+    </div>
   );
 }
 
@@ -100,7 +105,8 @@ export function Hero() {
       </nav>
 
       <div className="relative flex flex-col items-center gap-12 xl:flex-row xl:pl-10">
-        <div className="flex min-w-0 flex-1 flex-col items-start gap-7 self-stretch xl:self-auto">
+        <div className="relative isolate flex min-w-0 flex-1 flex-col items-start gap-7 self-stretch xl:self-auto">
+          <SpeedLines w={600} h={500} cx={190} cy={250} r={620} seed={5} count={52} preserve="xMidYMid slice" className="-inset-10 -z-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)]" />
           <div className="hero-bubble font-display relative mb-1 rounded-[28px] border-[3px] border-ink bg-white px-[22px] py-[10px] text-[26px] tracking-[.03em]">
             HEY THERE! I&apos;M
             <svg aria-hidden="true" width="34" height="26" viewBox="0 0 34 26" className="absolute left-[34px] top-full">

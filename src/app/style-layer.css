@@ -1,0 +1,44 @@
+/* Spider-Verse style layer: static print/glitch looks. Motion lives in motion-layer.css. */
+
+/* Chromatic split for headings: cyan left, magenta right. --ts-extra adds an optional extra shadow. */
+.rgb-split {
+  text-shadow: -3px 0 0 #00B7EB, 3px 0 0 #FF2D87, var(--ts-extra, 0 0 0 transparent);
+}
+
+/* Two offset color-multiplied copies behind a panel (wrap the panel; keep the panel itself above). */
+.rgb-ghost { position: relative; isolation: isolate; }
+.rgb-ghost::before, .rgb-ghost::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.rgb-ghost::before { background: #00B7EB; translate: -8px 4px; }
+.rgb-ghost::after { background: #E8202A; translate: 8px -4px; }
+
+/* Horizontal glitch-slice bars across a heading (use sparingly). */
+.glitch-slice { position: relative; }
+.glitch-slice::before, .glitch-slice::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.glitch-slice::before { left: -10px; right: 22%; top: 30%; height: 10px; background: #FF2D87; translate: 14px 0; }
+.glitch-slice::after { left: 18%; right: -12px; top: 66%; height: 7px; background: #00B7EB; translate: -16px 0; }
+
+/* Hand-inked edge: a displaced ring on the inside of the border only, so text is never filtered. */
+:where(.rough:not(.absolute, .fixed, .sticky)) { position: relative; }
+.rough::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 4px #111;
+  filter: url(#rough);
+  pointer-events: none;
+}
+
+/* Film grain overlay */
+.grain { opacity: 0.07; mix-blend-mode: multiply; }
