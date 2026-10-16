@@ -23,3 +23,104 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body), system-ui, sans-serif;
 }
+
+/* ---------- Motion layer ----------
+   Comic moments (slams, glitches, crackle) are stepped (~12fps, "on twos"); UI motion is smooth.
+   Keyframes only define the START state; animations use fill-mode `backwards`, so the final state is the
+   element's normal CSS (no JS, no animation support, or reduced motion all show the finished art). */
+@keyframes print-in { from { clip-path: circle(0 at 0 0); } }
+@keyframes print-settle { from { translate: 10px 6px; } }
+@keyframes name-slam { from { scale: 1.15; opacity: 0; text-shadow: 22px 22px 0 #FF2D87, -18px 14px 0 #00B7EB; } }
+@keyframes bubble-pop { from { scale: 0; } }
+@keyframes panel-draw { from { clip-path: inset(-12px 100% -12px -12px); } }
+@keyframes frame-break { from { rotate: -9deg; } }
+@keyframes portrait-pop { from { translate: 0 60px; opacity: 0; } }
+@keyframes ghost-jitter {
+  /* hidden while waiting for the delay, so the multiply ghosts don't show before the portrait pops */
+  0% { translate: 6px -6px; opacity: 0; }
+  5% { translate: 6px -6px; opacity: 1; }
+  33% { translate: -6px 4px; }
+  66% { translate: 4px 6px; }
+}
+@keyframes crk-pop { from { scale: 0; opacity: 0; } }
+@keyframes glitch-text {
+  0% { text-shadow: 4px 2px 0 #FF2D87, -4px -2px 0 #00B7EB; }
+  33% { text-shadow: -3px -3px 0 #FF2D87, 5px 2px 0 #00B7EB; }
+  66% { text-shadow: 3px -2px 0 #FF2D87, -3px 3px 0 #00B7EB; }
+  100% { text-shadow: none; }
+}
+@keyframes glitch-dots {
+  0% { translate: 5px -3px; }
+  33% { translate: -5px 3px; }
+  66% { translate: 3px 5px; }
+}
+
+/* Hero intro (delays run from page load) */
+.hero-print { animation: print-in 400ms cubic-bezier(.2, .7, .2, 1) backwards; }
+.hero-print-m {
+  animation: print-in 400ms cubic-bezier(.2, .7, .2, 1) 80ms backwards, print-settle 400ms cubic-bezier(.34, 1.56, .64, 1) 80ms backwards;
+}
+.hero-name { transform-origin: left center; animation: name-slam 400ms steps(5) 300ms backwards; }
+.hero-bubble { transform-origin: 34px 100%; animation: bubble-pop 400ms cubic-bezier(.34, 1.56, .64, 1) 600ms backwards; }
+.hero-draw { animation: panel-draw 300ms ease-out 700ms backwards; }
+.hero-cta { --in: panel-draw 300ms ease-out 750ms backwards; animation: var(--in); }
+.hero-frame { animation: frame-break 300ms cubic-bezier(.34, 1.56, .64, 1) 800ms backwards; }
+.hero-portrait { animation: portrait-pop 300ms cubic-bezier(.34, 1.56, .64, 1) 1000ms backwards; }
+.hero-ghost { animation: ghost-jitter 250ms steps(1, end) 1100ms backwards; }
+
+/* Crackle eruption: each cluster pops out, staggered by --t (position along the stream) */
+.crk-load path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: crk-pop 250ms steps(3) calc(var(--t) * 450ms + 1s) backwards;
+}
+@supports (animation-timeline: view()) {
+  .crk-scroll { view-timeline: --crk; }
+  .crk-scroll path {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: crk-pop steps(3) both;
+    animation-timeline: --crk;
+    animation-range: entry calc(10% + var(--t) * 20%) cover 35%;
+  }
+  .dots-print {
+    animation: print-in ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 35%;
+  }
+  /* scroll-driven `both` needs an explicit end state */
+  @keyframes print-in { from { clip-path: circle(0 at 0 0); } to { clip-path: circle(150% at 0 0); } }
+}
+
+/* Links, nav underline, focus (smooth UI motion) */
+a:focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
+.nav-link { position: relative; display: inline-block; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 3px;
+  background: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out;
+}
+.comic-link { transition: translate 80ms, box-shadow 80ms; }
+.comic-link:active { translate: var(--sh) var(--sh); box-shadow: 0 0 0 #111 !important; }
+
+@media (hover: hover) {
+  .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
+  .comic-link:hover { animation: glitch-text 150ms steps(1, end); }
+  .hero-cta:hover { animation: var(--in), glitch-text 150ms steps(1, end); }
+  .case-box:hover .dots-print path { animation: glitch-dots 150ms steps(1, end); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .case-box, .case-offset { transition: rotate 250ms ease-out, translate 250ms ease-out; }
+  .case-box:hover, .case-fit:has(.case-box:hover) .case-offset { rotate: calc(var(--rot) * -1); translate: 0 -4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,5 +1,7 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { benDay, type StreamOpts } from "@/lib/comic-art";
+import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 
 const C = {
@@ -66,20 +68,20 @@ const cases: Case[] = [
 
 function CasePanel({ c }: { c: Case }) {
   const dots = { width: 600, height: 420, spacing: 14, maxR: 5.6, minR: 0.8 };
-  const rot = { transform: `rotate(${c.rot}deg)`, transformOrigin: "top left" };
+  const rot = { transform: `rotate(${c.rot}deg)`, transformOrigin: "top left", "--rot": `${c.rot}deg` } as CSSProperties;
   return (
-    <Fit w={630} h={450} className="[--s:.5] sm:[--s:.75] lg:[--s:1]">
-      <Streams w={630} h={450} streams={c.streams.map(([k, o]) => [C[k], o])} />
+    <Fit w={630} h={450} className="case-fit [--s:.5] sm:[--s:.75] lg:[--s:1]">
+      <Streams mode="scroll" w={630} h={450} streams={c.streams.map(([k, o]) => [C[k], o])} />
       <div
-        className="absolute border-4 border-ink"
+        className="case-offset absolute border-4 border-ink"
         style={{ left: 24, top: 24, width: 600, height: 420, background: C[c.offset], ...rot }}
       />
       <div
-        className="absolute box-border overflow-hidden border-[6px] border-ink"
+        className="case-box absolute box-border overflow-hidden border-[6px] border-ink"
         style={{ left: 0, top: 0, width: 600, height: 420, background: C[c.panel], ...rot }}
       >
-        <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C[c.dotsA]} opacity={0.9} blend className="inset-0" />
-        <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C[c.dotsB]} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
+        <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C[c.dotsA]} opacity={0.9} blend className="dots-print inset-0" />
+        <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C[c.dotsB]} opacity={0.9} blend dx={3} dy={2} className="dots-print inset-0" />
         <div
           className="absolute overflow-hidden border-4 border-ink bg-paper"
           style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}
@@ -111,7 +113,7 @@ function CaseRow({ c }: { c: Case }) {
         <ul className="flex flex-wrap gap-4">
           {c.stats.map(([n, label, color]) => (
             <li key={label} className="border-[3px] border-ink bg-white px-[18px] py-[14px]" style={{ boxShadow: `6px 6px 0 ${C[color]}` }}>
-              <div className="font-display text-[44px] leading-none">{n}</div>
+              <div className="font-display text-[44px] leading-none">{/^\d+$/.test(n) ? <CountUp value={+n} /> : n}</div>
               <div className="max-w-[150px] text-[13px] font-medium leading-[1.35]">{label}</div>
             </li>
           ))}

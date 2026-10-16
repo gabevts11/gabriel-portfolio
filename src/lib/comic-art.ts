@@ -143,15 +143,17 @@ export type StreamOpts = {
   spread: number;
 };
 
-// Crackle erupting along a path: big at the source, shrinking and spreading as it trails away.
-export function crackleStream(o: StreamOpts) {
+export type StreamCluster = { d: string; t: number };
+
+// Same geometry as crackleStream, but one entry per cluster; `t` (0..1) is its position along the stream.
+export function crackleStreamClusters(o: StreamOpts): StreamCluster[] {
   const rnd = mulberry32(o.seed);
   const P = o.points;
   const L = [0];
   for (let i = 1; i < P.length; i++) L.push(L[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]));
   const tot = L[L.length - 1];
   const placed: [number, number, number][] = [];
-  let d = "";
+  const out: StreamCluster[] = [];
   for (let c = 0; c < o.count; c++) {
     for (let tries = 0; tries < 6; tries++) {
       const u = Math.min(1, (c + rnd() * 0.9) / o.count);
@@ -167,9 +169,14 @@ export function crackleStream(o: StreamOpts) {
       const y = a0[1] + (a1[1] - a0[1]) * fr + Math.sin(ang + 1.5708) * off;
       if (placed.some(([qx, qy, qr]) => Math.hypot(qx - x, qy - y) < (qr + R) * 1.5)) continue;
       placed.push([x, y, R]);
-      d += cluster(rnd, x, y, R, ang + (rnd() - 0.5) * 0.8, 0.9);
+      out.push({ d: cluster(rnd, x, y, R, ang + (rnd() - 0.5) * 0.8, 0.9), t: Math.round(u * 100) / 100 });
       break;
     }
   }
-  return d;
+  return out;
+}
+
+// Crackle erupting along a path: big at the source, shrinking and spreading as it trails away.
+export function crackleStream(o: StreamOpts) {
+  return crackleStreamClusters(o).map((c) => c.d).join("");
 }

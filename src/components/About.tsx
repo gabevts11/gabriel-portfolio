@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { benDay } from "@/lib/comic-art";
+import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 
 const stats = [
@@ -13,6 +14,7 @@ function Photo({ src }: { src?: string }) {
   return (
     <Fit w={444} h={544} className="[--s:.7] md:[--s:1]">
       <Streams
+        mode="scroll"
         w={444}
         h={544}
         streams={[
@@ -67,7 +69,7 @@ export function About({ photoSrc }: { photoSrc?: string }) {
                 style={{ boxShadow: `7px 7px 0 ${shadow}`, overflow: "visible" }}
               >
                 <Art w={120} h={90} d={benDay({ width: 120, height: 90, spacing: 9, maxR: 3.4, minR: 0.6, origin: { x: 120, y: 0 }, falloff: 120 })} fill="#F7DF02" className="right-0 top-0" />
-                <div className="font-display relative text-[56px] leading-none">{n}</div>
+                <div className="font-display relative text-[56px] leading-none">{/^\d+$/.test(n) ? <CountUp value={+n} /> : n}</div>
                 <div className="relative mt-2 text-sm font-medium leading-[1.35]">{label}</div>
               </li>
             ))}
