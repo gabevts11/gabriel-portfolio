@@ -60,7 +60,7 @@ const cases: Case[] = [
   {
     issue: "ISSUE #04", kicker: "PRODUCT DESIGN · MOBILE APP · CONCEPT", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
     desc: "A concept app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
-    stats: [["CONCEPT", "Wireframes in progress", "purple"]],
+    stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"]],
     panel: "magenta", offset: "cyan", dotsA: "yellow", dotsB: "cyan", rot: -2, flip: false,
     streams: [
       ["ink", { seed: 91, points: [[40, 410], [-20, 450], [-85, 490]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],
@@ -134,7 +134,6 @@ function CaseRow({ c }: { c: Case }) {
         <Comic as={Link} href={`/work/${c.slug}`} bg="#E8202A" shadow={6} className="comic-link px-6 py-3 text-2xl text-white">
           READ THE CASE FILE!
         </Comic>
-        <Caption tone="white" rot={1.5}>TO BE CONTINUED…</Caption>
       </div>
     </div>
   );
