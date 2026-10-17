@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 // Page change = a visit to another Spider-Verse "universe": the same site glitches into that art style, holds while the route swaps, then glitches back to color.
 // Styles run in this fixed order and keep cycling (position kept in sessionStorage); the look of each lives in motion-layer.css under html[data-ux].
-const STYLES = ["gwen", "hobie", "pavitr", "miguel", "classic", "peni", "ham", "noir", "spot"];
+const STYLES = ["gwen", "hobie", "peni", "ham", "noir"];
 const OUT_MS = 800;
 const nextStyle = () => {
   let i = 0;
