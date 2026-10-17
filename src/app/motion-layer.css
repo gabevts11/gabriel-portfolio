@@ -206,4 +206,21 @@ html[data-ux="ham"] main .case-box > div:not(.dots-print) { border-radius: 24px;
 .gd-nudge span { position: absolute; left: 67px; top: 6px; width: 150px; height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--font-bangers), sans-serif; font-size: 26px; letter-spacing: .05em; color: #111; }
 @keyframes gd-wiggle { 0%, 70%, 100% { rotate: -2deg; } 76% { rotate: 2deg; } 82% { rotate: -4deg; } 88% { rotate: 1deg; } }
 @media (prefers-reduced-motion: no-preference) { .gd-nudge { animation: gd-wiggle 2.8s steps(1, end) 2.4s infinite; } }
-@media (max-width: 420px) { .gd-nudge { scale: .8; } }
+
+/* Responsive: the wider universe faces need smaller headline scales on tablets and phones; the nudge bubble would crash into the CONTACT button on phones */
+@media (max-width: 900px) {
+  html[data-ux="noir"] main h1 { scale: .76; }
+  html[data-ux="peni"] main h1 { scale: .58; }
+  html[data-ux="ham"] main h1 { scale: .76; }
+  html[data-ux="hobie"] main h1 { scale: .72; }
+  html[data-ux="gwen"] main h1 { scale: .86; }
+}
+@media (max-width: 520px) {
+  html[data-ux="noir"] main h1 { scale: .62; }
+  html[data-ux="peni"] main h1 { scale: .5; }
+  html[data-ux="ham"] main h1 { scale: .7; }
+  html[data-ux="hobie"] main h1 { scale: .66; }
+  html[data-ux="gwen"] main h1 { scale: .8; }
+  html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3) { white-space: normal; }
+  .gd-nudge { display: none; }
+}

@@ -26,7 +26,7 @@ function Hero({ c }: { c: CaseStudy }) {
       <div className="relative z-10 flex flex-col items-start gap-5">
         <Comic bg="#fff" shadow={4} className="px-[14px] py-[6px] text-[22px]">{c.issue}</Comic>
         <div className="text-sm font-medium tracking-[.08em] text-[#4d4d4d]">{c.kicker}</div>
-        <h1 className="rgb-split glitch-slice font-display text-[clamp(52px,13vw,132px)] leading-[.86] tracking-[.01em]" style={{ "--ts-extra": "7px 7px 0 #111" } as CSSProperties}>
+        <h1 className="rgb-split glitch-slice font-display text-[clamp(52px,13vw,132px)] xl:text-[clamp(64px,6.2vw,104px)] leading-[.86] tracking-[.01em]" style={{ "--ts-extra": "7px 7px 0 #111" } as CSSProperties}>
           {c.title}
         </h1>
         {(c.badge ?? (c.concept ? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT" : null)) && (
@@ -49,7 +49,7 @@ function Hero({ c }: { c: CaseStudy }) {
           ))}
         </ul>
       </div>
-      <Fit w={630} h={450} className="case-fit mx-auto [--s:.5] sm:[--s:.75] lg:[--s:1]">
+      <Fit w={630} h={450} className="case-fit mx-auto [--s:.4] min-[360px]:[--s:.5] sm:[--s:.75] lg:[--s:1]">
         <SpeedLines w={630} h={450} cx={315} cy={225} r={400} seed={31} count={40} />
         <Streams mode="load" w={630} h={450} streams={streams} />
         <div className="rough absolute border-4 border-ink" style={{ left: 24, top: 24, width: 600, height: 420, background: C.purple, transform: "rotate(-2deg)", transformOrigin: "top left" }} />
