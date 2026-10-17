@@ -69,7 +69,7 @@ export function Hero() {
 
         <div className="relative flex flex-col items-start gap-6 lg:block lg:aspect-[16/10]">
           <span className="hero-draw font-display border-[3px] border-ink bg-red px-4 py-1 text-[clamp(16px,4.4vw,24px)] tracking-[.03em] text-white shadow-[4px_4px_0_#111] lg:absolute lg:left-[4cqw] lg:top-[3.4cqw] lg:text-[2.4cqw]">
-            SPECIAL KING-SIZE ISSUE!
+            OPEN TO NEW WORK!
           </span>
 
           <h1
@@ -84,7 +84,7 @@ export function Hero() {
             &ldquo;THE WONDROUS WORLD OF A SOFTWARE PRODUCT DESIGNER!&rdquo;
           </div>
 
-          <p className="max-w-[540px] text-[clamp(17px,4.6vw,22px)] leading-[1.4] lg:absolute lg:left-[4cqw] lg:top-[38cqw] lg:w-[44cqw] lg:max-w-none lg:text-[clamp(16px,2cqw,24px)]">
+          <p className="max-w-[540px] font-medium [text-shadow:0_0_3px_#f4eedc,0_0_8px_#f4eedc,0_0_14px_#f4eedc] text-[clamp(17px,4.6vw,22px)] leading-[1.4] lg:absolute lg:left-[4cqw] lg:top-[38cqw] lg:w-[44cqw] lg:max-w-none lg:text-[clamp(16px,2cqw,24px)]">
             I take apps and websites from wireframes to prototypes to production, designed for people who actually use them.
           </p>
 
