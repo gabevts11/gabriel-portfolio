@@ -27,9 +27,9 @@ function Hero({ c }: { c: CaseStudy }) {
         <h1 className="rgb-split glitch-slice font-display text-[clamp(52px,13vw,132px)] leading-[.86] tracking-[.01em]" style={{ "--ts-extra": "7px 7px 0 #111" } as CSSProperties}>
           {c.title}
         </h1>
-        {c.concept && (
+        {(c.badge ?? (c.concept ? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT" : null)) && (
           <Comic bg={C.magenta} shadow={6} className="max-w-full -rotate-1 px-4 py-2 text-lg leading-tight tracking-[.04em] text-white sm:text-2xl">
-            CONCEPT · WIREFRAMES &amp; MOCKUPS ONLY, NOT A LIVE PRODUCT
+            {c.badge ?? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT"}
           </Comic>
         )}
         <p className="max-w-[560px] text-lg leading-[1.6]">{c.summary}</p>
