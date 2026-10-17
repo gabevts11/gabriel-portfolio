@@ -89,7 +89,7 @@ export function Hero() {
           <Comic as="a" href="/" data-glitch-home bg="#F7DF02" shadow={4} className="comic-link px-[14px] py-[6px] text-[30px]" aria-label="Gabe Dougherty, back to top">
             GD
           </Comic>
-          <span aria-hidden className="gd-nudge">PRESS ME!</span>
+          <span aria-hidden className="gd-nudge">CLICK ME?</span>
         </div>
         <div className="flex items-center gap-10">
           <ul className="font-display hidden gap-10 text-2xl tracking-[.04em] md:flex">
