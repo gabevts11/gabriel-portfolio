@@ -27,6 +27,8 @@ export type CaseStudy = {
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
   sitePages?: { src: string; w: number; h: number; label: string }[]; // full-page screenshots, shown cropped with a link to the full image
+  brandGuide?: { src: string; w: number; h: number }; // tall one-page guide, shown cropped with a link to the full image
+  clips?: { slug: string; label: string; caption: string; mobile?: boolean }[]; // animated exports in /work/studio/clips
   images?: { mock?: string; src?: string; w?: number; h?: number; src2?: string; w2?: number; h2?: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
@@ -38,14 +40,14 @@ export const cases: CaseStudy[] = [
     title: "SNAPBACK MOTION STUDIO",
     badge: "PROTOTYPE · BUILT ON MY OWN, NOT A CLIENT PROJECT",
     summary:
-      "I built a motion design system for Snapback Sports and the browser studio that runs it: 125 editable designs, each in 16:9 and 9:16, held to their brand guide. A personal prototype, not a client project.",
+      "I built a motion design system for Snapback Sports and the browser studio that runs it: 84 editable designs, each in 16:9 and 9:16, held to their brand guide. A personal prototype, not a client project.",
     meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal prototype"]],
-    stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions that fully cover the cut", "cyan"], ["60", "Published iterations of the live studio", "red"]],
+    stats: [["84", "Approved, editable motion designs", "magenta"], ["9", "Scene transitions that fully cover the cut", "cyan"], ["60", "Published iterations of the live studio", "red"]],
     problem:
       "I picked Snapback Sports as a real brand to prototype against. They publish a steady stream of broadcast and social motion graphics, so I wanted to see whether one tool could keep that whole library on-brand and quick to customize, without re-rendering a new video for every variant.",
     disclaimer: "Personal prototype, made quickly on my own to show initiative. It was not commissioned, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
     process:
-      "I storyboarded concepts with several variants, then built one self-contained browser tool with 125 editable designs, each in 16:9 and 9:16, with element-level editing and autosave. I iterated on feedback round by round, republishing the live studio 60 times, and checked every change in both formats. I also recreated part of the system, the word wall, in Figma with brand variables and components.",
+      "I storyboarded concepts with several variants, then built one self-contained browser tool with 84 editable designs, each in 16:9 and 9:16, with element-level editing and autosave. I iterated on feedback round by round, republishing the live studio 60 times, and checked every change in both formats. I also recreated part of the system, the word wall, in Figma with brand variables and components.",
     decisions: [
       "Shipped every design in both 16:9 and 9:16, since the same content runs on streams, in stadiums and as social video.",
       "Held to the brand guide: flagged conflicts instead of breaking them, and captured new house rules as they came up.",
@@ -57,14 +59,26 @@ export const cases: CaseStudy[] = [
     goal: "One tool that keeps a brand's whole motion library consistent and quick to customize.",
     hypothesis: "If every design is editable, ships in both formats and follows the brand guide, a small team could make on-brand variants without re-rendering from scratch. Not tested with a real team.",
     outcome:
-      "125 shipped, editable designs, each in 16:9 and 9:16, plus 21 intros and outros across eight Snapback brands, built to the brand guide (five colors, three typefaces). 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
+      "84 approved, editable designs, each in 16:9 and 9:16, including 15 intros and outros across eight Snapback brands, built to the brand guide (five colors, three typefaces). 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
     shots: [],
-    hero: "/work/studio/studio-wordwall.jpg",
-    images: [
-      { src: "/work/studio/jersey.jpg", w: 1600, h: 900, src2: "/work/studio/jersey-m.jpg", w2: 506, h2: 900, label: "SAM HOUSTON JERSEY REVEAL", caption: "One design, both formats (16:9 and 9:16): a frame from the jersey sponsorship package." },
-      { src: "/work/studio/leaderboard.jpg", w: 1600, h: 900, src2: "/work/studio/leaderboard-m.jpg", w2: 506, h2: 900, label: "TRIVIA LEADERBOARD", caption: "Your row climbs the board while the score counts up, with the Certified Ball Knowledge verdict stamp." },
-      { src: "/work/studio/family.jpg", w: 1600, h: 900, src2: "/work/studio/family-m.jpg", w2: 506, h2: 900, label: "ONE BECOMES MANY", caption: "The brand family piece: the master lockup splits into every channel." },
-      { src: "/work/studio/ticket.jpg", w: 1600, h: 900, src2: "/work/studio/ticket-m.jpg", w2: 506, h2: 900, label: "TRANSITION · TICKET TEAR", caption: "One of 19 scene transitions, captured mid-wipe. In the studio it plays over your own clip." },
+    hero: "/work/studio/studio-boards.jpg",
+    clips: [
+      { slug: "ticket", label: "TRANSITION · TICKET TEAR", caption: "A ticket tears open and the camera pushes through, covering the cut. One of 9 scene transitions.", mobile: true },
+      { slug: "leaderboard", label: "TRIVIA · LEADERBOARD", caption: "Your row climbs the board while the score counts up.", mobile: true },
+      { slug: "family", label: "BRAND FAMILY · ONE BECOMES MANY", caption: "The master lockup splits into every channel.", mobile: true },
+      { slug: "wordwall", label: "CHANNELS · WORD WALL", caption: "A wall of channel names scrolls behind the hat.", mobile: true },
+      { slug: "scorebug", label: "SCOREBUG · FOOTBALL", caption: "A broadcast scorebug for live football streams." },
+      { slug: "playerstats", label: "STATS · PLAYER PANEL", caption: "A player stat panel that slides on and off." },
+      { slug: "lowerthird", label: "SPORTS · LOWER THIRD", caption: "A name and title lower third." },
+      { slug: "stripematte", label: "TRANSITION · STRIPE MATTE", caption: "A stripe matte that covers the cut." },
+      { slug: "hatzoom", label: "TRANSITION · ZOOM THROUGH THE HAT", caption: "The camera zooms through the hat icon to the next scene." },
+      { slug: "ribbon", label: "JUMBOTRON · LED RIBBON CHASE", caption: "A stadium LED ribbon loop." },
+      { slug: "welcome", label: "STADIUM · WELCOME SLATE", caption: "A welcome slate for the jumbotron." },
+      { slug: "hatflip", label: "HAT · FLIP UP", caption: "The hat icon flips up on a yellow field." },
+      { slug: "boardingpass", label: "SATURDAY · ROAD TRIP · BOARDING PASS", caption: "A boarding-pass take on the road trip graphic." },
+      { slug: "packpull", label: "CARDS · PACK PULL", caption: "A trading-card pack pull." },
+      { slug: "kineticintro", label: "SPORTS · KINETIC INTRO", caption: "A kinetic type intro." },
+      { slug: "irisoutro", label: "SPORTS · IRIS OUTRO", caption: "An iris-close outro." },
     ],
   },
   {
@@ -100,6 +114,7 @@ export const cases: CaseStudy[] = [
       "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
     heroMock: "poster",
+    brandGuide: { src: "/work/campaign/brand-guide.jpg", w: 1200, h: 3419 },
     sitePages: [
       { src: "/work/campaign/site-home.jpg", w: 1200, h: 1476, label: "HOME" },
       { src: "/work/campaign/site-about.jpg", w: 1200, h: 1427, label: "ABOUT" },

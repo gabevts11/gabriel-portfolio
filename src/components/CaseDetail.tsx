@@ -6,6 +6,7 @@ import type { CaseStudy } from "@/lib/cases";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
+import { ClipVideo } from "./ClipVideo";
 import { CopyEmail } from "./CopyEmail";
 import { ExperiencesMock, XpHero, type XpKind } from "./ExperiencesMock";
 import { LookupMock, type MockKind } from "./LookupMock";
@@ -184,6 +185,26 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           )}
         </aside>
       )}
+      {c.clips && (
+        <section className="flex flex-col items-start gap-6">
+          <Caption tone="white" rot={-1}>FROM THE STUDIO…</Caption>
+          <p className="max-w-[640px] text-base leading-[1.6]">Animated exports from the studio, from the approved set of designs. Where a design has both formats, the 16:9 and 9:16 versions play side by side.</p>
+          <ul className="grid w-full items-start gap-8 md:grid-cols-2">
+            {c.clips.map((cl, i) => (
+              <li key={cl.slug} className="flex flex-col gap-3">
+                <div className="rough overflow-hidden border-4 border-ink bg-ink" style={{ boxShadow: `8px 8px 0 ${[C.purple, C.cyan, C.magenta, C.yellow, C.red][i % 5]}` }}>
+                  <div className="flex items-end gap-2 p-2">
+                    <ClipVideo slug={cl.slug} label={`${cl.label}, 16:9`} className="h-auto min-w-0 flex-[3.16] self-center" />
+                    {cl.mobile && <ClipVideo slug={cl.slug} mobile label={`${cl.label}, 9:16`} className="h-auto min-w-0 flex-1" />}
+                  </div>
+                </div>
+                <Comic bg={C.yellow} shadow={3} className="self-start px-3 py-1 text-lg">{cl.label}</Comic>
+                <p className="text-sm leading-snug">{cl.caption}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       {c.sitePages && (
         <section className="flex flex-col items-start gap-6">
           <Caption rot={-1}>THE SITE, PAGE BY PAGE</Caption>
@@ -198,6 +219,15 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
               </li>
             ))}
           </ul>
+        </section>
+      )}
+      {c.brandGuide && (
+        <section className="flex flex-col items-start gap-6">
+          <Caption tone="white" rot={1}>THE BRAND GUIDE</Caption>
+          <p className="max-w-[640px] text-base leading-[1.6]">A one-page guide I wrote for the site: colors, type, logo use, buttons and cards, spacing, imagery and tone of voice. Names and wording are placeholders. Tap to see the whole guide.</p>
+          <a href={c.brandGuide.src} target="_blank" rel="noopener noreferrer" className="rough comic-link block aspect-[4/3] w-full max-w-[560px] overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `8px 8px 0 ${C.magenta}` }}>
+            <Image src={c.brandGuide.src} alt={`${c.title}: brand guide`} width={c.brandGuide.w} height={c.brandGuide.h} sizes="(min-width:768px) 560px, 90vw" className="h-full w-full object-cover object-top" />
+          </a>
         </section>
       )}
       {c.images ? (
