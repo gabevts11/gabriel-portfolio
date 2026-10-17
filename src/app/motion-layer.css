@@ -1,0 +1,77 @@
+/* ---------- Spider-Verse motion layer ----------
+   Everything here is additive. Imported before globals' own rules, so selectors below are one step more
+   specific (svg.x, #id, .parent .x) to win ties. Animates only transform/translate/scale/opacity/clip-path/filter.
+   Final state is always the element's normal CSS: keyframes only describe transient frames. */
+
+/* ===== 1. Dimension glitch + panel flip (ScrollGlitch adds data-glitch / data-flip once) ===== */
+@keyframes dg-glitch {
+  0%   { clip-path: inset(0 -60px 58% -60px);      translate: 14px 0;  filter: drop-shadow(7px 0 0 #00B7EB) drop-shadow(-7px 0 0 #FF2D87); }
+  20%  { clip-path: inset(42% -60px 30% -60px);    translate: -12px 0; filter: drop-shadow(-7px 0 0 #00B7EB) drop-shadow(7px 0 0 #FF2D87); }
+  40%  { clip-path: inset(72% -60px 0 -60px);      translate: 10px 0;  filter: drop-shadow(6px 0 0 #00B7EB) drop-shadow(-6px 0 0 #FF2D87); }
+  60%  { clip-path: inset(0 -60px 40% -60px);      translate: -8px 0;  filter: drop-shadow(-5px 0 0 #00B7EB) drop-shadow(5px 0 0 #FF2D87); }
+  80%  { clip-path: inset(-40px -60px -40px -60px); translate: 5px 0;  filter: drop-shadow(3px 0 0 #00B7EB) drop-shadow(-3px 0 0 #FF2D87); }
+}
+@keyframes dg-flip {
+  0%   { clip-path: polygon(-60px -60px, calc(100% + 60px) -60px, calc(100% + 60px) 60px,   -60px 200px); }
+  25%  { clip-path: polygon(-60px -60px, calc(100% + 60px) -60px, calc(100% + 60px) 240px,  -60px 400px); }
+  50%  { clip-path: polygon(-60px -60px, calc(100% + 60px) -60px, calc(100% + 60px) 560px,  -60px 760px); }
+  75%  { clip-path: polygon(-60px -60px, calc(100% + 60px) -60px, calc(100% + 60px) 1100px, -60px 1400px); }
+}
+[data-glitch="1"] { animation: dg-glitch 220ms steps(1, end); }
+/* flip first, then the glitch; no fill modes so nothing stays hidden */
+[data-glitch="1"][data-flip="1"] { animation: dg-flip 350ms steps(1, end), dg-glitch 220ms steps(1, end) 350ms; }
+/* #work is too tall for a slice glitch; its header and rows glitch on their own */
+#work[data-glitch="1"] { animation: dg-flip 350ms steps(1, end); }
+
+/* ===== 2. Ambient crackle flicker (12fps feel) =====
+   Kept deliberately light: only every 3rd hero crackle cluster, opacity/transform only (no filters), and no drifting
+   dot layers. It starts after the eruption via its delay. */
+@keyframes crk-flick {
+  0%, 100% { transform: none; opacity: 1; }
+  40% { transform: scale(1.04); opacity: .88; }
+  46% { transform: none; opacity: 1; }
+  71% { transform: scale(1.04); opacity: .88; }
+  75% { transform: none; opacity: 1; }
+}
+svg.crk-load path:nth-child(3n) {
+  animation:
+    crk-pop 250ms steps(3) calc(var(--t) * 450ms + 1s) backwards,
+    crk-flick calc(2.4s + var(--t) * 2s) steps(1, end) calc(var(--t) * 450ms + 1.8s) infinite;
+}
+@supports (animation-timeline: view()) {
+  svg.dots-print {
+    animation: print-in ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 35%;
+  }
+}
+
+/* ===== 2b. Live glitch: small elements cut and RGB-split for ~240ms (ScrollGlitch adds data-live) ===== */
+@keyframes dg-mini {
+  0%   { translate: -6px 0; clip-path: inset(0 -16px 58% -16px);   text-shadow: 5px 0 #00B7EB, -5px 0 #FF2D87; }
+  25%  { translate: 7px 0;  clip-path: inset(40% -16px 20% -16px); text-shadow: -5px 0 #00B7EB, 5px 0 #FF2D87; }
+  50%  { translate: -4px 0; clip-path: inset(66% -16px -16px -16px); text-shadow: 4px 0 #00B7EB, -4px 0 #FF2D87; }
+  75%  { translate: 3px 0;  clip-path: inset(-16px);               text-shadow: -3px 0 #00B7EB, 3px 0 #FF2D87; }
+}
+/* body prefix beats the single-class animation rules that load after this file */
+body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
+
+/* ===== 3. Cursor effects ===== */
+.cur-layer { position: fixed; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
+.cur-layer > * { position: absolute; left: 0; top: 0; pointer-events: none; opacity: 0; }
+.cur-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* Magnetic tilt composes with the hover straighten: same rotate/translate, plus the tilt variables JS sets. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .case-fit .case-box:hover {
+    rotate: calc(var(--rot) * -1 + var(--tx-r, 0deg));
+    translate: var(--tx-x, 0px) calc(-4px + var(--tx-y, 0px));
+  }
+  a.comic-link, .hero-cta { transition: translate 80ms, box-shadow 80ms, rotate 120ms ease-out; }
+  a.comic-link:hover, .hero-cta:hover { rotate: var(--tx-r, 0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-glitch], [data-live], svg.crk-load path, svg.crk-scroll path, svg.dots-print, svg.hero-print, svg.hero-print-m { animation: none !important; }
+  .cur-layer { display: none; }
+}

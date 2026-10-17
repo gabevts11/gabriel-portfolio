@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { benDay, crackleRing } from "@/lib/comic-art";
 import { Art, Comic, Fit, Streams } from "./art";
+import { SpeedLines } from "./SpeedLines";
 
 const nav = [
   ["WORK", "#work"],
@@ -12,7 +13,7 @@ function Portrait({ src }: { src?: string }) {
   const d = benDay({ width: 370, height: 500, spacing: 12, maxR: 4.6, minR: 0.8, origin: { x: 370, y: 500 }, falloff: 430 });
   return (
     <div
-      className="absolute overflow-hidden border-[6px] border-ink bg-paper"
+      className="hero-portrait rough absolute overflow-hidden border-[6px] border-ink bg-paper"
       style={{ left: 135, top: 62, width: 370, height: 500, boxShadow: "10px 10px 0 #111", transform: "rotate(2.5deg)", transformOrigin: "top left" }}
     >
       <Art w={370} h={500} d={d} fill="#FF2D87" opacity={0.45} blend className="inset-0" />
@@ -31,13 +32,15 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
   const dots = { width: 500, height: 600, spacing: 14, maxR: 5.6, minR: 0.8, falloff: 520 };
   const ghost = (left: number, bg: string) => (
     <div
-      className="absolute"
+      className="hero-ghost absolute"
       style={{ left, top: 62, width: 370, height: 500, background: bg, mixBlendMode: "multiply", transform: "rotate(2.5deg)", transformOrigin: "top left" }}
     />
   );
   return (
+    <div className="relative">
     <Fit w={640} h={760} className="[--s:.5] sm:[--s:.75] lg:[--s:1]">
       <Streams
+        mode="load"
         w={640}
         h={760}
         streams={[
@@ -51,11 +54,11 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
         ]}
       />
       <div
-        className="absolute border-4 border-ink bg-cyan"
+        className="hero-frame absolute border-4 border-ink bg-cyan"
         style={{ left: 90, top: 150, width: 500, height: 600, transform: "rotate(-3deg)", transformOrigin: "top left" }}
       />
       <div
-        className="absolute box-border overflow-hidden border-[6px] border-ink bg-purple"
+        className="hero-frame rough absolute box-border overflow-hidden border-[6px] border-ink bg-purple"
         style={{ left: 70, top: 130, width: 500, height: 600, transform: "rotate(-3deg)", transformOrigin: "top left" }}
       >
         <Art w={500} h={600} d={benDay({ ...dots, origin: { x: 0, y: 0 } })} fill="#00B7EB" opacity={0.95} className="inset-0" />
@@ -70,6 +73,7 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
       {ghost(144, "#E8202A")}
       <Portrait src={portraitSrc} />
     </Fit>
+    </div>
   );
 }
 
@@ -77,8 +81,8 @@ export function Hero() {
   const bg = { width: 620, height: 460, spacing: 16, maxR: 6, minR: 1, origin: { x: 0, y: 0 }, falloff: 540 };
   return (
     <header className="relative mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pb-24 pt-9 xl:px-20">
-      <Art w={620} h={460} d={benDay(bg)} fill="#00B7EB" opacity={0.9} blend className="left-0 top-0" />
-      <Art w={620} h={460} d={benDay(bg)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="left-0 top-0" />
+      <Art w={620} h={460} d={benDay(bg)} fill="#00B7EB" opacity={0.9} blend className="hero-print left-0 top-0" />
+      <Art w={620} h={460} d={benDay(bg)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="hero-print hero-print-m left-0 top-0" />
 
       <nav className="relative flex items-center justify-between">
         <Comic bg="#F7DF02" shadow={4} className="px-[14px] py-[6px] text-[30px]">
@@ -88,19 +92,20 @@ export function Hero() {
           <ul className="font-display hidden gap-10 text-2xl tracking-[.04em] md:flex">
             {nav.map(([t, h]) => (
               <li key={t}>
-                <a href={h}>{t}</a>
+                <a href={h} className="nav-link">{t}</a>
               </li>
             ))}
           </ul>
-          <Comic as="a" href="#contact" bg="#2EBD59" shadow={4} className="px-[18px] py-2 text-2xl">
+          <Comic as="a" href="#contact" bg="#2EBD59" shadow={4} className="comic-link px-[18px] py-2 text-2xl">
             SAY HI!
           </Comic>
         </div>
       </nav>
 
       <div className="relative flex flex-col items-center gap-12 xl:flex-row xl:pl-10">
-        <div className="flex min-w-0 flex-1 flex-col items-start gap-7 self-stretch xl:self-auto">
-          <div className="font-display relative mb-1 rounded-[28px] border-[3px] border-ink bg-white px-[22px] py-[10px] text-[26px] tracking-[.03em]">
+        <div className="relative isolate flex min-w-0 flex-1 flex-col items-start gap-7 self-stretch xl:self-auto">
+          <SpeedLines w={600} h={500} cx={190} cy={250} r={620} seed={5} count={52} preserve="xMidYMid slice" className="-inset-10 -z-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)]" />
+          <div className="hero-bubble font-display relative mb-1 rounded-[28px] border-[3px] border-ink bg-white px-[22px] py-[10px] text-[26px] tracking-[.03em]">
             HEY THERE! I&apos;M
             <svg aria-hidden="true" width="34" height="26" viewBox="0 0 34 26" className="absolute left-[34px] top-full">
               <path d="M2 1 L32 1 L6 25 Z" fill="#fff" stroke="#111" strokeWidth="3" strokeLinejoin="round" />
@@ -108,21 +113,21 @@ export function Hero() {
             </svg>
           </div>
           <h1
-            className="font-display text-[clamp(52px,17vw,130px)] leading-[.86] tracking-[.01em] xl:text-[clamp(60px,8.4vw,130px)] min-[1440px]:text-[130px]"
+            className="hero-name font-display text-[clamp(52px,17vw,130px)] leading-[.86] tracking-[.01em] xl:text-[clamp(60px,8.4vw,130px)] min-[1440px]:text-[130px]"
             style={{ textShadow: "8px 8px 0 #FF2D87, -4px 3px 0 #00B7EB" }}
           >
             GABRIEL
             <br />
             DOUGHERTY
           </h1>
-          <Comic bg="#F7DF02" shadow={6} className="px-[18px] py-2 text-[clamp(20px,6vw,32px)]">
+          <Comic bg="#F7DF02" shadow={6} className="hero-draw px-[18px] py-2 text-[clamp(20px,6vw,32px)]">
             SOFTWARE PRODUCT DESIGNER
           </Comic>
           <p className="max-w-[540px] text-[22px] leading-[1.4]">
             I design web apps and products, and direct AI-assisted builds from Figma to App Store.
           </p>
           <div className="font-display flex flex-wrap items-center gap-x-8 gap-y-5">
-            <Comic as="a" href="#work" bg="#E8202A" shadow={7} className="px-7 py-[14px] text-[28px] text-white">
+            <Comic as="a" href="#work" bg="#E8202A" shadow={7} className="hero-cta comic-link px-7 py-[14px] text-[28px] text-white">
               VIEW MY WORK!
             </Comic>
             <a href="#about" className="text-[26px] underline">

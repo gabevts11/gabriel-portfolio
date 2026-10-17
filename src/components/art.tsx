@@ -1,5 +1,5 @@
 import type { CSSProperties, ElementType, ReactNode } from "react";
-import { crackleStream, type StreamOpts } from "@/lib/comic-art";
+import { crackleStreamClusters, type StreamOpts } from "@/lib/comic-art";
 
 // Server-rendered decorative SVG with a single path.
 export function Art({
@@ -49,10 +49,12 @@ export function Streams({
   w,
   h,
   streams,
+  mode,
 }: {
   w: number;
   h: number;
   streams: [string, StreamOpts][];
+  mode: "load" | "scroll";
 }) {
   return (
     <svg
@@ -61,10 +63,14 @@ export function Streams({
       height={h}
       viewBox={`0 0 ${w} ${h}`}
       overflow="visible"
-      className="pointer-events-none absolute left-0 top-0"
+      className={`crk-${mode} pointer-events-none absolute left-0 top-0`}
     >
       {streams.map(([fill, o]) => (
-        <path key={o.seed} d={crackleStream(o)} fill={fill} />
+        <g key={o.seed} fill={fill}>
+          {crackleStreamClusters(o).map(({ d, t }, i) => (
+            <path key={i} d={d} style={{ "--t": t } as CSSProperties} />
+          ))}
+        </g>
       ))}
     </svg>
   );
@@ -89,14 +95,17 @@ export function Comic({
   style?: CSSProperties;
   children: ReactNode;
   href?: string;
+  target?: string;
+  rel?: string;
 }) {
   return (
     <Tag
       {...rest}
-      className={`font-display inline-block border-[3px] border-ink ${className}`}
+      className={`font-display rough inline-block border-[3px] border-ink ${className}`}
       style={{
         background: bg,
         boxShadow: shadow ? `${shadow}px ${shadow}px 0 ${shadowColor}` : undefined,
+        ...(shadow ? ({ "--sh": `${shadow}px` } as CSSProperties) : null),
         ...style,
       }}
     >
