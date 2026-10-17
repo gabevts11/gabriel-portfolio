@@ -73,7 +73,7 @@ export const cases: CaseStudy[] = [
     title: "CAMPAIGN WEBSITE",
     summary:
       "I designed and launched a full campaign website for a local school board candidate, plus a custom tool that maps a voter's address to their seat. 661 sessions and 21 form submissions in the first period.",
-    meta: [["ROLE", "Freelance designer & developer"], ["TIMELINE", "Aug 2026 – present"]],
+    meta: [["ROLE", "Freelance designer & developer"], ["COMPLETED", "Oct 2026"]],
     stats: [["661", "Sessions in the first period", "cyan"], ["506", "Unique visitors", "purple"], ["21", "Form submissions, 11 of them volunteer sign-ups", "red"]],
     problem:
       "A local school board candidate needed one place online to reach voters: who they are, how to vote, and ways to volunteer, donate or stay in touch. It had to work on a phone, and give each voter a quick way to find their own district.",
