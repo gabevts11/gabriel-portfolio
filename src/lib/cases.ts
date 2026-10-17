@@ -26,6 +26,7 @@ export type CaseStudy = {
   heroMock?: string; // key of the code-drawn illustration for the hero and homepage card
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
+  sitePages?: { src: string; w: number; h: number; label: string }[]; // full-page screenshots, shown cropped with a link to the full image
   images?: { mock?: string; src?: string; w?: number; h?: number; src2?: string; w2?: number; h2?: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
@@ -99,8 +100,17 @@ export const cases: CaseStudy[] = [
       "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
     heroMock: "poster",
+    sitePages: [
+      { src: "/work/campaign/site-home.jpg", w: 1200, h: 1476, label: "HOME" },
+      { src: "/work/campaign/site-about.jpg", w: 1200, h: 1427, label: "ABOUT" },
+      { src: "/work/campaign/site-priorities.jpg", w: 1200, h: 1076, label: "PRIORITIES" },
+      { src: "/work/campaign/site-experience.jpg", w: 1200, h: 1339, label: "EXPERIENCE" },
+      { src: "/work/campaign/site-voter.jpg", w: 1200, h: 752, label: "VOTER INFO" },
+      { src: "/work/campaign/site-events.jpg", w: 1200, h: 720, label: "EVENTS" },
+      { src: "/work/campaign/site-contact.jpg", w: 1200, h: 944, label: "CONTACT" },
+      { src: "/work/campaign/site-involved.jpg", w: 1200, h: 922, label: "GET INVOLVED" },
+    ],
     images: [
-      { mock: "sitemap", label: "THE SITE, PAGE BY PAGE", caption: "An illustration of the site's structure: its pages and the ways visitors can help. Page names only, no real content." },
       { mock: "phone", label: "BUILT FOR PHONES", caption: "An illustration of the mobile layout: simple header, one clear message, two actions, and the district lookup within reach." },
       { mock: "latest", label: "THE LOOKUP TOOL, LATEST", caption: "The lookup tool in its later version: blue, cream and orange, with a serif heading. Redrawn in code from the prototype, with sample text." },
       { mock: "early", label: "THE LOOKUP TOOL, EARLY", caption: "An early version: address field, boundary map and result panel. Redrawn in code, with sample text." },

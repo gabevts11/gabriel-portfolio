@@ -184,6 +184,22 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           )}
         </aside>
       )}
+      {c.sitePages && (
+        <section className="flex flex-col items-start gap-6">
+          <Caption rot={-1}>THE SITE, PAGE BY PAGE</Caption>
+          <p className="max-w-[640px] text-base leading-[1.6]">Every page, recreated in Figma. Text and photos are swapped for placeholders so no real names or people appear. Tap a page to see it in full.</p>
+          <ul className="grid w-full grid-cols-2 gap-6 md:grid-cols-4">
+            {c.sitePages.map((pg, i) => (
+              <li key={pg.label} className="flex flex-col gap-3">
+                <a href={pg.src} target="_blank" rel="noopener noreferrer" className="rough comic-link block aspect-[4/5] overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `6px 6px 0 ${[C.cyan, C.magenta, C.yellow, C.purple][i % 4]}` }}>
+                  <Image src={pg.src} alt={`${c.title}: ${pg.label.toLowerCase()} page`} width={pg.w} height={pg.h} sizes="(min-width:768px) 22vw, 45vw" className="h-full w-full object-cover object-top" />
+                </a>
+                <Comic bg={C.yellow} shadow={3} className="self-start px-3 py-1 text-lg">{pg.label}</Comic>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       {c.images ? (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
