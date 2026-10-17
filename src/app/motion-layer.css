@@ -76,11 +76,7 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
   .cur-layer { display: none; }
 }
 
-/* ===== 4. Page glitch transition ===== */
-.gt-layer { position: fixed; inset: 0; z-index: 9990; pointer-events: none; overflow: hidden; }
-.gt-band { position: absolute; left: 0; width: 100%; will-change: transform; }
-.gt-in { animation: gt-in 300ms steps(7, end) both; }
-.gt-out { animation: gt-out 380ms steps(7, end) both; }
-@keyframes gt-in { from { transform: translateX(calc(var(--dir) * 105%)); } to { transform: translateX(0); } }
-@keyframes gt-out { from { transform: translateX(0); } to { transform: translateX(calc(var(--dir) * -105%)); } }
-@media (prefers-reduced-motion: reduce) { .gt-layer { display: none; } }
+/* ===== 4. Page glitch transition (PageGlitch toggles these on <main>); reuses dg-glitch from section 1 ===== */
+@keyframes pg-hide { to { opacity: 0; } }
+.pg-out { animation: dg-glitch 220ms steps(1, end), pg-hide 10ms linear 220ms forwards; }
+.pg-in { animation: dg-glitch 240ms steps(1, end); }
