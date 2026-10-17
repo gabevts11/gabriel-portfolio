@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { benDay } from "@/lib/comic-art";
 import type { CaseStudy } from "@/lib/cases";
@@ -47,8 +48,14 @@ function Hero({ c }: { c: CaseStudy }) {
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C.magenta} opacity={0.9} blend className="inset-0" />
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C.cyan} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
           <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
-            <span className="font-display text-[30px] tracking-[.04em] text-placeholder">SCREENSHOT</span>
-            <span className="text-sm font-medium tracking-[.06em] text-placeholder">PLACEHOLDER · image coming</span>
+            {c.hero ? (
+              <Image src={c.hero} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover object-top" priority />
+            ) : (
+              <>
+                <span className="font-display text-[30px] tracking-[.04em] text-placeholder">SCREENSHOT</span>
+                <span className="text-sm font-medium tracking-[.06em] text-placeholder">PLACEHOLDER · image coming</span>
+              </>
+            )}
           </div>
         </div>
       </Fit>
@@ -97,7 +104,25 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
       <div className="flex flex-col gap-12">
         <Chapter n={chapters[0][0]} title={chapters[0][1]} color="cyan" rot={-0.6}><p>{c.problem}</p></Chapter>
         <Caption rot={1}>MEANWHILE, IN THE STUDIO…</Caption>
-        <Chapter n={chapters[1][0]} title={chapters[1][1]} color="yellow" rot={0.6}><p>{c.process}</p></Chapter>
+        <Chapter n={chapters[1][0]} title={chapters[1][1]} color="yellow" rot={0.6}>
+          <p>{c.process}</p>
+          {c.flow && (
+            <ol className="my-6 flex flex-wrap items-center gap-2" aria-label="How the lookup works">
+              {c.flow.map((f, i) => (
+                <li key={f} className="flex items-center gap-2">
+                  <Comic bg={i % 2 ? C.cyan : C.yellow} shadow={3} className="px-3 py-1 text-base sm:text-lg">{f}</Comic>
+                  {i < c.flow!.length - 1 && <span aria-hidden className="font-display text-2xl">→</span>}
+                </li>
+              ))}
+            </ol>
+          )}
+          {c.hardParts && (
+            <>
+              <h3 className="font-display mt-4 text-3xl text-red">THE HARD PARTS</h3>
+              <ul className="mt-2 flex list-disc flex-col gap-2 pl-6">{c.hardParts.map((h) => <li key={h}>{h}</li>)}</ul>
+            </>
+          )}
+        </Chapter>
         <Chapter n={chapters[2][0]} title={chapters[2][1]} color="magenta" rot={-0.5}>
           <ol className="flex flex-col gap-4">
             {c.decisions.map((d, i) => (
@@ -110,6 +135,22 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
         </Chapter>
         <Chapter n={chapters[3][0]} title={chapters[3][1]} color="red" rot={0.5}><p>{c.outcome}</p></Chapter>
       </div>
+      {c.images ? (
+        <section className="flex flex-col items-start gap-6">
+          <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
+          <ul className="grid w-full items-start gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {c.images.map((im, i) => (
+              <li key={im.src} className="flex flex-col gap-3">
+                <div className="rough overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `8px 8px 0 ${[C.purple, C.cyan, C.magenta, C.yellow, C.red][i % 5]}` }}>
+                  <Image src={im.src} alt={`${c.title}: ${im.label.toLowerCase()}`} width={im.w} height={im.h} sizes="(min-width:1280px) 380px, (min-width:768px) 45vw, 90vw" className="h-auto w-full" />
+                </div>
+                <Comic bg={im.staged ? C.magenta : C.yellow} shadow={3} className={`self-start px-3 py-1 text-lg ${im.staged ? "text-white" : ""}`}>{im.label}</Comic>
+                <p className="text-sm leading-snug">{im.caption}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : (
       <section className="flex flex-col items-start gap-6">
         <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
         <ul className="grid w-full gap-6 md:grid-cols-3">
@@ -121,6 +162,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           ))}
         </ul>
       </section>
+      )}
       <Link href={`/work/${next.slug}`} className="comic-link rough relative block border-4 border-ink bg-red p-6 text-white md:p-10" style={{ boxShadow: "8px 8px 0 #111", "--sh": "8px" } as CSSProperties}>
         <div className="font-display text-[clamp(32px,8vw,64px)] leading-none">NEXT CASE FILE →</div>
         <div className="font-display mt-2 text-[clamp(24px,6vw,44px)] leading-none">{next.title}</div>

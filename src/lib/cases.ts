@@ -15,6 +15,10 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
+  hero?: string; // real image for the hero panel
+  hardParts?: string[]; // extra list under the process
+  flow?: string[]; // "how it works" steps
+  images?: { src: string; w: number; h: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
 export const cases: CaseStudy[] = [
@@ -48,20 +52,38 @@ export const cases: CaseStudy[] = [
     kicker: "WEB DESIGN · FREELANCE · WIX",
     title: "CAMPAIGN WEBSITE",
     summary:
-      "A responsive campaign site for a local school board candidate in Rock Hill, SC, with supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
-    meta: [["ROLE", "Freelance designer & developer"], ["TIMELINE", "Aug 2026 – present"], ["TOOLS", "Wix · Figma"]],
+      "A responsive campaign site for a local school board candidate, with supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
+    meta: [["ROLE", "Freelance designer & developer"], ["TIMELINE", "Aug 2026 – present"], ["TOOLS", "Wix · Figma · ChatGPT"]],
     stats: [["661", "Sessions in the first period", "cyan"], ["506", "Unique visitors", "purple"], ["21", "Form submissions, 11 of them volunteer sign-ups", "red"]],
     problem:
       "A local school board candidate needed an online presence to reach voters: a bio, platform priorities, events, voter information, and ways to volunteer or donate, plus a way for voters to quickly find their own district information instead of reading a static list.",
     process:
-      "Designed and launched a responsive, multi-page Wix site: candidate bio, platform priorities, events, voter info, and supporter forms (email signup, volunteer, contact, donation support), connected to the campaign's social channels. Also designed and built a custom, mobile-friendly district lookup tool: a visitor enters their address and gets their school board seat, current trustee and 2026 election info, with interactive district boundary mapping.",
+      "Designed and launched a responsive, multi-page Wix site: candidate bio, platform priorities, events, voter info, and supporter forms (email signup, volunteer, contact, donation support), connected to the campaign's social channels. For the district lookup, I researched the official boundary map, which was only available as a PDF, extracted its vector shapes and converted them into georeferenced GeoJSON, then matched an address's coordinates (from the U.S. Census Geocoder) against the five district polygons. I led the research, direction, interface design, debugging and testing, working with ChatGPT as an AI-assisted development partner, and iterated the tool through about 25 versions. The tool is embedded in the campaign's Wix site.",
+    hardParts: [
+      "Getting usable geometry: the source was an official PDF map, not a GIS dataset, so the district shapes had to be extracted, rebuilt and georeferenced.",
+      "Address accuracy: ZIP code or city matching is not precise enough, so the lookup uses coordinates. Edge-case addresses are a known limit, so this is not claimed to cover every address.",
+      "Browser and service limits: cross-origin rules shaped which services were practical, and a public map tile endpoint was dropped after an access problem.",
+      "Responsive layout: the map notice needed repeated adjustment so text stayed readable and left-aligned at every width.",
+    ],
+    flow: ["ADDRESS", "GEOCODING", "COORDINATES", "DISTRICT POLYGON MATCH", "SEAT RESULT"],
     decisions: [
       "Built the district lookup as an interactive embedded tool rather than a static info page, so each voter gets a personalized answer.",
+      "Matched on coordinates and district polygons instead of ZIP code or neighborhood, because streets next to each other can sit in different seats.",
+      "Added an outside-boundaries message so an address that falls outside all five seats gets an honest answer instead of a made-up one.",
+      "Kept the result short and added a beta note pointing people to official county resources to verify, since wrong district information could mislead voters.",
       "Prioritized a mobile-first layout, since traffic skewed mobile and organic Facebook.",
     ],
     outcome:
-      "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups.",
-    shots: ["HOME", "DISTRICT LOOKUP", "MOBILE VIEW"],
+      "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
+    shots: [],
+    hero: "/work/campaign/lookup.jpg",
+    images: [
+      { src: "/work/campaign/home.jpg", w: 1440, h: 900, label: "THE CAMPAIGN SITE", caption: "Home page, desktop. The candidate's photo, logo and name are replaced with neutral placeholders." },
+      { src: "/work/campaign/mobile.jpg", w: 390, h: 844, label: "ON A PHONE", caption: "The same page at phone width, since most traffic was mobile." },
+      { src: "/work/campaign/early.jpg", w: 1060, h: 840, label: "EARLY PROTOTYPE", caption: "An early version of the lookup: address field, boundary map and result panel." },
+      { src: "/work/campaign/lookup.jpg", w: 1200, h: 880, label: "LATEST DESIGN", caption: "A later version with the final color system, type and map notice. Town names are removed." },
+      { src: "/work/campaign/error-staged.jpg", w: 1200, h: 880, label: "OUTSIDE BOUNDARIES (STAGED)", caption: "An illustrated example of the error state, staged for documentation. It is not a recording of a live session.", staged: true },
+    ],
   },
   {
     slug: "snapback-experiences",
