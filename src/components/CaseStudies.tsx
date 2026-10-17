@@ -5,6 +5,7 @@ import { benDay, type StreamOpts } from "@/lib/comic-art";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
+import { LookupMock } from "./LookupMock";
 import { SpeedLines } from "./SpeedLines";
 
 export const C = {
@@ -32,6 +33,7 @@ type Case = {
   flip: boolean;
   streams: [Color, StreamOpts][];
   src?: string;
+  mock?: boolean;
 };
 
 const cases: Case[] = [
@@ -50,6 +52,7 @@ const cases: Case[] = [
     issue: "ISSUE #03", kicker: "WEB DESIGN · FREELANCE · WIX", slug: "campaign-website", title: "CAMPAIGN WEBSITE",
     desc: "A responsive campaign site for a local school board candidate, with supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
     stats: [["661", "Sessions in the first period", "cyan"], ["21", "Form submissions", "red"]],
+    mock: true,
     panel: "cyan", offset: "red", dotsA: "purple", dotsB: "magenta", rot: 2, flip: true,
     streams: [
       ["ink", { seed: 81, points: [[590, 30], [650, -10], [720, -50]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],
@@ -91,7 +94,9 @@ function CasePanel({ c }: { c: Case }) {
           className="rough absolute overflow-hidden border-4 border-ink bg-paper"
           style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}
         >
-          {c.src ? (
+          {c.mock ? (
+            <LookupMock kind="latest" slice className="absolute inset-0 h-full w-full" />
+          ) : c.src ? (
             <Image src={c.src} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" />
           ) : (
             <span className="font-display absolute inset-0 flex items-center justify-center text-[30px] tracking-[.04em] text-placeholder">

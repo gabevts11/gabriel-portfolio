@@ -15,10 +15,10 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
-  hero?: string; // real image for the hero panel
+  heroMock?: boolean; // show the redrawn lookup UI in the hero and on the homepage card
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
-  images?: { src: string; w: number; h: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
+  images?: { mock: "latest" | "error" | "early" | "seats"; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
 export const cases: CaseStudy[] = [
@@ -76,13 +76,12 @@ export const cases: CaseStudy[] = [
     outcome:
       "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
-    hero: "/work/campaign/lookup.jpg",
+    heroMock: true,
     images: [
-      { src: "/work/campaign/home.jpg", w: 1440, h: 900, label: "THE CAMPAIGN SITE", caption: "Home page, desktop. The candidate's photo, logo and name are replaced with neutral placeholders." },
-      { src: "/work/campaign/mobile.jpg", w: 390, h: 844, label: "ON A PHONE", caption: "The same page at phone width, since most traffic was mobile." },
-      { src: "/work/campaign/early.jpg", w: 1060, h: 840, label: "EARLY PROTOTYPE", caption: "An early version of the lookup: address field, boundary map and result panel." },
-      { src: "/work/campaign/lookup.jpg", w: 1200, h: 880, label: "LATEST DESIGN", caption: "A later version with the final color system, type and map notice. Town names are removed." },
-      { src: "/work/campaign/error-staged.jpg", w: 1200, h: 880, label: "OUTSIDE BOUNDARIES (STAGED)", caption: "An illustrated example of the error state, staged for documentation. It is not a recording of a live session.", staged: true },
+      { mock: "latest", label: "LATEST DESIGN", caption: "The lookup tool in its later version: blue, cream and orange, with a serif heading. Redrawn in code from the prototype, with sample text." },
+      { mock: "early", label: "EARLY PROTOTYPE", caption: "An early version: address field, boundary map and result panel. Redrawn in code, with sample text." },
+      { mock: "seats", label: "THE EXTRACTED SEATS", caption: "The five district shapes rebuilt from the official PDF map and converted to GeoJSON." },
+      { mock: "error", label: "OUTSIDE BOUNDARIES (STAGED)", caption: "An illustrated example of the error state, staged for documentation. It is not a recording of a live session.", staged: true },
     ],
   },
   {
