@@ -50,7 +50,7 @@ const cases: Case[] = [
   },
   {
     issue: "ISSUE #03", kicker: "WEB DESIGN · FREELANCE · WIX", slug: "campaign-website", title: "CAMPAIGN WEBSITE",
-    desc: "A responsive campaign site for a local school board candidate, with supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
+    desc: "A full campaign website for a local school board candidate: bio, platform, events, voter info, supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
     stats: [["661", "Sessions in the first period", "cyan"], ["21", "Form submissions", "red"]],
     mock: true,
     panel: "cyan", offset: "red", dotsA: "purple", dotsB: "magenta", rot: 2, flip: true,

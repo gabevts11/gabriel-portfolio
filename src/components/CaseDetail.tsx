@@ -118,7 +118,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           )}
           {c.hardParts && (
             <>
-              <h3 className="font-display mt-4 text-3xl text-red">THE HARD PARTS</h3>
+              <h3 className="font-display mt-4 text-3xl text-red">THE HARD PARTS · DISTRICT LOOKUP</h3>
               <ul className="mt-2 flex list-disc flex-col gap-2 pl-6">{c.hardParts.map((h) => <li key={h}>{h}</li>)}</ul>
             </>
           )}

@@ -18,7 +18,7 @@ export type CaseStudy = {
   heroMock?: boolean; // show the district-map illustration in the hero
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
-  images?: { mock: "latest" | "error" | "early" | "seats"; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
+  images?: { mock: "latest" | "error" | "early" | "seats" | "sitemap" | "phone"; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
 export const cases: CaseStudy[] = [
@@ -52,13 +52,13 @@ export const cases: CaseStudy[] = [
     kicker: "WEB DESIGN · FREELANCE · WIX",
     title: "CAMPAIGN WEBSITE",
     summary:
-      "A responsive campaign site for a local school board candidate, with supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
+      "A full campaign website for a local school board candidate: bio, platform, events, voter info and ways to volunteer, donate and sign up, plus a custom lookup tool that maps a voter's address to their seat.",
     meta: [["ROLE", "Freelance designer & developer"], ["TIMELINE", "Aug 2026 – present"], ["TOOLS", "Wix · Figma · ChatGPT"]],
     stats: [["661", "Sessions in the first period", "cyan"], ["506", "Unique visitors", "purple"], ["21", "Form submissions, 11 of them volunteer sign-ups", "red"]],
     problem:
-      "A local school board candidate needed an online presence to reach voters: a bio, platform priorities, events, voter information, and ways to volunteer or donate, plus a way for voters to quickly find their own district information instead of reading a static list.",
+      "A local school board candidate needed one place online to reach voters: who they are, what they stand for, when and where to meet them, how to vote, and easy ways to volunteer, donate or stay in touch. The site also had to work on a phone, since that is where most voters would find it, and give each voter a quick way to find their own district instead of reading a static list.",
     process:
-      "Designed and launched a responsive, multi-page Wix site: candidate bio, platform priorities, events, voter info, and supporter forms (email signup, volunteer, contact, donation support), connected to the campaign's social channels. For the district lookup, I researched the official boundary map, which was only available as a PDF, extracted its vector shapes and converted them into georeferenced GeoJSON, then matched an address's coordinates (from the U.S. Census Geocoder) against the five district polygons. I led the research, direction, interface design, debugging and testing, working with ChatGPT as an AI-assisted development partner, and iterated the tool through about 25 versions. The tool is embedded in the campaign's Wix site.",
+      "Designed and launched a responsive, multi-page site in Wix and Figma: home, meet the candidate, priorities, experience, voter info, events and contact, with a Donate button always in the navigation. Built the supporter forms (email signup, volunteer, contact, donation support) and connected them to the campaign's social channels. Gave the whole site one look: a blue, cream and orange palette with a serif heading type, so it reads as one campaign on every page. The one custom-built piece is the district lookup tool, embedded in the voter info page. For it, I researched the official boundary map, which was only available as a PDF, extracted its vector shapes into georeferenced GeoJSON, and matched an address's coordinates (from the U.S. Census Geocoder) against the five district polygons. I led the research, direction, interface design, debugging and testing, working with ChatGPT as an AI-assisted development partner, and iterated the tool through about 25 versions.",
     hardParts: [
       "Getting usable geometry: the source was an official PDF map, not a GIS dataset, so the district shapes had to be extracted, rebuilt and georeferenced.",
       "Address accuracy: ZIP code or city matching is not precise enough, so the lookup uses coordinates. Edge-case addresses are a known limit, so this is not claimed to cover every address.",
@@ -67,6 +67,7 @@ export const cases: CaseStudy[] = [
     ],
     flow: ["ADDRESS", "GEOCODING", "COORDINATES", "DISTRICT POLYGON MATCH", "SEAT RESULT"],
     decisions: [
+      "Organized the site around what a voter needs to do: learn about the candidate, check how to vote, and take action, with forms and a Donate button reachable from every page.",
       "Built the district lookup as an interactive embedded tool rather than a static info page, so each voter gets a personalized answer.",
       "Matched on coordinates and district polygons instead of ZIP code or neighborhood, because streets next to each other can sit in different seats.",
       "Added an outside-boundaries message so an address that falls outside all five seats gets an honest answer instead of a made-up one.",
@@ -78,8 +79,10 @@ export const cases: CaseStudy[] = [
     shots: [],
     heroMock: true,
     images: [
-      { mock: "latest", label: "LATEST DESIGN", caption: "The lookup tool in its later version: blue, cream and orange, with a serif heading. Redrawn in code from the prototype, with sample text." },
-      { mock: "early", label: "EARLY PROTOTYPE", caption: "An early version: address field, boundary map and result panel. Redrawn in code, with sample text." },
+      { mock: "sitemap", label: "THE SITE, PAGE BY PAGE", caption: "An illustration of the site's structure: its pages and the ways visitors can help. Page names only, no real content." },
+      { mock: "phone", label: "BUILT FOR PHONES", caption: "An illustration of the mobile layout: simple header, one clear message, two actions, and the district lookup within reach." },
+      { mock: "latest", label: "THE LOOKUP TOOL, LATEST", caption: "The lookup tool in its later version: blue, cream and orange, with a serif heading. Redrawn in code from the prototype, with sample text." },
+      { mock: "early", label: "THE LOOKUP TOOL, EARLY", caption: "An early version: address field, boundary map and result panel. Redrawn in code, with sample text." },
       { mock: "seats", label: "THE EXTRACTED SEATS", caption: "The five district shapes rebuilt from the official PDF map and converted to GeoJSON." },
       { mock: "error", label: "OUTSIDE BOUNDARIES (STAGED)", caption: "An illustrated example of the error state, staged for documentation. It is not a recording of a live session.", staged: true },
     ],
