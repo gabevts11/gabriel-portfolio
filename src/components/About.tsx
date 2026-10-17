@@ -5,7 +5,7 @@ import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
 
 const stats = [
-  ["125", "Motion designs shipped in Snapback Studio", "#00B7EB"],
+  ["125", "Motion designs shipped in Snapback Motion Studio", "#00B7EB"],
   ["661", "Sessions on a campaign site in its first period", "#FF2D87"],
   ["1 YR", "Building sites, apps & graphics for real users", "#5B2BC2"],
 ];
@@ -63,7 +63,7 @@ export function About({ photoSrc }: { photoSrc?: string }) {
           </h2>
           <p className="text-[19px] leading-normal">
             I&apos;m a product designer based in York, SC, working mostly in Figma — from full site layouts to product UI — and using AI
-            tools like Claude and Cursor to move fast from an idea to something people can use. Recent work includes Snapback Studio, a
+            tools like Claude and Cursor to move fast from an idea to something people can use. Recent work includes Snapback Motion Studio, a
             125-design motion toolkit for Snapback Sports, and freelance web design for a local school board campaign.
           </p>
           <ul className="grid w-full grid-cols-1 gap-5 sm:grid-cols-3">

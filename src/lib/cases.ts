@@ -15,24 +15,27 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
-  heroMock?: boolean; // show the district-map illustration in the hero
+  disclaimer?: string; // shown under the hero summary
+  hero?: string; // real image for the hero panel
+  heroMock?: string; // key of the code-drawn illustration for the hero and homepage card
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
-  images?: { mock: "latest" | "error" | "early" | "seats" | "sitemap" | "phone"; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
+  images?: { mock?: string; src?: string; w?: number; h?: number; src2?: string; w2?: number; h2?: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
 export const cases: CaseStudy[] = [
   {
     slug: "snapback-studio",
     issue: "ISSUE #02",
-    kicker: "MOTION DESIGN · DESIGN SYSTEM · BRAND",
-    title: "SNAPBACK STUDIO",
+    kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PERSONAL PROJECT",
+    title: "SNAPBACK MOTION STUDIO",
     summary:
-      "A browser-based motion design studio for Snapback Sports: stream graphics, jumbotron loops, sponsor packages and intros for every sub-brand, built to their brand guide and exportable to CapCut.",
-    meta: [["ROLE", "Designer & builder"], ["TIMELINE", "Not yet listed"], ["TOOLS", "Browser-based tool · Figma"]],
-    stats: [["125", "Editable motion designs", "magenta"], ["19", "Design groups, each in 16:9 and 9:16", "cyan"], ["60", "Published iterations of the live studio", "red"]],
+      "A motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
+    meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal, unaffiliated"], ["TOOLS", "Browser-based tool · Figma"]],
+    stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions that fully cover the cut", "cyan"], ["60", "Published iterations of the live studio", "red"]],
     problem:
-      "Snapback Sports and its family of 9 sub-brands needed a large, consistent library of broadcast and social motion graphics (stream overlays, jumbotron loops, sponsor packages, recurring segment intros and outros) that stayed on-brand across every channel and could be quickly customized and exported for real production use, without re-rendering a new video for every variant.",
+      "Snapback Sports and its family of accounts publish a steady stream of broadcast and social motion graphics. I wanted to see whether one tool could make that whole library consistent: stream overlays, jumbotron loops, sponsor packages and recurring segment intros and outros, on-brand across every channel, quick to customize and exportable for real production use, without re-rendering a new video for every variant.",
+    disclaimer: "Personal project. This is independent, self-directed work. I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
     process:
       "Storyboarded new concepts with several variants before building from the picks. Built a single self-contained, no-install browser tool holding 125 editable motion designs across 19 groups, each shipping in both 16:9 (1920×1080) and 9:16 (1080×1920), with element-level editing (text, photos, color, timing), per-design content fields, layer toggles and autosave. Iterated on feedback round by round (timing, framing, color, sound), republishing the live studio 60 times. QA'd every change in both formats: loops checked for seamlessness, transitions checked for full frame coverage at the cut, mobile layouts checked against safe zones. Also recreated part of the system (the \"word wall\") in Figma with brand variables, components and Figma Motion.",
     decisions: [
@@ -43,8 +46,15 @@ export const cases: CaseStudy[] = [
       "Used close stand-ins for Snapback's licensed fonts (Barlow for DIN 2014, Unbounded for Monument Extended Ultrabold), checked against Snapback's official June 2024 brand guide.",
     ],
     outcome:
-      "125 shipped, editable designs across 19 groups: stream and YouTube graphics (19), scene transitions (19), stadium and jumbotron loops (13), hat icon motion (9), brand family (4), fan events (3), plus packages for the Sam Houston jersey sponsorship (6), Snapback Saturday (9), Chop (2), Trivia (9), Betting (5) and Collects (6), and intro/outro sets for all 9 sub-brands. Built to the Snapback brand guide (5 brand colors, 3 typefaces), with 60 published iterations of the live studio.",
-    shots: ["THE STUDIO", "SAM HOUSTON JERSEY REVEAL", "FIGMA WORD WALL"],
+      "125 shipped, editable designs, each in 16:9 and 9:16: stream and YouTube graphics (19), scene transitions (19), stadium and jumbotron loops (13), hat icon motion (9), brand family (4), fan events and trips (3), the Sam Houston jersey sponsorship (6), Snapback Saturday (9), Chop (2), Trivia (9), Betting (5) and Collects (6), plus 21 intros and outros across eight Snapback brands. Built to the Snapback brand guide (five colors, three typefaces), with 60 published versions of the live studio.",
+    shots: [],
+    hero: "/work/studio/studio-ui.jpg",
+    images: [
+      { src: "/work/studio/jersey.jpg", w: 1600, h: 900, src2: "/work/studio/jersey-m.jpg", w2: 506, h2: 900, label: "SAM HOUSTON JERSEY REVEAL", caption: "One design, both formats (16:9 and 9:16): a frame from the jersey sponsorship package." },
+      { src: "/work/studio/leaderboard.jpg", w: 1600, h: 900, src2: "/work/studio/leaderboard-m.jpg", w2: 506, h2: 900, label: "TRIVIA LEADERBOARD", caption: "Your row climbs the board while the score counts up, with the Certified Ball Knowledge verdict stamp." },
+      { src: "/work/studio/family.jpg", w: 1600, h: 900, src2: "/work/studio/family-m.jpg", w2: 506, h2: 900, label: "ONE BECOMES MANY", caption: "The brand family piece: the master lockup splits into every channel." },
+      { src: "/work/studio/ticket.jpg", w: 1600, h: 900, src2: "/work/studio/ticket-m.jpg", w2: 506, h2: 900, label: "TRANSITION · TICKET TEAR", caption: "One of 19 scene transitions, captured mid-wipe. In the studio it plays over your own clip." },
+    ],
   },
   {
     slug: "campaign-website",
@@ -77,7 +87,7 @@ export const cases: CaseStudy[] = [
     outcome:
       "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
-    heroMock: true,
+    heroMock: "poster",
     images: [
       { mock: "sitemap", label: "THE SITE, PAGE BY PAGE", caption: "An illustration of the site's structure: its pages and the ways visitors can help. Page names only, no real content." },
       { mock: "phone", label: "BUILT FOR PHONES", caption: "An illustration of the mobile layout: simple header, one clear message, two actions, and the district lookup within reach." },
@@ -90,25 +100,36 @@ export const cases: CaseStudy[] = [
   {
     slug: "snapback-experiences",
     issue: "ISSUE #04",
-    kicker: "PRODUCT DESIGN · MOBILE APP · CONCEPT",
+    kicker: "PRODUCT DESIGN · MOBILE APP · PERSONAL CONCEPT",
     title: "SNAPBACK EXPERIENCES",
     concept: true,
     summary:
       "A concept app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
-    meta: [["ROLE", "Product designer"], ["STATUS", "Concept, not built"], ["TOOLS", "Figma"]],
-    stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["7", "Screens designed", "magenta"]],
+    meta: [["ROLE", "Product designer"], ["STATUS", "Personal concept, not built"], ["TOOLS", "Figma"]],
+    stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["7", "Screens designed", "magenta"], ["3", "Core mechanics: two borrowed, one original", "cyan"]],
     problem:
-      "Snapback's community of sports fans has no shared place to record the games and events they attend, rate them, or find out what is worth doing at a given venue. The CEO described the idea as \"the Yelp for sports\".",
+      "Fans have no shared place to record the games and events they attend, rate them, or find out what is worth doing at a given venue. I explored the idea as \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
+    disclaimer: "Personal concept. This is independent, self-directed work, and no one at Snapback has seen or approved it. I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
-      "This is a concept, not a shipped product. Started with low-fidelity wireframes for the core flows (a discover feed, search and browse, a leaderboard of top-rated experiences, an experience page with comments, a log and review flow, and a user profile), then built the same seven screens as branded mockups in Figma using Snapback's brand colors and type. Researched Snapback's existing Trivia app for patterns worth reusing.",
+      "This is a concept, not a shipped product. I started with low-fidelity wireframes for seven screens, then built the same screens as branded designs in Figma, using Snapback's own colors and type. The idea borrows two mechanics and adds one: a personal diary of attended experiences with ratings and a profile (from Letterboxd), detail pages with reviews and practical tips (from Yelp), and an original leaderboard of top-rated experiences.",
+    flow: ["DISCOVER", "SEARCH", "LEADERBOARD", "EXPERIENCE", "COMMENTS", "LOG", "PROFILE"],
     decisions: [
-      "Framed the product as logging and rating real-world sports experiences, with a leaderboard and per-experience recommendations and comments.",
-      "Reused the verdict-stamp pattern from Snapback Trivia as the app's rating badge.",
-      "Built the mockups from shared components (nav bar, rating stamp, filter chip, buttons) so every screen stays consistent.",
+      "Made the rating badge a \"Certified\" stamp that echoes the verdict stamp in Snapback Trivia, so Experiences reads as a sibling product in the Snapback family.",
+      "Made the leaderboard the original mechanic: filterable by sport, team, region and time period, with the top spot getting a trophy and a yellow glow.",
+      "Used a hero card plus two-column grid on the Discover feed, with titles over the image, the same poster-card language as Letterboxd and Yelp.",
+      "Pulled colors and type from Snapback's brand guide instead of inventing a look, and kept to color and type only, not Snapback's hat-logo artwork.",
+      "Built shared components (nav bar, rating stamp, button, image placeholder) once so a change updates all seven screens.",
     ],
     outcome:
-      "A concept only: seven wireframed and branded screens, no development and no user testing. Nothing here has launched or been measured.",
-    shots: ["DISCOVER FEED", "LEADERBOARD", "LOG AN EXPERIENCE"],
+      "A concept only: seven wireframed and branded screens, with no development and no user testing, so there are no results to report. Still to do: real photography (black placeholders stand in for every image), interactive prototyping between screens, and getting it in front of the people who would use it.",
+    shots: [],
+    heroMock: "xp",
+    images: [
+      { mock: "xp-discover", label: "DISCOVER", caption: "A hero card and grid of poster-style experience cards, each with a Certified rating. Redrawn in code from the Figma design, with sample content." },
+      { mock: "xp-leaderboard", label: "LEADERBOARD", caption: "The original mechanic: top-rated experiences ranked, filterable by sport, team, region and time period." },
+      { mock: "xp-detail", label: "EXPERIENCE DETAIL", caption: "An aggregate rating, a log button and recommendations from people who were there." },
+      { mock: "xp-log", label: "LOG AN EXPERIENCE", caption: "The diary side: star rating, a written review and tags like tailgate, food and seating." },
+    ],
   },
 ];
 

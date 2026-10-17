@@ -1,11 +1,13 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { benDay } from "@/lib/comic-art";
 import type { CaseStudy } from "@/lib/cases";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
-import { LookupMock } from "./LookupMock";
+import { ExperiencesMock, XpHero, type XpKind } from "./ExperiencesMock";
+import { LookupMock, type MockKind } from "./LookupMock";
 import { SpeedLines } from "./SpeedLines";
 import { C, type Color } from "./CaseStudies";
 
@@ -31,6 +33,11 @@ function Hero({ c }: { c: CaseStudy }) {
           </Comic>
         )}
         <p className="max-w-[560px] text-lg leading-[1.6]">{c.summary}</p>
+        {c.disclaimer && (
+          <p className="rough max-w-[560px] border-[3px] border-ink bg-white px-4 py-3 text-sm font-medium leading-snug" style={{ boxShadow: `4px 4px 0 ${C.magenta}` }}>
+            {c.disclaimer}
+          </p>
+        )}
         <ul className="grid w-full max-w-[560px] gap-4 sm:grid-cols-3">
           {c.meta.map(([k, v]) => (
             <li key={k} className="rough border-[3px] border-ink bg-white px-4 py-3" style={{ boxShadow: `4px 4px 0 ${C.purple}` }}>
@@ -48,7 +55,11 @@ function Hero({ c }: { c: CaseStudy }) {
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C.magenta} opacity={0.9} blend className="inset-0" />
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C.cyan} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
           <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
-            {c.heroMock ? (
+            {c.hero ? (
+              <Image src={c.hero} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" priority />
+            ) : c.heroMock === "xp" ? (
+              <XpHero />
+            ) : c.heroMock ? (
               <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
             ) : (
               <>
@@ -138,11 +149,18 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
       {c.images ? (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
-          <ul className="grid w-full items-start gap-8 md:grid-cols-2">
+          <ul className={`grid w-full items-start gap-8 md:grid-cols-2 ${c.images[0].mock?.startsWith("xp-") ? "xl:grid-cols-4" : ""}`}>
             {c.images.map((im, i) => (
-              <li key={im.mock} className="flex flex-col gap-3">
+              <li key={im.label} className="flex flex-col gap-3">
                 <div className="rough overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `8px 8px 0 ${[C.purple, C.cyan, C.magenta, C.yellow, C.red][i % 5]}` }}>
-                  <LookupMock kind={im.mock} className="block h-auto w-full" />
+                  {im.src ? (
+                    <div className="flex items-end gap-2 bg-ink p-2">
+                      <Image src={im.src} alt={`${c.title}: ${im.label.toLowerCase()}, 16:9`} width={im.w!} height={im.h!} sizes="(min-width:768px) 45vw, 90vw" className="h-auto min-w-0 flex-[3.16] self-center" />
+                      {im.src2 && <Image src={im.src2} alt={`${c.title}: ${im.label.toLowerCase()}, 9:16`} width={im.w2!} height={im.h2!} sizes="15vw" className="h-auto min-w-0 flex-1" />}
+                    </div>
+                  ) : (
+                    im.mock!.startsWith("xp-") ? <ExperiencesMock kind={im.mock as XpKind} className="mx-auto block h-auto w-full max-w-[300px]" /> : <LookupMock kind={im.mock as MockKind} className="block h-auto w-full" />
+                  )}
                 </div>
                 <Comic bg={im.staged ? C.magenta : C.yellow} shadow={3} className={`self-start px-3 py-1 text-lg ${im.staged ? "text-white" : ""}`}>{im.label}</Comic>
                 <p className="text-sm leading-snug">{im.caption}</p>
