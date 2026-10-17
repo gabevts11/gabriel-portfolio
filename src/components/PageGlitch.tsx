@@ -3,8 +3,8 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-// Page change = the same dimension glitch the page uses on its own elements: the old page glitches out, the new one glitches in.
-const OUT_MS = 520; // twice as long as the on-page glitch so the frames read as a deliberate effect
+// Page change = another "universe": the site glitches into a black-and-white noir look (same layout), holds while the route swaps, then glitches back to color.
+const OUT_MS = 800;
 
 export function PageGlitch() {
   const router = useRouter();
@@ -25,12 +25,14 @@ export function PageGlitch() {
       busy.current = true;
       hash.current = url.hash.slice(1);
       const main = document.querySelector("main");
+      document.documentElement.classList.add("noir");
       main?.classList.add("pg-out");
       setTimeout(() => router.push(url.pathname + url.search + url.hash), OUT_MS);
       setTimeout(() => { // shortcut: safety reset if navigation stalls, fine for a static site
         busy.current = false;
         main?.classList.remove("pg-out");
-      }, 2500);
+        document.documentElement.classList.remove("noir");
+      }, 3000);
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
@@ -48,9 +50,10 @@ export function PageGlitch() {
     const timers = [60, 250].map((ms) => setTimeout(jump, ms)); // Next also scrolls after commit
     const main = document.querySelector("main");
     main?.classList.add("pg-in");
+    timers.push(setTimeout(() => root.classList.remove("noir"), 300)); // back to color halfway through the glitch-in
     timers.push(setTimeout(() => { main?.classList.remove("pg-in"); root.style.scrollBehavior = ""; busy.current = false; }, 640));
     return () => timers.forEach(clearTimeout);
   }, [pathname]);
 
-  return null;
+  return <div className="noir-fx" aria-hidden />;
 }

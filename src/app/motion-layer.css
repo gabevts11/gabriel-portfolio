@@ -87,5 +87,17 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
   72%  { clip-path: inset(-40px -60px -40px -60px); translate: 8px 0;  filter: drop-shadow(9px 0 0 #00B7EB) drop-shadow(-9px 0 0 #FF2D87); }
   88%  { clip-path: inset(-40px -60px -40px -60px); translate: -4px 0; filter: drop-shadow(-5px 0 0 #00B7EB) drop-shadow(5px 0 0 #FF2D87); }
 }
-.pg-out { animation: pg-glitch 520ms steps(1, end), pg-hide 10ms linear 520ms forwards; }
+.pg-out { animation: pg-glitch 520ms steps(1, end); } /* stays visible (now in noir) until the route swaps */
 .pg-in { animation: pg-glitch 580ms steps(1, end); }
+
+/* Noir universe: same layout, black-and-white high-contrast film look with grain and a flickering vignette */
+html.noir { filter: grayscale(1) contrast(1.5) brightness(.9); }
+html.noir .grain { opacity: .3; }
+.noir-fx { position: fixed; inset: 0; z-index: 9985; pointer-events: none; display: none; }
+html.noir .noir-fx {
+  display: block;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, .65) 100%), repeating-linear-gradient(90deg, transparent 0 9px, rgba(255, 255, 255, .06) 9px 10px);
+  animation: noir-flick 140ms steps(2, end) infinite;
+}
+@keyframes noir-flick { 0% { opacity: 1; } 50% { opacity: .8; } 100% { opacity: .93; } }
+@media (prefers-reduced-motion: reduce) { .noir-fx { display: none !important; } }
