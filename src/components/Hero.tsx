@@ -6,7 +6,6 @@ import { SpeedLines } from "./SpeedLines";
 const nav = [
   ["WORK", "#work"],
   ["ABOUT", "#about"],
-  ["CONTACT", "#contact"],
 ];
 
 function Portrait({ src }: { src?: string }) {
@@ -108,7 +107,7 @@ export function Hero() {
             ))}
           </ul>
           <Comic as="a" href="#contact" bg="#2EBD59" shadow={4} className="comic-link px-[18px] py-2 text-2xl">
-            SAY HI!
+            CONTACT
           </Comic>
         </div>
       </nav>
