@@ -1,0 +1,132 @@
+import type { CSSProperties } from "react";
+import Link from "next/link";
+import { benDay } from "@/lib/comic-art";
+import type { CaseStudy } from "@/lib/cases";
+import { CountUp } from "./CountUp";
+import { Art, Comic, Fit, Streams } from "./art";
+import { Caption } from "./Caption";
+import { SpeedLines } from "./SpeedLines";
+import { C, type Color } from "./CaseStudies";
+
+const dots = { width: 600, height: 420, spacing: 14, maxR: 5.6, minR: 0.8 };
+const cardDots = { width: 120, height: 90, spacing: 9, maxR: 3.4, minR: 0.6, origin: { x: 120, y: 0 }, falloff: 120 };
+const streams: [string, Parameters<typeof Streams>[0]["streams"][number][1]][] = [
+  [C.ink, { seed: 71, points: [[40, 40], [-20, -10], [-85, -55]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],
+  [C.magenta, { seed: 73, points: [[590, 400], [650, 440], [720, 470]], count: 7, sizeStart: 19, sizeEnd: 6, spread: 40 }],
+];
+
+function Hero({ c }: { c: CaseStudy }) {
+  return (
+    <section className="grid items-center gap-14 py-12 xl:grid-cols-[1fr_auto] xl:gap-16">
+      <div className="relative z-10 flex flex-col items-start gap-5">
+        <Comic bg="#fff" shadow={4} className="px-[14px] py-[6px] text-[22px]">{c.issue}</Comic>
+        <div className="text-sm font-medium tracking-[.08em] text-[#4d4d4d]">{c.kicker}</div>
+        <h1 className="rgb-split glitch-slice font-display text-[clamp(52px,13vw,132px)] leading-[.86] tracking-[.01em]" style={{ "--ts-extra": "7px 7px 0 #111" } as CSSProperties}>
+          {c.title}
+        </h1>
+        {c.concept && (
+          <Comic bg={C.magenta} shadow={6} className="max-w-full -rotate-1 px-4 py-2 text-lg leading-tight tracking-[.04em] text-white sm:text-2xl">
+            CONCEPT · WIREFRAMES &amp; MOCKUPS ONLY, NOT A LIVE PRODUCT
+          </Comic>
+        )}
+        <p className="max-w-[560px] text-lg leading-[1.6]">{c.summary}</p>
+        <ul className="grid w-full max-w-[560px] gap-4 sm:grid-cols-3">
+          {c.meta.map(([k, v]) => (
+            <li key={k} className="rough border-[3px] border-ink bg-white px-4 py-3" style={{ boxShadow: `4px 4px 0 ${C.purple}` }}>
+              <div className="font-display text-lg tracking-[.04em] text-red">{k}</div>
+              <div className="font-medium leading-snug">{v}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Fit w={630} h={450} className="case-fit mx-auto [--s:.5] sm:[--s:.75] lg:[--s:1]">
+        <SpeedLines w={630} h={450} cx={315} cy={225} r={400} seed={31} count={40} />
+        <Streams mode="load" w={630} h={450} streams={streams} />
+        <div className="rough absolute border-4 border-ink" style={{ left: 24, top: 24, width: 600, height: 420, background: C.purple, transform: "rotate(-2deg)", transformOrigin: "top left" }} />
+        <div className="rough absolute box-border overflow-hidden border-[6px] border-ink" style={{ left: 0, top: 0, width: 600, height: 420, background: C.yellow, transform: "rotate(-2deg)", transformOrigin: "top left" }}>
+          <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C.magenta} opacity={0.9} blend className="inset-0" />
+          <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C.cyan} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
+          <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
+            <span className="font-display text-[30px] tracking-[.04em] text-placeholder">SCREENSHOT</span>
+            <span className="text-sm font-medium tracking-[.06em] text-placeholder">PLACEHOLDER · image coming</span>
+          </div>
+        </div>
+      </Fit>
+    </section>
+  );
+}
+
+const chapters: [string, string, Color][] = [
+  ["PANEL 1", "THE PROBLEM", "cyan"],
+  ["PANEL 2", "THE PROCESS", "yellow"],
+  ["PANEL 3", "THE DECISIONS", "magenta"],
+  ["PANEL 4", "THE OUTCOME", "red"],
+];
+
+function Chapter({ n, title, color, rot, children }: { n: string; title: string; color: Color; rot: number; children: React.ReactNode }) {
+  return (
+    <section className="grid items-start gap-6 md:grid-cols-[240px_1fr] md:gap-10">
+      <Comic bg={C[color]} shadow={6} className={`px-5 py-4 ${color === "red" || color === "magenta" ? "text-white" : ""}`} style={{ transform: `rotate(${-rot}deg)` }}>
+        <div className="text-xl tracking-[.06em]">{n}</div>
+        <h2 className="text-[clamp(32px,8vw,44px)] leading-[.95]">{title}</h2>
+      </Comic>
+      <div className="rough max-w-[760px] border-4 border-ink bg-white p-6 text-lg leading-[1.6] md:p-8" style={{ boxShadow: `8px 8px 0 ${C[color]}`, transform: `rotate(${rot}deg)` }}>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
+  return (
+    <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 pb-16 pt-6 xl:px-20">
+      <nav className="flex flex-wrap items-center justify-between gap-4">
+        <Comic as={Link} href="/#work" bg={C.yellow} shadow={5} className="comic-link px-4 py-2 text-xl">← BACK TO CASE FILES</Comic>
+        <Comic as={Link} href="/" bg={C.yellow} shadow={4} className="comic-link px-3 py-1 text-xl">GD</Comic>
+      </nav>
+      <Hero c={c} />
+      <ul className="flex flex-wrap gap-4">
+        {c.stats.map(([n, label, color]) => (
+          <li key={label} className="rough relative border-[3px] border-ink bg-white px-[18px] py-[14px]" style={{ boxShadow: `6px 6px 0 ${C[color]}` }}>
+            <Art w={120} h={90} d={benDay(cardDots)} fill={C.yellow} className="right-0 top-0" />
+            <div className="font-display relative text-[44px] leading-none">{/^\d+$/.test(n) ? <CountUp value={+n} /> : n}</div>
+            <div className="max-w-[190px] text-[13px] font-medium leading-[1.35]">{label}</div>
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-col gap-12">
+        <Chapter n={chapters[0][0]} title={chapters[0][1]} color="cyan" rot={-0.6}><p>{c.problem}</p></Chapter>
+        <Caption rot={1}>MEANWHILE, IN THE STUDIO…</Caption>
+        <Chapter n={chapters[1][0]} title={chapters[1][1]} color="yellow" rot={0.6}><p>{c.process}</p></Chapter>
+        <Chapter n={chapters[2][0]} title={chapters[2][1]} color="magenta" rot={-0.5}>
+          <ol className="flex flex-col gap-4">
+            {c.decisions.map((d, i) => (
+              <li key={i} className="flex gap-4">
+                <span className="font-display text-[40px] leading-none text-magenta">{i + 1}</span>
+                <span>{d}</span>
+              </li>
+            ))}
+          </ol>
+        </Chapter>
+        <Chapter n={chapters[3][0]} title={chapters[3][1]} color="red" rot={0.5}><p>{c.outcome}</p></Chapter>
+      </div>
+      <section className="flex flex-col items-start gap-6">
+        <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
+        <ul className="grid w-full gap-6 md:grid-cols-3">
+          {c.shots.map((s) => (
+            <li key={s} className="rough flex aspect-[4/3] flex-col items-center justify-center gap-2 border-4 border-ink bg-paper p-4 text-center" style={{ boxShadow: `8px 8px 0 ${C.purple}` }}>
+              <span className="font-display text-3xl tracking-[.04em]">{s}</span>
+              <span className="text-sm font-medium tracking-[.06em] text-placeholder">PLACEHOLDER · screenshot coming</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <Link href={`/work/${next.slug}`} className="comic-link rough relative block border-4 border-ink bg-red p-6 text-white md:p-10" style={{ boxShadow: "8px 8px 0 #111", "--sh": "8px" } as CSSProperties}>
+        <div className="font-display text-[clamp(32px,8vw,64px)] leading-none">NEXT CASE FILE →</div>
+        <div className="font-display mt-2 text-[clamp(24px,6vw,44px)] leading-none">{next.title}</div>
+        <Comic bg={C.yellow} className="mt-5 -rotate-2 px-3 py-1 text-xl text-ink">TO BE CONTINUED…</Comic>
+      </Link>
+      <Link href="/#work" className="nav-link self-start text-sm font-medium tracking-[.08em]">← BACK TO CASE FILES</Link>
+    </div>
+  );
+}

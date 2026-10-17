@@ -1,12 +1,13 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { benDay, type StreamOpts } from "@/lib/comic-art";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
 import { SpeedLines } from "./SpeedLines";
 
-const C = {
+export const C = {
   ink: "#111111",
   yellow: "#F7DF02",
   red: "#E8202A",
@@ -14,9 +15,10 @@ const C = {
   cyan: "#00B7EB",
   purple: "#5B2BC2",
 };
-type Color = keyof typeof C;
+export type Color = keyof typeof C;
 
 type Case = {
+  slug: string;
   issue: string;
   kicker: string;
   title: string;
@@ -34,7 +36,7 @@ type Case = {
 
 const cases: Case[] = [
   {
-    issue: "ISSUE #02", kicker: "MOTION DESIGN · DESIGN SYSTEM · BRAND", title: "SNAPBACK STUDIO",
+    issue: "ISSUE #02", kicker: "MOTION DESIGN · DESIGN SYSTEM · BRAND", slug: "snapback-studio", title: "SNAPBACK STUDIO",
     desc: "A browser-based motion design studio for Snapback Sports: stream graphics, jumbotron loops, sponsor packages and intros for every sub-brand, built to their brand guide and exportable to CapCut.",
     stats: [["125", "Editable motion designs", "magenta"], ["19", "Design groups, in 16:9 and 9:16", "cyan"]],
     panel: "yellow", offset: "purple", dotsA: "magenta", dotsB: "cyan", rot: -2, flip: false,
@@ -45,7 +47,7 @@ const cases: Case[] = [
     ],
   },
   {
-    issue: "ISSUE #03", kicker: "WEB DESIGN · FREELANCE · WIX", title: "CAMPAIGN WEBSITE",
+    issue: "ISSUE #03", kicker: "WEB DESIGN · FREELANCE · WIX", slug: "campaign-website", title: "CAMPAIGN WEBSITE",
     desc: "A responsive campaign site for a local school board candidate, with supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
     stats: [["661", "Sessions in the first period", "cyan"], ["21", "Form submissions", "red"]],
     panel: "cyan", offset: "red", dotsA: "purple", dotsB: "magenta", rot: 2, flip: true,
@@ -56,7 +58,7 @@ const cases: Case[] = [
     ],
   },
   {
-    issue: "ISSUE #04", kicker: "PRODUCT DESIGN · MOBILE APP · CONCEPT", title: "SNAPBACK EXPERIENCES",
+    issue: "ISSUE #04", kicker: "PRODUCT DESIGN · MOBILE APP · CONCEPT", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
     desc: "A concept app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
     stats: [["CONCEPT", "Wireframes in progress", "purple"]],
     panel: "magenta", offset: "cyan", dotsA: "yellow", dotsB: "cyan", rot: -2, flip: false,
@@ -129,8 +131,8 @@ function CaseRow({ c }: { c: Case }) {
             </li>
           ))}
         </ul>
-        <Comic as="span" bg="#E8202A" shadow={6} className="px-6 py-3 text-2xl text-white">
-          FULL CASE FILE SOON!
+        <Comic as={Link} href={`/work/${c.slug}`} bg="#E8202A" shadow={6} className="comic-link px-6 py-3 text-2xl text-white">
+          READ THE CASE FILE!
         </Comic>
         <Caption tone="white" rot={1.5}>TO BE CONTINUED…</Caption>
       </div>
