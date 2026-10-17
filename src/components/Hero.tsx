@@ -91,8 +91,8 @@ export function Hero() {
           </Comic>
           <span aria-hidden className="gd-nudge">
             <svg viewBox="0 0 150 54" preserveAspectRatio="none">
-              <path d="M12 8 Q12 4 18 4 H138 Q146 4 146 12 V36 Q146 44 138 44 H18 Q12 44 12 38 V32 L2 24 L12 17 Z" transform="translate(3 4)" fill="#111" />
-              <path d="M12 8 Q12 4 18 4 H138 Q146 4 146 12 V36 Q146 44 138 44 H18 Q12 44 12 38 V32 L2 24 L12 17 Z" fill="#fff" stroke="#111" strokeWidth="3" strokeLinejoin="round" />
+              <path d="M32 8 Q32 4 38 4 H138 Q146 4 146 12 V36 Q146 44 138 44 H38 Q32 44 32 38 V33 L2 25 L32 17 Z" transform="translate(3 4)" fill="#111" />
+              <path d="M32 8 Q32 4 38 4 H138 Q146 4 146 12 V36 Q146 44 138 44 H38 Q32 44 32 38 V33 L2 25 L32 17 Z" fill="#fff" stroke="#111" strokeWidth="3" strokeLinejoin="round" />
             </svg>
             <span>CLICK ME?</span>
           </span>
