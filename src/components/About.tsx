@@ -41,14 +41,15 @@ function Photo({ src }: { src?: string }) {
 }
 
 export function About({ photoSrc }: { photoSrc?: string }) {
-  const bl = { width: 560, height: 320, spacing: 16, maxR: 6, minR: 1, origin: { x: 0, y: 320 } };
-  const br = { width: 440, height: 280, spacing: 16, maxR: 6, minR: 1, origin: { x: 440, y: 280 }, falloff: 380 };
+  // Both corner fields straddle the About / Selected Work seam: biggest dots on the boundary, fading out both ways, so the halftone flows across.
+  const bl = { width: 560, height: 640, spacing: 16, maxR: 6, minR: 1, origin: { x: 0, y: 320 } };
+  const br = { width: 440, height: 560, spacing: 16, maxR: 6, minR: 1, origin: { x: 440, y: 280 }, falloff: 380 };
   return (
     <section id="about" data-flip="1" className="relative mx-auto max-w-[1440px] px-6 py-20 xl:px-[120px] xl:py-[140px]">
-      <Art w={560} h={320} d={benDay({ ...bl, falloff: 420 })} fill="#F7DF02" opacity={0.85} blend className="bottom-0 left-0" />
-      <Art w={560} h={320} d={benDay({ ...bl, falloff: 360 })} fill="#FF2D87" opacity={0.85} blend dx={6} dy={4} className="bottom-0 left-0" />
-      <Art w={440} h={280} d={benDay(br)} fill="#00B7EB" opacity={0.9} blend className="bottom-0 right-0" />
-      <Art w={440} h={280} d={benDay(br)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="bottom-0 right-0" />
+      <Art w={560} h={640} d={benDay({ ...bl, falloff: 420 })} fill="#F7DF02" opacity={0.85} blend className="-bottom-[320px] left-0 origin-left scale-[.5] md:scale-100" />
+      <Art w={560} h={640} d={benDay({ ...bl, falloff: 360 })} fill="#FF2D87" opacity={0.85} blend dx={6} dy={4} className="-bottom-[320px] left-0 origin-left scale-[.5] md:scale-100" />
+      <Art w={440} h={560} d={benDay(br)} fill="#00B7EB" opacity={0.9} blend className="-bottom-[280px] right-0 hidden md:block" />
+      <Art w={440} h={560} d={benDay(br)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="-bottom-[280px] right-0 hidden md:block" />
 
       <div className="relative flex flex-col items-center gap-24 xl:flex-row xl:gap-24">
         <Photo src={photoSrc} />
