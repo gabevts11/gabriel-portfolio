@@ -89,11 +89,10 @@ export function Hero() {
             GD
           </Comic>
           <span aria-hidden className="gd-nudge">
-            <svg viewBox="0 0 176 64" width="176" height="64">
-              <g strokeLinejoin="round" strokeLinecap="round">
-                <path d="M34 8 Q34 5 40 5 H152 Q170 5 170 24 Q170 43 152 43 H40 Q34 43 34 40 V40 L4 38 L34 24 Z" transform="translate(4 5)" fill="#111" stroke="#111" strokeWidth="4" />
-                <path d="M34 8 Q34 5 40 5 H152 Q170 5 170 24 Q170 43 152 43 H40 Q34 43 34 40 V40 L4 38 L34 24 Z" fill="#fff" stroke="#111" strokeWidth="4" />
-              </g>
+            <svg viewBox="0 0 220 96" width="220" height="96">
+              <g transform="translate(4 4)" fill="#111" stroke="#111" strokeWidth="10" strokeLinejoin="round"><circle cx="205.4" cy="36.0" r="16.6" /><circle cx="190.5" cy="49.1" r="16.6" /><circle cx="153.0" cy="56.0" r="16.6" /><circle cx="110.3" cy="53.6" r="16.6" /><circle cx="82.5" cy="43.0" r="16.6" /><circle cx="82.5" cy="29.0" r="16.6" /><circle cx="110.3" cy="18.4" r="16.6" /><circle cx="153.0" cy="16.0" r="16.6" /><circle cx="190.5" cy="22.9" r="16.6" /><ellipse cx="142" cy="36" rx="69.0" ry="26.0" /><circle cx="58" cy="40" r="8" /><circle cx="38" cy="46" r="5" /></g>
+              <g fill="#111" stroke="#111" strokeWidth="9" strokeLinejoin="round"><circle cx="205.4" cy="36.0" r="16.6" /><circle cx="190.5" cy="49.1" r="16.6" /><circle cx="153.0" cy="56.0" r="16.6" /><circle cx="110.3" cy="53.6" r="16.6" /><circle cx="82.5" cy="43.0" r="16.6" /><circle cx="82.5" cy="29.0" r="16.6" /><circle cx="110.3" cy="18.4" r="16.6" /><circle cx="153.0" cy="16.0" r="16.6" /><circle cx="190.5" cy="22.9" r="16.6" /><ellipse cx="142" cy="36" rx="69.0" ry="26.0" /><circle cx="58" cy="40" r="8" /><circle cx="38" cy="46" r="5" /></g>
+              <g fill="#fff" stroke="#fff" strokeWidth="1"><circle cx="205.4" cy="36.0" r="16.6" /><circle cx="190.5" cy="49.1" r="16.6" /><circle cx="153.0" cy="56.0" r="16.6" /><circle cx="110.3" cy="53.6" r="16.6" /><circle cx="82.5" cy="43.0" r="16.6" /><circle cx="82.5" cy="29.0" r="16.6" /><circle cx="110.3" cy="18.4" r="16.6" /><circle cx="153.0" cy="16.0" r="16.6" /><circle cx="190.5" cy="22.9" r="16.6" /><ellipse cx="142" cy="36" rx="69.0" ry="26.0" /><circle cx="58" cy="40" r="8" /><circle cx="38" cy="46" r="5" /></g>
             </svg>
             <span>CLICK ME?</span>
           </span>

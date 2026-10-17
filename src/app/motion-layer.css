@@ -201,9 +201,9 @@ html[data-ux="ham"] main :is(.hero-frame, .case-box, .hero-portrait) { border-ra
 html[data-ux="ham"] main .case-box > div:not(.dots-print) { border-radius: 24px; }
 
 /* Nudge next to the home GD button: invites a click. The bubble shape is an SVG so the tail and outline stay crisp */
-.gd-nudge { position: absolute; left: calc(100% + 4px); top: 50%; translate: 0 -50%; white-space: nowrap; pointer-events: none; display: flex; align-items: center; width: 176px; height: 64px; rotate: -2deg; transform-origin: 0 50%; }
+.gd-nudge { position: absolute; left: calc(100% - 4px); top: -32px; white-space: nowrap; pointer-events: none; width: 220px; height: 96px; rotate: -2deg; transform-origin: 0 100%; }
 .gd-nudge svg { position: absolute; inset: 0; overflow: visible; }
-.gd-nudge span { position: relative; padding-left: 44px; padding-bottom: 6px; font-family: var(--font-bangers), sans-serif; font-size: 26px; letter-spacing: .05em; color: #111; text-shadow: 2px 2px 0 #FF2D87; }
-@keyframes gd-wiggle { 0%, 70%, 100% { rotate: -2deg; } 76% { rotate: 3deg; } 82% { rotate: -4deg; } 88% { rotate: 2deg; } }
+.gd-nudge span { position: absolute; left: 67px; top: 6px; width: 150px; height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--font-bangers), sans-serif; font-size: 26px; letter-spacing: .05em; color: #111; }
+@keyframes gd-wiggle { 0%, 70%, 100% { rotate: -2deg; } 76% { rotate: 2deg; } 82% { rotate: -4deg; } 88% { rotate: 1deg; } }
 @media (prefers-reduced-motion: no-preference) { .gd-nudge { animation: gd-wiggle 2.8s steps(1, end) 2.4s infinite; } }
 @media (max-width: 420px) { .gd-nudge { scale: .8; } }
