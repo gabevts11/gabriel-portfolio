@@ -78,5 +78,14 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
 
 /* ===== 4. Page glitch transition (PageGlitch toggles these on <main>); reuses dg-glitch from section 1 ===== */
 @keyframes pg-hide { to { opacity: 0; } }
-.pg-out { animation: dg-glitch 460ms steps(1, end), pg-hide 10ms linear 460ms forwards; }
-.pg-in { animation: dg-glitch 520ms steps(1, end); }
+/* Same slice cuts as dg-glitch, but with bigger cyan/pink splits that linger into the last frames */
+@keyframes pg-glitch {
+  0%   { clip-path: inset(0 -60px 58% -60px);      translate: 18px 0;  filter: drop-shadow(16px 0 0 #00B7EB) drop-shadow(-16px 0 0 #FF2D87); }
+  18%  { clip-path: inset(42% -60px 30% -60px);    translate: -16px 0; filter: drop-shadow(-16px 0 0 #00B7EB) drop-shadow(16px 0 0 #FF2D87); }
+  36%  { clip-path: inset(72% -60px 0 -60px);      translate: 14px 0;  filter: drop-shadow(14px 0 0 #00B7EB) drop-shadow(-14px 0 0 #FF2D87); }
+  54%  { clip-path: inset(0 -60px 40% -60px);      translate: -10px 0; filter: drop-shadow(-12px 0 0 #00B7EB) drop-shadow(12px 0 0 #FF2D87); }
+  72%  { clip-path: inset(-40px -60px -40px -60px); translate: 8px 0;  filter: drop-shadow(9px 0 0 #00B7EB) drop-shadow(-9px 0 0 #FF2D87); }
+  88%  { clip-path: inset(-40px -60px -40px -60px); translate: -4px 0; filter: drop-shadow(-5px 0 0 #00B7EB) drop-shadow(5px 0 0 #FF2D87); }
+}
+.pg-out { animation: pg-glitch 520ms steps(1, end), pg-hide 10ms linear 520ms forwards; }
+.pg-in { animation: pg-glitch 580ms steps(1, end); }
