@@ -3,8 +3,15 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-// Page change = another "universe": the site glitches into a black-and-white noir look (same layout), holds while the route swaps, then glitches back to color.
+// Page change = a visit to another Spider-Verse "universe": the same site glitches into that art style, holds while the route swaps, then glitches back to color.
+// Styles run in this fixed order and keep cycling (position kept in sessionStorage); the look of each lives in motion-layer.css under html[data-ux].
+const STYLES = ["gwen", "hobie", "pavitr", "miguel", "classic", "peni", "ham", "noir", "spot"];
 const OUT_MS = 800;
+const nextStyle = () => {
+  let i = 0;
+  try { i = Number(sessionStorage.getItem("ux-i")) || 0; sessionStorage.setItem("ux-i", String(i + 1)); } catch {} // private mode: starts over each time, fine
+  return STYLES[i % STYLES.length];
+};
 
 export function PageGlitch() {
   const router = useRouter();
@@ -25,13 +32,13 @@ export function PageGlitch() {
       busy.current = true;
       hash.current = url.hash.slice(1);
       const main = document.querySelector("main");
-      document.documentElement.classList.add("noir");
+      document.documentElement.dataset.ux = nextStyle();
       main?.classList.add("pg-out");
       setTimeout(() => router.push(url.pathname + url.search + url.hash), OUT_MS);
       setTimeout(() => { // shortcut: safety reset if navigation stalls, fine for a static site
         busy.current = false;
         main?.classList.remove("pg-out");
-        document.documentElement.classList.remove("noir");
+        delete document.documentElement.dataset.ux;
       }, 3000);
     };
     document.addEventListener("click", onClick, true);
@@ -50,10 +57,10 @@ export function PageGlitch() {
     const timers = [60, 250].map((ms) => setTimeout(jump, ms)); // Next also scrolls after commit
     const main = document.querySelector("main");
     main?.classList.add("pg-in");
-    timers.push(setTimeout(() => root.classList.remove("noir"), 300)); // back to color halfway through the glitch-in
+    timers.push(setTimeout(() => { delete root.dataset.ux; }, 300)); // back to color halfway through the glitch-in
     timers.push(setTimeout(() => { main?.classList.remove("pg-in"); root.style.scrollBehavior = ""; busy.current = false; }, 640));
     return () => timers.forEach(clearTimeout);
   }, [pathname]);
 
-  return <div className="noir-fx" aria-hidden />;
+  return <div className="ux-fx" aria-hidden />;
 }
