@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
 // Page change = the same dimension glitch the page uses on its own elements: the old page glitches out, the new one glitches in.
-const OUT_MS = 460; // twice as long as the on-page glitch so the frames read as a deliberate effect
+const OUT_MS = 520; // twice as long as the on-page glitch so the frames read as a deliberate effect
 
 export function PageGlitch() {
   const router = useRouter();
@@ -48,7 +48,7 @@ export function PageGlitch() {
     const timers = [60, 250].map((ms) => setTimeout(jump, ms)); // Next also scrolls after commit
     const main = document.querySelector("main");
     main?.classList.add("pg-in");
-    timers.push(setTimeout(() => { main?.classList.remove("pg-in"); root.style.scrollBehavior = ""; busy.current = false; }, 580));
+    timers.push(setTimeout(() => { main?.classList.remove("pg-in"); root.style.scrollBehavior = ""; busy.current = false; }, 640));
     return () => timers.forEach(clearTimeout);
   }, [pathname]);
 
