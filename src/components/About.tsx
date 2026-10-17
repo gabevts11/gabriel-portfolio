@@ -58,16 +58,17 @@ export function About({ photoSrc }: { photoSrc?: string }) {
           </Comic>
           <Caption rot={-1.5}>MEANWHILE, IN YORK, SC…</Caption>
           <h2 className="rgb-split font-display text-[clamp(40px,10vw,64px)] leading-[.92] tracking-[.01em]">
-            I BUILD WITH AI. I DESIGN FOR PEOPLE.
+            DESIGNING THINGS PEOPLE ACTUALLY USE.
           </h2>
           <div className="flex max-w-[600px] flex-col gap-4 text-[19px] leading-normal">
             <p>
-              I&apos;m a product designer in York, SC. I didn&apos;t come up through software. I got into design by building with AI, and
-              noticing that making something is easy now but making it work for the people who use it is not.
+              I&apos;m a product designer in York, SC. I don&apos;t have a deep software background, but I&apos;ve taken software courses at
+              Virginia Tech and TA&apos;d a computational thinking class in Python, enough to know how things get built.
             </p>
             <p>
-              That&apos;s the part I care about: how people actually use a product, and how to make it effective for them. I work mostly in
-              Figma, from full site layouts to product UI, and use tools like Claude and Cursor to get from an idea to something real.
+              What pulled me into design was building with AI: making something is easy now, but making it work for the people who use it
+              is not. That&apos;s the part I care about. I work mostly in Figma, from full site layouts to product UI, and use tools like
+              Claude and Cursor to get from an idea to something real.
             </p>
           </div>
           <ul className="grid w-full grid-cols-1 gap-6 sm:grid-cols-3">
