@@ -27,9 +27,9 @@ function Hero({ c }: { c: CaseStudy }) {
         <h1 className="rgb-split glitch-slice font-display text-[clamp(52px,13vw,132px)] leading-[.86] tracking-[.01em]" style={{ "--ts-extra": "7px 7px 0 #111" } as CSSProperties}>
           {c.title}
         </h1>
-        {c.concept && (
+        {(c.badge ?? (c.concept ? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT" : null)) && (
           <Comic bg={C.magenta} shadow={6} className="max-w-full -rotate-1 px-4 py-2 text-lg leading-tight tracking-[.04em] text-white sm:text-2xl">
-            CONCEPT · WIREFRAMES &amp; MOCKUPS ONLY, NOT A LIVE PRODUCT
+            {c.badge ?? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT"}
           </Comic>
         )}
         <p className="max-w-[560px] text-lg leading-[1.6]">{c.summary}</p>
@@ -146,6 +146,15 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
         </Chapter>
         <Chapter n={chapters[3][0]} title={chapters[3][1]} color="red" rot={0.5}><p>{c.outcome}</p></Chapter>
       </div>
+      {c.related && (
+        <aside className="rough flex max-w-[760px] flex-col items-start gap-3 border-4 border-ink bg-white p-6" style={{ boxShadow: `8px 8px 0 ${C.cyan}` }}>
+          <Comic bg={C.yellow} shadow={4} className="px-3 py-1 text-xl">{c.related.label}</Comic>
+          <p className="text-base leading-[1.6]">{c.related.text}</p>
+          {c.related.href && (
+            <Comic as="a" href={c.related.href} target="_blank" rel="noopener noreferrer" bg={C.cyan} shadow={4} className="comic-link px-4 py-2 text-xl">{c.related.cta ?? "VISIT"}</Comic>
+          )}
+        </aside>
+      )}
       {c.images ? (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
