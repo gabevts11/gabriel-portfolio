@@ -15,6 +15,7 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
+  related?: { label: string; text: string; href?: string; cta?: string }; // short pointer to other work
   disclaimer?: string; // shown under the hero summary
   hero?: string; // real image for the hero panel
   heroMock?: string; // key of the code-drawn illustration for the hero and homepage card
@@ -36,6 +37,12 @@ export const cases: CaseStudy[] = [
     problem:
       "Snapback Sports and its family of accounts publish a steady stream of broadcast and social motion graphics. I wanted to see whether one tool could make that whole library consistent: stream overlays, jumbotron loops, sponsor packages and recurring segment intros and outros, on-brand across every channel, quick to customize and exportable for real production use, without re-rendering a new video for every variant.",
     disclaimer: "Personal project. This is independent, self-directed work. I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
+    related: {
+      label: "ALSO BUILT: ASTORA",
+      text: "Another tool I designed and directed: Astora, a prompt-engineering platform and Chrome extension for repeatable AI workflows across different tasks. I wrote the requirements, designed the UI in Figma, ran QA and set up payments and deployment, and it was built with Lovable, an AI and no-code tool, not hand-coded by me.",
+      href: "https://astoraai.com",
+      cta: "VISIT ASTORA",
+    },
     process:
       "Storyboarded new concepts with several variants before building from the picks. Built a single self-contained, no-install browser tool holding 125 editable motion designs across 19 groups, each shipping in both 16:9 (1920×1080) and 9:16 (1080×1920), with element-level editing (text, photos, color, timing), per-design content fields, layer toggles and autosave. Iterated on feedback round by round (timing, framing, color, sound), republishing the live studio 60 times. QA'd every change in both formats: loops checked for seamlessness, transitions checked for full frame coverage at the cut, mobile layouts checked against safe zones. Also recreated part of the system (the \"word wall\") in Figma with brand variables, components and Figma Motion.",
     decisions: [
@@ -110,6 +117,10 @@ export const cases: CaseStudy[] = [
     problem:
       "Fans have no shared place to record the games and events they attend, rate them, or find out what is worth doing at a given venue. I explored the idea as \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
     disclaimer: "Personal concept. This is independent, self-directed work, and no one at Snapback has seen or approved it. I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
+    related: {
+      label: "SHIPPED APPS",
+      text: "Experiences is a concept, but I have shipped two iOS apps: an AI meal planner and an offline-first fitness tracker, both published on the App Store. I directed both as product owner, covering requirements, UI and UX design, QA, subscriptions with RevenueCat and App Store submission, using AI and no-code tools rather than hand-coding them.",
+    },
     process:
       "This is a concept, not a shipped product. I started with low-fidelity wireframes for seven screens, then built the same screens as branded designs in Figma, using Snapback's own colors and type. The idea borrows two mechanics and adds one: a personal diary of attended experiences with ratings and a profile (from Letterboxd), detail pages with reviews and practical tips (from Yelp), and an original leaderboard of top-rated experiences.",
     flow: ["DISCOVER", "SEARCH", "LEADERBOARD", "EXPERIENCE", "COMMENTS", "LOG", "PROFILE"],
