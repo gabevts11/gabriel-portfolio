@@ -85,7 +85,7 @@ export function Hero() {
       <Art w={620} h={460} d={benDay(bg)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="hero-print hero-print-m left-0 top-0" />
 
       <nav className="relative flex items-center justify-between">
-        <Comic bg="#F7DF02" shadow={4} className="px-[14px] py-[6px] text-[30px]">
+        <Comic as="a" href="/" data-glitch-home bg="#F7DF02" shadow={4} className="comic-link px-[14px] py-[6px] text-[30px]" aria-label="Gabe Dougherty, back to top">
           GD
         </Comic>
         <div className="flex items-center gap-10">

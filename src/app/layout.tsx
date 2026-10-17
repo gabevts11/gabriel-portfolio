@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bangers, Space_Grotesk } from "next/font/google";
+import { Abril_Fatface, Bangers, Caveat_Brush, Luckiest_Guy, Mochiy_Pop_One, Space_Grotesk, Special_Elite } from "next/font/google";
 import "./globals.css";
 import { CursorTrail } from "@/components/CursorTrail";
 import { PageGlitch } from "@/components/PageGlitch";
@@ -11,6 +11,12 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
+// Universe-transition fonts: not preloaded; PageGlitch warms them in idle time.
+const ransom = Abril_Fatface({ weight: "400", variable: "--font-ransom", subsets: ["latin"], preload: false });
+const typewriter = Special_Elite({ weight: "400", variable: "--font-typewriter", subsets: ["latin"], preload: false });
+const anime = Mochiy_Pop_One({ weight: "400", variable: "--font-anime", subsets: ["latin"], preload: false });
+const brush = Caveat_Brush({ weight: "400", variable: "--font-brush", subsets: ["latin"], preload: false });
+const cartoon = Luckiest_Guy({ weight: "400", variable: "--font-cartoon", subsets: ["latin"], preload: false });
 
 export const metadata: Metadata = {
   // Absolute base so social images resolve on the live domain.
@@ -22,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${bangers.variable} ${spaceGrotesk.variable} antialiased`}>
+    <html lang="en" className={`${bangers.variable} ${spaceGrotesk.variable} ${ransom.variable} ${typewriter.variable} ${anime.variable} ${cartoon.variable} ${brush.variable} antialiased`}>
       <body className="min-h-screen overflow-x-clip">{children}
         <PageGlitch />
         <ScrollGlitch />
