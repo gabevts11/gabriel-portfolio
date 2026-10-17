@@ -15,6 +15,10 @@ export type CaseStudy = {
   process: string;
   decisions: string[];
   outcome: string;
+  did: string[]; // "what I did" tags
+  tools: string[];
+  goal: string;
+  hypothesis: string; // labeled as a hypothesis on the page, never a result
   shots: string[]; // labels for placeholder screenshots
   related?: { label: string; text: string; href?: string; cta?: string }; // short pointer to other work
   disclaimer?: string; // shown under the hero summary
@@ -33,23 +37,26 @@ export const cases: CaseStudy[] = [
     title: "SNAPBACK MOTION STUDIO",
     badge: "PROTOTYPE · BUILT ON MY OWN, NOT A CLIENT PROJECT",
     summary:
-      "A quick prototype I built on my own initiative to show what I can do: a motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
-    meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal prototype"], ["TOOLS", "Browser-based tool · Figma"]],
+      "I built a motion design system for Snapback Sports and the browser studio that runs it: 125 editable designs, each in 16:9 and 9:16, held to their brand guide. A personal prototype, not a client project.",
+    meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal prototype"]],
     stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions that fully cover the cut", "cyan"], ["60", "Published iterations of the live studio", "red"]],
     problem:
-      "I picked Snapback Sports as a real brand to prototype against. The brand and its family of accounts publish a steady stream of broadcast and social motion graphics, so I wanted to see whether one tool could make that whole library consistent: stream overlays, jumbotron loops, sponsor packages and recurring segment intros and outros, on-brand across every channel, quick to customize and exportable for real production use, without re-rendering a new video for every variant.",
+      "I picked Snapback Sports as a real brand to prototype against. They publish a steady stream of broadcast and social motion graphics, so I wanted to see whether one tool could keep that whole library on-brand and quick to customize, without re-rendering a new video for every variant.",
     disclaimer: "Personal prototype, made quickly on my own to show initiative. It was not commissioned, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
     process:
-      "Storyboarded new concepts with several variants before building from the picks. Built a single self-contained, no-install browser tool holding 125 editable motion designs, each shipping in both 16:9 (1920×1080) and 9:16 (1080×1920), with element-level editing (text, photos, color, timing), per-design content fields, layer toggles and autosave. Iterated on feedback round by round (timing, framing, color, sound), republishing the live studio 60 times. QA'd every change in both formats: loops checked for seamlessness, transitions checked for full frame coverage at the cut, mobile layouts checked against safe zones. Also recreated part of the system (the \"word wall\") in Figma with brand variables, components and Figma Motion.",
+      "I storyboarded concepts with several variants, then built one self-contained browser tool with 125 editable designs, each in 16:9 and 9:16, with element-level editing and autosave. I iterated on feedback round by round, republishing the live studio 60 times, and checked every change in both formats. I also recreated part of the system, the word wall, in Figma with brand variables and components.",
     decisions: [
-      "Built every design to ship in dual format (16:9 and 9:16) rather than desktop-only, since the same content runs live-stream, in-stadium and as social video.",
-      "Enforced brand discipline by flagging guide conflicts instead of breaking them, and captured new house rules as they emerged (white hat icon except on white backgrounds; retired an earlier grid background; plain hat for Snapback Saturday).",
-      "Built a review panel directly into the tool that grades every design with strengths and notes, making QA a visible, structured part of the system.",
-      "Exported transparent-background (WebM alpha) versions for overlays, so designs drop directly into CapCut without extra compositing.",
-      "Used close stand-ins for Snapback's licensed fonts (Barlow for DIN 2014, Unbounded for Monument Extended Ultrabold), checked against Snapback's official June 2024 brand guide.",
+      "Shipped every design in both 16:9 and 9:16, since the same content runs on streams, in stadiums and as social video.",
+      "Held to the brand guide: flagged conflicts instead of breaking them, and captured new house rules as they came up.",
+      "Exported transparent WebM versions of overlays so they drop straight into CapCut.",
+      "Used close stand-ins for Snapback's licensed fonts (Barlow, Unbounded), checked against the June 2024 brand guide.",
     ],
+    did: ["Motion design system", "Browser-based tool", "Brand guide compliance", "16:9 and 9:16 formats", "QA and iteration"],
+    tools: ["Claude Code", "Figma", "my brain"],
+    goal: "One tool that keeps a brand's whole motion library consistent and quick to customize.",
+    hypothesis: "If every design is editable, ships in both formats and follows the brand guide, a small team could make on-brand variants without re-rendering from scratch. Not tested with a real team.",
     outcome:
-      "125 shipped, editable designs, each in 16:9 and 9:16: stream and YouTube graphics (19), scene transitions (19), stadium and jumbotron loops (13), hat icon motion (9), brand family (4), fan events and trips (3), the Sam Houston jersey sponsorship (6), Snapback Saturday (9), Chop (2), Trivia (9), Betting (5) and Collects (6), plus 21 intros and outros across eight Snapback brands. Built to the Snapback brand guide (five colors, three typefaces), with 60 published versions of the live studio. It is a prototype made to show initiative, not a delivered or commissioned project.",
+      "125 shipped, editable designs, each in 16:9 and 9:16, plus 21 intros and outros across eight Snapback brands, built to the brand guide (five colors, three typefaces). 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
     shots: [],
     hero: "/work/studio/studio-wordwall.jpg",
     images: [
@@ -65,28 +72,29 @@ export const cases: CaseStudy[] = [
     kicker: "WEB DESIGN · FREELANCE · WIX",
     title: "CAMPAIGN WEBSITE",
     summary:
-      "A full campaign website for a local school board candidate: bio, platform, events, voter info and ways to volunteer, donate and sign up, plus a custom lookup tool that maps a voter's address to their seat.",
-    meta: [["ROLE", "Freelance designer & developer"], ["TIMELINE", "Aug 2026 – present"], ["TOOLS", "Wix · Figma · ChatGPT"]],
+      "I designed and launched a full campaign website for a local school board candidate, plus a custom tool that maps a voter's address to their seat. 661 sessions and 21 form submissions in the first period.",
+    meta: [["ROLE", "Freelance designer & developer"], ["TIMELINE", "Aug 2026 – present"]],
     stats: [["661", "Sessions in the first period", "cyan"], ["506", "Unique visitors", "purple"], ["21", "Form submissions, 11 of them volunteer sign-ups", "red"]],
     problem:
-      "A local school board candidate needed one place online to reach voters: who they are, what they stand for, when and where to meet them, how to vote, and easy ways to volunteer, donate or stay in touch. The site also had to work on a phone, since that is where most voters would find it, and give each voter a quick way to find their own district instead of reading a static list.",
+      "A local school board candidate needed one place online to reach voters: who they are, how to vote, and ways to volunteer, donate or stay in touch. It had to work on a phone, and give each voter a quick way to find their own district.",
     process:
-      "Designed and launched a responsive, multi-page site in Wix and Figma: home, meet the candidate, priorities, experience, voter info, events and contact, with a Donate button always in the navigation. Built the supporter forms (email signup, volunteer, contact, donation support) and connected them to the campaign's social channels. Gave the whole site one look: a blue, cream and orange palette with a serif heading type, so it reads as one campaign on every page. The one custom-built piece is the district lookup tool, embedded in the voter info page. For it, I researched the official boundary map, which was only available as a PDF, extracted its vector shapes into georeferenced GeoJSON, and matched an address's coordinates (from the U.S. Census Geocoder) against the five district polygons. I led the research, direction, interface design, debugging and testing, working with ChatGPT as an AI-assisted development partner, and iterated the tool through about 25 versions.",
+      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. I researched the official boundary map, which was only a PDF, turned its shapes into georeferenced GeoJSON, and matched an address's coordinates against the five district polygons. I led the research, direction, interface, debugging and testing, building the tool with ChatGPT over about 25 versions.",
     hardParts: [
-      "Getting usable geometry: the source was an official PDF map, not a GIS dataset, so the district shapes had to be extracted, rebuilt and georeferenced.",
-      "Address accuracy: ZIP code or city matching is not precise enough, so the lookup uses coordinates. Edge-case addresses are a known limit, so this is not claimed to cover every address.",
-      "Browser and service limits: cross-origin rules shaped which services were practical, and a public map tile endpoint was dropped after an access problem.",
-      "Responsive layout: the map notice needed repeated adjustment so text stayed readable and left-aligned at every width.",
+      "Usable geometry: the source was a PDF map, so the district shapes had to be extracted, rebuilt and georeferenced.",
+      "Address accuracy: the lookup uses coordinates, not ZIP codes. Edge-case addresses are a known limit.",
+      "Browser limits: cross-origin rules shaped which services were practical, and one map tile source was dropped after an access problem.",
     ],
     flow: ["ADDRESS", "GEOCODING", "COORDINATES", "DISTRICT POLYGON MATCH", "SEAT RESULT"],
     decisions: [
-      "Organized the site around what a voter needs to do: learn about the candidate, check how to vote, and take action, with forms and a Donate button reachable from every page.",
-      "Built the district lookup as an interactive embedded tool rather than a static info page, so each voter gets a personalized answer.",
-      "Matched on coordinates and district polygons instead of ZIP code or neighborhood, because streets next to each other can sit in different seats.",
-      "Added an outside-boundaries message so an address that falls outside all five seats gets an honest answer instead of a made-up one.",
-      "Kept the result short and added a beta note pointing people to official county resources to verify, since wrong district information could mislead voters.",
-      "Prioritized a mobile-first layout, since traffic skewed mobile and organic Facebook.",
+      "Organized the site around what a voter needs to do: learn, check how to vote, and take action, with forms and Donate reachable from every page.",
+      "Built the district lookup as an interactive tool so each voter gets a personal answer.",
+      "Matched on coordinates and district polygons, not ZIP code, because neighboring streets can sit in different seats.",
+      "Added an outside-boundaries message and a beta note pointing to official county resources, since wrong district information could mislead voters.",
     ],
+    did: ["Website design", "Mobile-first layout", "Forms and sign-ups", "Custom district lookup tool", "Research and testing"],
+    tools: ["Wix", "Figma", "Claude", "ChatGPT", "my brain"],
+    goal: "Give voters one place to learn about the candidate, check how to vote and take action. The county had no tool for finding which seat you vote in, and looking it up was hard, so I built one.",
+    hypothesis: "An address lookup makes finding your seat easier than working from the county's PDF map. I do not have usage numbers for the lookup tool.",
     outcome:
       "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
@@ -108,22 +116,25 @@ export const cases: CaseStudy[] = [
     badge: "CONCEPT PROTOTYPE · DESIGNS ONLY, NOT A BUILT APP",
     concept: true,
     summary:
-      "A quick concept I made on my own initiative: an app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
-    meta: [["ROLE", "Product designer"], ["STATUS", "Quick concept, not built"], ["TOOLS", "Figma"]],
+      "A quick concept for a Snapback fan app: log the games you go to, rate them, and see what fans recommend at each one. Seven screens, designed in Figma, not built.",
+    meta: [["ROLE", "Product designer"], ["STATUS", "Quick concept, not built"]],
     stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["7", "Screens designed", "magenta"], ["3", "Core mechanics: two borrowed, one original", "cyan"]],
     problem:
-      "Fans have no shared place to record the games and events they attend, rate them, or find out what is worth doing at a given venue. I explored the idea as \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
+      "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue. I explored \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
     disclaimer: "Personal concept, made quickly on my own to show initiative. No one at Snapback has seen or approved it, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
-      "This is a concept, not a shipped product. I started with low-fidelity wireframes for seven screens, then built the same screens as branded designs in Figma, using Snapback's own colors and type. The idea borrows two mechanics and adds one: a personal diary of attended experiences with ratings and a profile (from Letterboxd), detail pages with reviews and practical tips (from Yelp), and an original leaderboard of top-rated experiences.",
+      "A concept, not a shipped product. I started with low-fidelity wireframes for seven screens, then built them as branded designs in Figma using Snapback's colors and type. It borrows two mechanics and adds one: a diary of attended experiences with ratings (from Letterboxd), detail pages with reviews and tips (from Yelp), and an original leaderboard of top-rated experiences.",
     flow: ["DISCOVER", "SEARCH", "LEADERBOARD", "EXPERIENCE", "COMMENTS", "LOG", "PROFILE"],
     decisions: [
-      "Made the rating badge a \"Certified\" stamp that echoes the verdict stamp in Snapback Trivia, so Experiences reads as a sibling product in the Snapback family.",
-      "Made the leaderboard the original mechanic: filterable by sport, team, region and time period, with the top spot getting a trophy and a yellow glow.",
-      "Used a hero card plus two-column grid on the Discover feed, with titles over the image, the same poster-card language as Letterboxd and Yelp.",
-      "Pulled colors and type from Snapback's brand guide instead of inventing a look, and kept to color and type only, not Snapback's hat-logo artwork.",
-      "Built shared components (nav bar, rating stamp, button, image placeholder) once so a change updates all seven screens.",
+      "Made the rating a \"Certified\" stamp that echoes the verdict stamp in Snapback Trivia, so Experiences reads as part of the family.",
+      "Made the leaderboard the original mechanic: filterable by sport, team, region and time, with a trophy for the top spot.",
+      "Pulled colors and type from Snapback's brand guide instead of inventing a look, and left out the hat-logo artwork.",
+      "Built shared components once (nav bar, rating stamp, button) so a change updates all seven screens.",
     ],
+    did: ["Product design", "UX flows", "Wireframes", "Visual design", "Shared components"],
+    tools: ["Claude Code", "Figma", "my brain"],
+    goal: "One place for fans to log, rate and discover game experiences.",
+    hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard make it easy to learn and give people a reason to come back. Not tested with users.",
     outcome:
       "A concept only: seven wireframed and branded screens, with no development and no user testing, so there are no results to report. Still to do: real photography (black placeholders stand in for every image), interactive prototyping between screens, and getting it in front of the people who would use it.",
     shots: [],
