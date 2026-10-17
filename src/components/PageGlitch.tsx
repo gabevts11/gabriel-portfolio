@@ -3,21 +3,14 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-// Page change = a smooth RGB-split sweep: the old page is wiped away left to right behind a cyan/pink edge, then the new page is wiped in the same way.
-const OUT_MS = 300;
+// Page change = the same dimension glitch the page uses on its own elements: the old page glitches out, the new one glitches in.
+const OUT_MS = 460; // twice as long as the on-page glitch so the frames read as a deliberate effect
 
 export function PageGlitch() {
   const router = useRouter();
   const pathname = usePathname();
   const busy = useRef(false);
   const hash = useRef("");
-  const edge = useRef<HTMLDivElement>(null);
-  const sweep = (kind: "out" | "in", ms: number) => {
-    const el = edge.current;
-    if (!el) return;
-    el.className = `pg-edge pg-edge-${kind}`;
-    setTimeout(() => { el.className = "pg-edge"; }, ms);
-  };
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -33,7 +26,6 @@ export function PageGlitch() {
       hash.current = url.hash.slice(1);
       const main = document.querySelector("main");
       main?.classList.add("pg-out");
-      sweep("out", OUT_MS);
       setTimeout(() => router.push(url.pathname + url.search + url.hash), OUT_MS);
       setTimeout(() => { // shortcut: safety reset if navigation stalls, fine for a static site
         busy.current = false;
@@ -56,10 +48,9 @@ export function PageGlitch() {
     const timers = [60, 250].map((ms) => setTimeout(jump, ms)); // Next also scrolls after commit
     const main = document.querySelector("main");
     main?.classList.add("pg-in");
-    sweep("in", 380);
-    timers.push(setTimeout(() => { main?.classList.remove("pg-in"); root.style.scrollBehavior = ""; busy.current = false; }, 420));
+    timers.push(setTimeout(() => { main?.classList.remove("pg-in"); root.style.scrollBehavior = ""; busy.current = false; }, 580));
     return () => timers.forEach(clearTimeout);
   }, [pathname]);
 
-  return <div ref={edge} className="pg-edge" aria-hidden />;
+  return null;
 }
