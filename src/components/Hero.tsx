@@ -36,7 +36,8 @@ export function Hero() {
               <g fill="#111" stroke="#111" strokeWidth="9" strokeLinejoin="round"><circle cx="205.4" cy="36.0" r="16.6" /><circle cx="190.5" cy="49.1" r="16.6" /><circle cx="153.0" cy="56.0" r="16.6" /><circle cx="110.3" cy="53.6" r="16.6" /><circle cx="82.5" cy="43.0" r="16.6" /><circle cx="82.5" cy="29.0" r="16.6" /><circle cx="110.3" cy="18.4" r="16.6" /><circle cx="153.0" cy="16.0" r="16.6" /><circle cx="190.5" cy="22.9" r="16.6" /><ellipse cx="142" cy="36" rx="69.0" ry="26.0" /><circle cx="58" cy="40" r="8" /><circle cx="38" cy="46" r="5" /></g>
               <g fill="#fff" stroke="#fff" strokeWidth="1"><circle cx="205.4" cy="36.0" r="16.6" /><circle cx="190.5" cy="49.1" r="16.6" /><circle cx="153.0" cy="56.0" r="16.6" /><circle cx="110.3" cy="53.6" r="16.6" /><circle cx="82.5" cy="43.0" r="16.6" /><circle cx="82.5" cy="29.0" r="16.6" /><circle cx="110.3" cy="18.4" r="16.6" /><circle cx="153.0" cy="16.0" r="16.6" /><circle cx="190.5" cy="22.9" r="16.6" /><ellipse cx="142" cy="36" rx="69.0" ry="26.0" /><circle cx="58" cy="40" r="8" /><circle cx="38" cy="46" r="5" /></g>
             </svg>
-            <span>CLICK ME?</span>
+            <span className="gd-a">CLICK ME?</span>
+            <span className="gd-b">CLICK ME<br />AGAIN?</span>
           </span>
         </div>
         <div className="flex items-center gap-10">

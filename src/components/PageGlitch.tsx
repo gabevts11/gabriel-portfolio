@@ -76,6 +76,7 @@ export function PageGlitch() {
         busy.current = true;
         const main = document.querySelector("main");
         const root = document.documentElement;
+        root.dataset.gdClicked = "1"; // swaps the bubble to CLICK ME AGAIN?
         const ux = nextStyle();
         root.dataset.ux = ux;
         swaps.current = letterize(ux);
