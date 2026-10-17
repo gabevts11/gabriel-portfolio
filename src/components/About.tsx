@@ -5,7 +5,7 @@ import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
 
 const stats = [
-  ["125", "Motion designs shipped in Snapback Studio", "#00B7EB"],
+  ["125", "Motion designs shipped in Snapback Motion Studio", "#00B7EB"],
   ["661", "Sessions on a campaign site in its first period", "#FF2D87"],
   ["1 YR", "Building sites, apps & graphics for real users", "#5B2BC2"],
 ];

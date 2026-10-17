@@ -6,7 +6,8 @@ import type { CaseStudy } from "@/lib/cases";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
-import { LookupMock } from "./LookupMock";
+import { ExperiencesMock, XpHero, type XpKind } from "./ExperiencesMock";
+import { LookupMock, type MockKind } from "./LookupMock";
 import { SpeedLines } from "./SpeedLines";
 import { C, type Color } from "./CaseStudies";
 
@@ -51,6 +52,8 @@ function Hero({ c }: { c: CaseStudy }) {
           <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
             {c.hero ? (
               <Image src={c.hero} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" priority />
+            ) : c.heroMock === "xp" ? (
+              <XpHero />
             ) : c.heroMock ? (
               <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
             ) : (
@@ -141,7 +144,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
       {c.images ? (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
-          <ul className="grid w-full items-start gap-8 md:grid-cols-2">
+          <ul className={`grid w-full items-start gap-8 md:grid-cols-2 ${c.images[0].mock?.startsWith("xp-") ? "xl:grid-cols-4" : ""}`}>
             {c.images.map((im, i) => (
               <li key={im.label} className="flex flex-col gap-3">
                 <div className="rough overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `8px 8px 0 ${[C.purple, C.cyan, C.magenta, C.yellow, C.red][i % 5]}` }}>
@@ -151,7 +154,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
                       {im.src2 && <Image src={im.src2} alt={`${c.title}: ${im.label.toLowerCase()}, 9:16`} width={im.w2!} height={im.h2!} sizes="15vw" className="h-auto min-w-0 flex-1" />}
                     </div>
                   ) : (
-                    <LookupMock kind={im.mock!} className="block h-auto w-full" />
+                    im.mock!.startsWith("xp-") ? <ExperiencesMock kind={im.mock as XpKind} className="mx-auto block h-auto w-full max-w-[300px]" /> : <LookupMock kind={im.mock as MockKind} className="block h-auto w-full" />
                   )}
                 </div>
                 <Comic bg={im.staged ? C.magenta : C.yellow} shadow={3} className={`self-start px-3 py-1 text-lg ${im.staged ? "text-white" : ""}`}>{im.label}</Comic>
