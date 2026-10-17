@@ -39,8 +39,9 @@ type Case = {
 const cases: Case[] = [
   {
     issue: "ISSUE #02", kicker: "MOTION DESIGN · DESIGN SYSTEM · BRAND", slug: "snapback-studio", title: "SNAPBACK STUDIO",
-    desc: "A browser-based motion design studio for Snapback Sports: stream graphics, jumbotron loops, sponsor packages and intros for every sub-brand, built to their brand guide and exportable to CapCut.",
-    stats: [["125", "Editable motion designs", "magenta"], ["19", "Design groups, in 16:9 and 9:16", "cyan"]],
+    desc: "A browser-based motion design studio for Snapback Sports: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
+    stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions", "cyan"]],
+    src: "/work/studio/studio-ui.jpg",
     panel: "yellow", offset: "purple", dotsA: "magenta", dotsB: "cyan", rot: -2, flip: false,
     streams: [
       ["ink", { seed: 71, points: [[40, 40], [-20, -10], [-85, -55]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],

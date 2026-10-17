@@ -15,10 +15,11 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
+  hero?: string; // real image for the hero panel
   heroMock?: boolean; // show the district-map illustration in the hero
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
-  images?: { mock: "latest" | "error" | "early" | "seats" | "sitemap" | "phone"; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
+  images?: { mock?: "latest" | "error" | "early" | "seats" | "sitemap" | "phone"; src?: string; w?: number; h?: number; src2?: string; w2?: number; h2?: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
 
 export const cases: CaseStudy[] = [
@@ -28,11 +29,11 @@ export const cases: CaseStudy[] = [
     kicker: "MOTION DESIGN · DESIGN SYSTEM · BRAND",
     title: "SNAPBACK STUDIO",
     summary:
-      "A browser-based motion design studio for Snapback Sports: stream graphics, jumbotron loops, sponsor packages and intros for every sub-brand, built to their brand guide and exportable to CapCut.",
+      "A browser-based motion design studio for Snapback Sports: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
     meta: [["ROLE", "Designer & builder"], ["TIMELINE", "Not yet listed"], ["TOOLS", "Browser-based tool · Figma"]],
-    stats: [["125", "Editable motion designs", "magenta"], ["19", "Design groups, each in 16:9 and 9:16", "cyan"], ["60", "Published iterations of the live studio", "red"]],
+    stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions that fully cover the cut", "cyan"], ["60", "Published iterations of the live studio", "red"]],
     problem:
-      "Snapback Sports and its family of 9 sub-brands needed a large, consistent library of broadcast and social motion graphics (stream overlays, jumbotron loops, sponsor packages, recurring segment intros and outros) that stayed on-brand across every channel and could be quickly customized and exported for real production use, without re-rendering a new video for every variant.",
+      "Snapback Sports and its family of accounts needed a large, consistent library of broadcast and social motion graphics (stream overlays, jumbotron loops, sponsor packages, recurring segment intros and outros) that stayed on-brand across every channel and could be quickly customized and exported for real production use, without re-rendering a new video for every variant.",
     process:
       "Storyboarded new concepts with several variants before building from the picks. Built a single self-contained, no-install browser tool holding 125 editable motion designs across 19 groups, each shipping in both 16:9 (1920×1080) and 9:16 (1080×1920), with element-level editing (text, photos, color, timing), per-design content fields, layer toggles and autosave. Iterated on feedback round by round (timing, framing, color, sound), republishing the live studio 60 times. QA'd every change in both formats: loops checked for seamlessness, transitions checked for full frame coverage at the cut, mobile layouts checked against safe zones. Also recreated part of the system (the \"word wall\") in Figma with brand variables, components and Figma Motion.",
     decisions: [
@@ -43,8 +44,15 @@ export const cases: CaseStudy[] = [
       "Used close stand-ins for Snapback's licensed fonts (Barlow for DIN 2014, Unbounded for Monument Extended Ultrabold), checked against Snapback's official June 2024 brand guide.",
     ],
     outcome:
-      "125 shipped, editable designs across 19 groups: stream and YouTube graphics (19), scene transitions (19), stadium and jumbotron loops (13), hat icon motion (9), brand family (4), fan events (3), plus packages for the Sam Houston jersey sponsorship (6), Snapback Saturday (9), Chop (2), Trivia (9), Betting (5) and Collects (6), and intro/outro sets for all 9 sub-brands. Built to the Snapback brand guide (5 brand colors, 3 typefaces), with 60 published iterations of the live studio.",
-    shots: ["THE STUDIO", "SAM HOUSTON JERSEY REVEAL", "FIGMA WORD WALL"],
+      "125 shipped, editable designs, each in 16:9 and 9:16: stream and YouTube graphics (19), scene transitions (19), stadium and jumbotron loops (13), hat icon motion (9), brand family (4), fan events and trips (3), the Sam Houston jersey sponsorship (6), Snapback Saturday (9), Chop (2), Trivia (9), Betting (5) and Collects (6), plus 21 intros and outros across eight Snapback brands. Built to the Snapback brand guide (five colors, three typefaces), with 60 published versions of the live studio.",
+    shots: [],
+    hero: "/work/studio/studio-ui.jpg",
+    images: [
+      { src: "/work/studio/jersey.jpg", w: 1600, h: 900, src2: "/work/studio/jersey-m.jpg", w2: 506, h2: 900, label: "SAM HOUSTON JERSEY REVEAL", caption: "One design, both formats (16:9 and 9:16): a frame from the jersey sponsorship package." },
+      { src: "/work/studio/leaderboard.jpg", w: 1600, h: 900, src2: "/work/studio/leaderboard-m.jpg", w2: 506, h2: 900, label: "TRIVIA LEADERBOARD", caption: "Your row climbs the board while the score counts up, with the Certified Ball Knowledge verdict stamp." },
+      { src: "/work/studio/family.jpg", w: 1600, h: 900, src2: "/work/studio/family-m.jpg", w2: 506, h2: 900, label: "ONE BECOMES MANY", caption: "The brand family piece: the master lockup splits into every channel." },
+      { src: "/work/studio/ticket.jpg", w: 1600, h: 900, src2: "/work/studio/ticket-m.jpg", w2: 506, h2: 900, label: "TRANSITION · TICKET TEAR", caption: "One of 19 scene transitions, captured mid-wipe. In the studio it plays over your own clip." },
+    ],
   },
   {
     slug: "campaign-website",

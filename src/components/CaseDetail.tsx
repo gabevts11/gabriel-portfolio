@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { benDay } from "@/lib/comic-art";
 import type { CaseStudy } from "@/lib/cases";
@@ -48,7 +49,9 @@ function Hero({ c }: { c: CaseStudy }) {
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C.magenta} opacity={0.9} blend className="inset-0" />
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C.cyan} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
           <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
-            {c.heroMock ? (
+            {c.hero ? (
+              <Image src={c.hero} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" priority />
+            ) : c.heroMock ? (
               <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
             ) : (
               <>
@@ -140,9 +143,16 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           <Caption tone="white" rot={-1}>FROM THE ARCHIVE…</Caption>
           <ul className="grid w-full items-start gap-8 md:grid-cols-2">
             {c.images.map((im, i) => (
-              <li key={im.mock} className="flex flex-col gap-3">
+              <li key={im.label} className="flex flex-col gap-3">
                 <div className="rough overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `8px 8px 0 ${[C.purple, C.cyan, C.magenta, C.yellow, C.red][i % 5]}` }}>
-                  <LookupMock kind={im.mock} className="block h-auto w-full" />
+                  {im.src ? (
+                    <div className="flex items-end gap-2 bg-ink p-2">
+                      <Image src={im.src} alt={`${c.title}: ${im.label.toLowerCase()}, 16:9`} width={im.w!} height={im.h!} sizes="(min-width:768px) 45vw, 90vw" className="h-auto min-w-0 flex-[3.16] self-center" />
+                      {im.src2 && <Image src={im.src2} alt={`${c.title}: ${im.label.toLowerCase()}, 9:16`} width={im.w2!} height={im.h2!} sizes="15vw" className="h-auto min-w-0 flex-1" />}
+                    </div>
+                  ) : (
+                    <LookupMock kind={im.mock!} className="block h-auto w-full" />
+                  )}
                 </div>
                 <Comic bg={im.staged ? C.magenta : C.yellow} shadow={3} className={`self-start px-3 py-1 text-lg ${im.staged ? "text-white" : ""}`}>{im.label}</Comic>
                 <p className="text-sm leading-snug">{im.caption}</p>
