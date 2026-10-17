@@ -95,6 +95,8 @@ export function Comic({
   style?: CSSProperties;
   children: ReactNode;
   href?: string;
+  target?: string;
+  rel?: string;
 }) {
   return (
     <Tag
