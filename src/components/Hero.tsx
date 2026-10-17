@@ -2,7 +2,6 @@ import Image from "next/image";
 import { benDay, crackleRing } from "@/lib/comic-art";
 import { Art, Comic, Fit, Streams } from "./art";
 import { SpeedLines } from "./SpeedLines";
-import { ThoughtBubble } from "./ThoughtBubble";
 
 const nav = [
   ["WORK", "#work"],
@@ -39,7 +38,6 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
   );
   return (
     <div className="relative">
-    <ThoughtBubble className="absolute -top-6 left-0 z-20 sm:-top-2">(is that a real portrait? not yet!)</ThoughtBubble>
     <Fit w={640} h={760} className="[--s:.5] sm:[--s:.75] lg:[--s:1]">
       <Streams
         mode="load"
