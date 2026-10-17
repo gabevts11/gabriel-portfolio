@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { benDay } from "@/lib/comic-art";
+import { benDay, crackleRing } from "@/lib/comic-art";
 import type { CaseStudy } from "@/lib/cases";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
@@ -11,6 +11,8 @@ import { LookupMock, type MockKind } from "./LookupMock";
 import { SpeedLines } from "./SpeedLines";
 import { C, type Color } from "./CaseStudies";
 
+const sideDots = { width: 360, height: 560, spacing: 16, maxR: 6, minR: 1 };
+const cornerDots = { width: 520, height: 340, spacing: 16, maxR: 6, minR: 1, origin: { x: 520, y: 340 }, falloff: 440 };
 const dots = { width: 600, height: 420, spacing: 14, maxR: 5.6, minR: 0.8 };
 const cardDots = { width: 120, height: 90, spacing: 9, maxR: 3.4, minR: 0.6, origin: { x: 120, y: 0 }, falloff: 120 };
 const streams: [string, Parameters<typeof Streams>[0]["streams"][number][1]][] = [
@@ -82,12 +84,18 @@ const chapters: [string, string, Color][] = [
 ];
 
 function Chapter({ n, title, color, rot, children }: { n: string; title: string; color: Color; rot: number; children: React.ReactNode }) {
+  const seed = 11 + 10 * Number(n.slice(-1));
+  const ring = { width: 420, height: 300, radiusX: 150, radiusY: 108, thickness: 70, heavyAngle: seed % 6 };
   return (
     <section className="grid items-start gap-6 md:grid-cols-[240px_1fr] md:gap-10">
+      <div className="relative">
+        <Art w={420} h={300} d={crackleRing({ ...ring, seed, count: 14, minSize: 7, maxSize: 16 })} fill={C.ink} className="-left-[90px] -top-[100px] -z-10 hidden md:block" />
+        <Art w={420} h={300} d={crackleRing({ ...ring, seed: seed + 5, count: 7, minSize: 5, maxSize: 11, thickness: 80 })} fill={C[color]} className="-left-[90px] -top-[100px] -z-10 hidden md:block" />
       <Comic bg={C[color]} shadow={6} className={`px-5 py-4 ${color === "red" || color === "magenta" ? "text-white" : ""}`} style={{ transform: `rotate(${-rot}deg)` }}>
         <div className="text-xl tracking-[.06em]">{n}</div>
         <h2 className="text-[clamp(32px,8vw,44px)] leading-[.95]">{title}</h2>
       </Comic>
+      </div>
       <div className="rough max-w-[760px] border-4 border-ink bg-white p-6 text-lg leading-[1.6] md:p-8" style={{ boxShadow: `8px 8px 0 ${C[color]}`, transform: `rotate(${rot}deg)` }}>
         {children}
       </div>
@@ -97,7 +105,12 @@ function Chapter({ n, title, color, rot, children }: { n: string; title: string;
 
 export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
   return (
-    <div className="relative mx-auto flex max-w-[1440px] flex-col gap-16 px-6 pb-16 pt-6 xl:px-20">
+    <div className="relative isolate mx-auto flex max-w-[1440px] flex-col gap-16 px-6 pb-16 pt-6 xl:px-20">
+      <Art w={360} h={560} d={benDay({ ...sideDots, origin: { x: 0, y: 280 }, falloff: 340 })} fill={C.cyan} opacity={0.5} className="-z-10 left-0 top-[26%] hidden md:block" />
+      <Art w={360} h={560} d={benDay({ ...sideDots, origin: { x: 360, y: 280 }, falloff: 340 })} fill={C.magenta} opacity={0.5} className="-z-10 right-0 top-[52%] hidden md:block" />
+      <Art w={520} h={340} d={benDay(cornerDots)} fill={C.magenta} opacity={0.85} blend className="-z-10 bottom-0 right-0" />
+      <Art w={520} h={340} d={benDay(cornerDots)} fill={C.cyan} opacity={0.85} blend dx={6} dy={4} className="-z-10 bottom-0 right-0" />
+      <Art w={420} h={420} d={crackleRing({ width: 420, height: 420, seed: 77, count: 16, minSize: 9, maxSize: 22, radiusX: 170, radiusY: 170, thickness: 90, heavyAngle: 2.2 })} fill={C.ink} className="-z-10 -right-24 top-[38%] hidden xl:block" />
       <nav className="flex flex-wrap items-center justify-between gap-4">
         <Comic as={Link} href="/#work" bg={C.yellow} shadow={5} className="comic-link px-4 py-2 text-xl">← BACK TO CASE FILES</Comic>
         <Comic as={Link} href="/" bg={C.yellow} shadow={4} className="comic-link px-3 py-1 text-xl">GD</Comic>
@@ -114,7 +127,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
       </ul>
       <div className="flex flex-col gap-12">
         <Chapter n={chapters[0][0]} title={chapters[0][1]} color="cyan" rot={-0.6}><p>{c.problem}</p></Chapter>
-        <Caption rot={1}>MEANWHILE, IN THE STUDIO…</Caption>
+        <Caption rot={1} className="self-start">MEANWHILE, IN THE STUDIO…</Caption>
         <Chapter n={chapters[1][0]} title={chapters[1][1]} color="yellow" rot={0.6}>
           <p>{c.process}</p>
           {c.flow && (
