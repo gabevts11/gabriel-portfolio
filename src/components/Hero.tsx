@@ -64,9 +64,6 @@ function HeroPanel({ portraitSrc }: { portraitSrc?: string }) {
         <Art w={500} h={600} d={benDay({ ...dots, origin: { x: 500, y: 600 } })} fill="#FF2D87" opacity={0.95} dx={3} dy={2} className="inset-0" />
         <Art w={500} h={600} d={crackleRing({ width: 500, height: 600, seed: 11, count: 18, minSize: 8, maxSize: 17, radiusX: 205, radiusY: 240, thickness: 60, heavyAngle: -0.6 })} fill="#111" className="inset-0" />
         <Art w={500} h={600} d={crackleRing({ width: 500, height: 600, seed: 31, count: 9, minSize: 5, maxSize: 11, radiusX: 190, radiusY: 230, thickness: 70, heavyAngle: 2.4 })} fill="#F7DF02" className="inset-0" />
-        <Comic bg="#fff" className="absolute px-[14px] py-[6px] text-[22px]" style={{ left: 24, bottom: 24 }}>
-          ISSUE #01
-        </Comic>
       </div>
       {ghost(126, "#00B7EB")}
       {ghost(144, "#E8202A")}

@@ -56,9 +56,9 @@ function Hero({ c }: { c: CaseStudy }) {
         <div className="rough absolute box-border overflow-hidden border-[6px] border-ink" style={{ left: 0, top: 0, width: 600, height: 420, background: C.yellow, transform: "rotate(-2deg)", transformOrigin: "top left" }}>
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 600, y: 420 }, falloff: 480 })} fill={C.magenta} opacity={0.9} blend className="inset-0" />
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C.cyan} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
-          <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
+          <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 36, top: 76, width: 528, height: 316, boxShadow: "8px 8px 0 #111" }}>
             {c.hero ? (
-              <Image src={c.hero} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" priority />
+              <Image src={c.hero} alt={`${c.title} screenshot`} fill sizes="528px" className="object-cover" priority />
             ) : c.heroMock === "xp" ? (
               <XpHero />
             ) : c.heroMock ? (
