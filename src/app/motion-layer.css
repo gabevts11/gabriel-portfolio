@@ -224,3 +224,9 @@ html[data-ux="ham"] main .case-box > div:not(.dots-print) { border-radius: 24px;
   html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3) { white-space: normal; }
   .gd-nudge { display: none; }
 }
+
+/* Hero cover on desktop: keep the wide universe faces clear of the "3 BIG CASE FILES" box */
+@media (min-width: 1024px) {
+  html[data-ux="peni"] main h1 { scale: .52; }
+  html[data-ux="noir"] main h1 { scale: .72; }
+}
