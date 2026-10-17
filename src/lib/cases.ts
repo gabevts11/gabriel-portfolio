@@ -15,6 +15,7 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
+  disclaimer?: string; // shown under the hero summary
   hero?: string; // real image for the hero panel
   heroMock?: string; // key of the code-drawn illustration for the hero and homepage card
   hardParts?: string[]; // extra list under the process
@@ -26,14 +27,15 @@ export const cases: CaseStudy[] = [
   {
     slug: "snapback-studio",
     issue: "ISSUE #02",
-    kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · BRAND",
+    kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PERSONAL PROJECT",
     title: "SNAPBACK MOTION STUDIO",
     summary:
       "A motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
-    meta: [["ROLE", "Designer & builder"], ["TIMELINE", "Not yet listed"], ["TOOLS", "Browser-based tool · Figma"]],
+    meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal, unaffiliated"], ["TOOLS", "Browser-based tool · Figma"]],
     stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions that fully cover the cut", "cyan"], ["60", "Published iterations of the live studio", "red"]],
     problem:
-      "Snapback Sports and its family of accounts needed a large, consistent library of broadcast and social motion graphics (stream overlays, jumbotron loops, sponsor packages, recurring segment intros and outros) that stayed on-brand across every channel and could be quickly customized and exported for real production use, without re-rendering a new video for every variant.",
+      "Snapback Sports and its family of accounts publish a steady stream of broadcast and social motion graphics. I wanted to see whether one tool could make that whole library consistent: stream overlays, jumbotron loops, sponsor packages and recurring segment intros and outros, on-brand across every channel, quick to customize and exportable for real production use, without re-rendering a new video for every variant.",
+    disclaimer: "Personal project. This is independent, self-directed work. I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
     process:
       "Storyboarded new concepts with several variants before building from the picks. Built a single self-contained, no-install browser tool holding 125 editable motion designs across 19 groups, each shipping in both 16:9 (1920×1080) and 9:16 (1080×1920), with element-level editing (text, photos, color, timing), per-design content fields, layer toggles and autosave. Iterated on feedback round by round (timing, framing, color, sound), republishing the live studio 60 times. QA'd every change in both formats: loops checked for seamlessness, transitions checked for full frame coverage at the cut, mobile layouts checked against safe zones. Also recreated part of the system (the \"word wall\") in Figma with brand variables, components and Figma Motion.",
     decisions: [
@@ -98,15 +100,16 @@ export const cases: CaseStudy[] = [
   {
     slug: "snapback-experiences",
     issue: "ISSUE #04",
-    kicker: "PRODUCT DESIGN · MOBILE APP · CONCEPT",
+    kicker: "PRODUCT DESIGN · MOBILE APP · PERSONAL CONCEPT",
     title: "SNAPBACK EXPERIENCES",
     concept: true,
     summary:
       "A concept app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
-    meta: [["ROLE", "Product designer"], ["STATUS", "Concept, not built"], ["TOOLS", "Figma"]],
+    meta: [["ROLE", "Product designer"], ["STATUS", "Personal concept, not built"], ["TOOLS", "Figma"]],
     stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["7", "Screens designed", "magenta"], ["3", "Core mechanics: two borrowed, one original", "cyan"]],
     problem:
-      "Snapback's community of sports fans has no shared place to record the games and events they attend, rate them, or find out what is worth doing at a given venue. The CEO described the idea as \"the Yelp for sports\".",
+      "Fans have no shared place to record the games and events they attend, rate them, or find out what is worth doing at a given venue. I explored the idea as \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
+    disclaimer: "Personal concept. This is independent, self-directed work, and no one at Snapback has seen or approved it. I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
       "This is a concept, not a shipped product. I started with low-fidelity wireframes for seven screens, then built the same screens as branded designs in Figma, using Snapback's own colors and type. The idea borrows two mechanics and adds one: a personal diary of attended experiences with ratings and a profile (from Letterboxd), detail pages with reviews and practical tips (from Yelp), and an original leaderboard of top-rated experiences.",
     flow: ["DISCOVER", "SEARCH", "LEADERBOARD", "EXPERIENCE", "COMMENTS", "LOG", "PROFILE"],

@@ -33,6 +33,11 @@ function Hero({ c }: { c: CaseStudy }) {
           </Comic>
         )}
         <p className="max-w-[560px] text-lg leading-[1.6]">{c.summary}</p>
+        {c.disclaimer && (
+          <p className="rough max-w-[560px] border-[3px] border-ink bg-white px-4 py-3 text-sm font-medium leading-snug" style={{ boxShadow: `4px 4px 0 ${C.magenta}` }}>
+            {c.disclaimer}
+          </p>
+        )}
         <ul className="grid w-full max-w-[560px] gap-4 sm:grid-cols-3">
           {c.meta.map(([k, v]) => (
             <li key={k} className="rough border-[3px] border-ink bg-white px-4 py-3" style={{ boxShadow: `4px 4px 0 ${C.purple}` }}>

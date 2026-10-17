@@ -39,7 +39,7 @@ type Case = {
 
 const cases: Case[] = [
   {
-    issue: "ISSUE #02", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · BRAND", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
+    issue: "ISSUE #02", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PERSONAL PROJECT", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
     desc: "A motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
     stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions", "cyan"]],
     src: "/work/studio/studio-ui.jpg",
@@ -63,7 +63,7 @@ const cases: Case[] = [
     ],
   },
   {
-    issue: "ISSUE #04", kicker: "PRODUCT DESIGN · MOBILE APP · CONCEPT", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
+    issue: "ISSUE #04", kicker: "PRODUCT DESIGN · MOBILE APP · PERSONAL CONCEPT", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
     desc: "A concept app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
     stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["7", "Screens designed", "magenta"]],
     mock: "xp",
