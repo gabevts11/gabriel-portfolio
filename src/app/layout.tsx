@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bangers, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { CursorTrail } from "@/components/CursorTrail";
+import { PageGlitch } from "@/components/PageGlitch";
 import { ScrollGlitch } from "@/components/ScrollGlitch";
 
 const bangers = Bangers({ weight: "400", variable: "--font-bangers", subsets: ["latin"] });
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${bangers.variable} ${spaceGrotesk.variable} antialiased`}>
       <body className="min-h-screen overflow-x-clip">{children}
+        <PageGlitch />
         <ScrollGlitch />
         <CursorTrail />
       </body>

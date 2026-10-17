@@ -75,3 +75,12 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
   [data-glitch], [data-live], svg.crk-load path, svg.crk-scroll path, svg.dots-print, svg.hero-print, svg.hero-print-m { animation: none !important; }
   .cur-layer { display: none; }
 }
+
+/* ===== 4. Page glitch transition ===== */
+.gt-layer { position: fixed; inset: 0; z-index: 9990; pointer-events: none; overflow: hidden; }
+.gt-band { position: absolute; left: 0; width: 100%; will-change: transform; }
+.gt-in { animation: gt-in 300ms steps(7, end) both; }
+.gt-out { animation: gt-out 380ms steps(7, end) both; }
+@keyframes gt-in { from { transform: translateX(calc(var(--dir) * 105%)); } to { transform: translateX(0); } }
+@keyframes gt-out { from { transform: translateX(0); } to { transform: translateX(calc(var(--dir) * -105%)); } }
+@media (prefers-reduced-motion: reduce) { .gt-layer { display: none; } }
