@@ -66,8 +66,8 @@ export function About({ photoSrc }: { photoSrc?: string }) {
               start with the person on the other side of the screen, then work backward to the layout, the flow and the details.
             </p>
             <p>
-              I work mostly in Figma, from full site layouts to product UI. Building with AI is what pulled me into design, and I use tools
-              like Claude and Cursor to get from an idea to something real, checking every output against what people need.
+              I work mostly in Figma, from full site layouts to product UI. I use tools like Claude and Cursor to prototype faster and
+              test ideas sooner, but what to build and how it should work is always my call.
             </p>
           </div>
           <ul className="grid w-full grid-cols-1 gap-6 sm:grid-cols-3">
