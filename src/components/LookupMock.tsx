@@ -3,20 +3,20 @@ import { DISTRICTS, DISTRICT_VIEWBOX } from "@/lib/district-paths";
 
 const calistoga = Calistoga({ weight: "400", subsets: ["latin"] });
 
-export type MockKind = "latest" | "error" | "early" | "seats";
+export type MockKind = "latest" | "error" | "early" | "seats" | "poster";
 
 const SEAT_COLORS = ["#F7DF02", "#00B7EB", "#FF2D87", "#E8202A", "#5B2BC2"];
 const SANS = "var(--font-space-grotesk), system-ui, sans-serif";
 
-function Seats({ x, y, w, h, fills, stroke, label, labelPrefix }: { x: number; y: number; w: number; h: number; fills: string[]; stroke: string; label: string; labelPrefix: string }) {
+function Seats({ x, y, w, h, fills, stroke, label, labelPrefix, sw = 4, labels = true }: { x: number; y: number; w: number; h: number; fills: string[]; stroke: string; label: string; labelPrefix: string; sw?: number; labels?: boolean }) {
   return (
     <svg x={x} y={y} width={w} height={h} viewBox={DISTRICT_VIEWBOX} preserveAspectRatio="xMidYMid meet">
       {DISTRICTS.map((s, i) => (
         <g key={s.seat}>
-          <path d={s.d} fill={fills[i % fills.length]} stroke={stroke} strokeWidth={4} strokeLinejoin="round" />
-          <text x={s.x} y={s.y} textAnchor="middle" fontFamily={SANS} fontWeight={700} fontSize={34} fill={label} stroke="#fff" strokeWidth={8} paintOrder="stroke">
+          <path d={s.d} fill={fills[i % fills.length]} stroke={stroke} strokeWidth={sw} strokeLinejoin="round" />
+          {labels && <text x={s.x} y={s.y} textAnchor="middle" fontFamily={SANS} fontWeight={700} fontSize={34} fill={label} stroke="#fff" strokeWidth={8} paintOrder="stroke">
             {labelPrefix} {s.seat}
-          </text>
+          </text>}
         </g>
       ))}
     </svg>
@@ -25,6 +25,27 @@ function Seats({ x, y, w, h, fills, stroke, label, labelPrefix }: { x: number; y
 
 // Redrawn from the lookup prototype's real district shapes, with sample text. Vector, so it stays sharp at any size.
 export function LookupMock({ kind, slice = false, className = "" }: { kind: MockKind; slice?: boolean; className?: string }) {
+  if (kind === "poster") {
+    const pin = DISTRICTS[0];
+    const k = 250 / 1000;
+    const bangers = { fontFamily: "var(--font-bangers), cursive" } as const;
+    return (
+      <svg viewBox="0 0 440 270" role="img" aria-label="Illustration: a district map and a Find My District button" className={className} preserveAspectRatio={slice ? "xMidYMid slice" : "xMidYMid meet"}>
+        <Seats x={14} y={10} w={250} h={250} fills={SEAT_COLORS} stroke="#111" label="#111" labelPrefix="" sw={9} labels={false} />
+        <g transform={`translate(${14 + pin.x * k} ${10 + pin.y * k})`}>
+          <ellipse cx="0" cy="3" rx="9" ry="3.5" fill="#111" opacity=".35" />
+          <path d="M0 0C-14-16-14-34 0-34S14-16 0 0Z" fill="#E8202A" stroke="#111" strokeWidth="3" strokeLinejoin="round" />
+          <circle cx="0" cy="-22" r="4.5" fill="#fff" stroke="#111" strokeWidth="2" />
+        </g>
+        <text x="276" y="92" style={bangers} fontSize="40" fill="#111">WHICH</text>
+        <text x="276" y="130" style={bangers} fontSize="40" fill="#111">SEAT IS</text>
+        <text x="276" y="168" style={bangers} fontSize="40" fill="#E8202A" stroke="#111" strokeWidth="1.2" paintOrder="stroke">MINE?</text>
+        <rect x="282" y="196" width="140" height="36" fill="#111" />
+        <rect x="276" y="190" width="140" height="36" fill="#F7DF02" stroke="#111" strokeWidth="3" />
+        <text x="346" y="215" textAnchor="middle" style={bangers} fontSize="19" fill="#111">FIND MY DISTRICT</text>
+      </svg>
+    );
+  }
   const aria = "Redrawn interface of the district lookup tool, with sample text";
   if (kind === "seats") {
     return (

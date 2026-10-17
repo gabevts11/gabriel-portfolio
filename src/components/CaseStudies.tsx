@@ -95,7 +95,7 @@ function CasePanel({ c }: { c: Case }) {
           style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}
         >
           {c.mock ? (
-            <LookupMock kind="latest" slice className="absolute inset-0 h-full w-full" />
+            <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
           ) : c.src ? (
             <Image src={c.src} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" />
           ) : (

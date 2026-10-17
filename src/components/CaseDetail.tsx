@@ -49,7 +49,7 @@ function Hero({ c }: { c: CaseStudy }) {
           <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C.cyan} opacity={0.9} blend dx={3} dy={2} className="inset-0" />
           <div className="rough absolute flex flex-col items-center justify-center overflow-hidden border-4 border-ink bg-paper" style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}>
             {c.heroMock ? (
-              <LookupMock kind="latest" slice className="absolute inset-0 h-full w-full" />
+              <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
             ) : (
               <>
                 <span className="font-display text-[30px] tracking-[.04em] text-placeholder">SCREENSHOT</span>

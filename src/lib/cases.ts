@@ -15,7 +15,7 @@ export type CaseStudy = {
   decisions: string[];
   outcome: string;
   shots: string[]; // labels for placeholder screenshots
-  heroMock?: boolean; // show the redrawn lookup UI in the hero and on the homepage card
+  heroMock?: boolean; // show the district-map illustration in the hero
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
   images?: { mock: "latest" | "error" | "early" | "seats"; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
