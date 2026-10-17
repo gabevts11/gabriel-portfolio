@@ -69,7 +69,7 @@ export function Hero() {
 
         <div className="relative flex flex-col items-start gap-6 lg:block lg:aspect-[16/10]">
           <span className="hero-draw font-display border-[3px] border-ink bg-red px-4 py-1 text-[clamp(16px,4.4vw,24px)] tracking-[.03em] text-white shadow-[4px_4px_0_#111] lg:absolute lg:left-[4cqw] lg:top-[3.4cqw] lg:text-[2.4cqw]">
-            INTRODUCING&hellip;
+            NOW INTRODUCING&hellip;
           </span>
 
           <h1
