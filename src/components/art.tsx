@@ -99,6 +99,8 @@ export function Comic({
   "aria-label"?: string;
   target?: string;
   rel?: string;
+  type?: "button";
+  onClick?: () => void;
 }) {
   return (
     <Tag

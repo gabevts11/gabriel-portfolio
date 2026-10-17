@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { benDay } from "@/lib/comic-art";
 import { Art, Comic } from "./art";
 import { Caption } from "./Caption";
+import { CopyEmail } from "./CopyEmail";
 
 const dots = { width: 520, height: 300, spacing: 16, maxR: 6, minR: 1, origin: { x: 520, y: 300 }, falloff: 290 };
 
@@ -22,9 +23,7 @@ export function Contact() {
       </h2>
       <p className="max-w-[560px] text-xl leading-normal">Open to new opportunities. Reach me by email or LinkedIn.</p>
       <div className="relative z-10 flex flex-wrap gap-5">
-        <Comic as="a" href="mailto:gabedougherty@outlook.com" bg="#E8202A" shadow={6} className="comic-link px-6 py-3 text-2xl text-white">
-          EMAIL ME
-        </Comic>
+        <CopyEmail />
         <Comic as="a" href="https://www.linkedin.com/in/gabe-dougherty" target="_blank" rel="noopener noreferrer" bg="#00B7EB" shadow={6} className="comic-link px-6 py-3 text-2xl">
           LINKEDIN
         </Comic>

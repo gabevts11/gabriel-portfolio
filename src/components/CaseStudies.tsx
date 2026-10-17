@@ -127,7 +127,9 @@ const cardDots = { width: 120, height: 90, spacing: 9, maxR: 3.4, minR: 0.6, ori
 function CaseRow({ c }: { c: Case }) {
   return (
     <div className={`flex flex-col items-center gap-14 xl:items-center xl:gap-24 ${c.flip ? "xl:flex-row-reverse" : "xl:flex-row"}`}>
-      <CasePanel c={c} />
+      <Link href={`/work/${c.slug}`} tabIndex={-1} aria-hidden="true" className="block shrink-0 cursor-pointer">
+        <CasePanel c={c} />
+      </Link>
       <div className="relative z-10 flex w-full max-w-[470px] flex-col items-start gap-[22px] xl:w-auto">
         <div className="text-sm font-medium tracking-[.08em] text-[#4d4d4d]">{c.kicker}</div>
         <h3 className="font-display text-[clamp(40px,12vw,64px)] leading-[.9] tracking-[.01em]">{c.title}</h3>

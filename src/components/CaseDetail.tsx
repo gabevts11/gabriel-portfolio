@@ -6,6 +6,7 @@ import type { CaseStudy } from "@/lib/cases";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
+import { CopyEmail } from "./CopyEmail";
 import { ExperiencesMock, XpHero, type XpKind } from "./ExperiencesMock";
 import { LookupMock, type MockKind } from "./LookupMock";
 import { SpeedLines } from "./SpeedLines";
@@ -34,7 +35,8 @@ function Hero({ c }: { c: CaseStudy }) {
             {c.badge ?? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT"}
           </Comic>
         )}
-        <p className="max-w-[560px] text-lg leading-[1.6]">{c.summary}</p>
+        <div className="font-display text-xl tracking-[.06em] text-red">LONG STORY SHORT</div>
+        <p className="max-w-[560px] text-xl font-medium leading-[1.5]">{c.summary}</p>
         {c.disclaimer && (
           <p className="rough max-w-[560px] border-[3px] border-ink bg-white px-4 py-3 text-sm font-medium leading-snug" style={{ boxShadow: `4px 4px 0 ${C.magenta}` }}>
             {c.disclaimer}
@@ -125,6 +127,20 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           </li>
         ))}
       </ul>
+      <section className="grid gap-8 md:grid-cols-2">
+        {([["WHAT I DID", c.did, "cyan"], ["TOOLS", c.tools, "yellow"]] as const).map(([h, items, col]) => (
+          <div key={h} className="rough border-4 border-ink bg-white p-6" style={{ boxShadow: `8px 8px 0 ${C[col]}` }}>
+            <h2 className="font-display text-3xl tracking-[.04em] text-red">{h}</h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {items.map((t) => <li key={t} className="border-[3px] border-ink bg-paper px-3 py-1 text-base font-medium">{t}</li>)}
+            </ul>
+          </div>
+        ))}
+      </section>
+      <section className="rough max-w-[760px] border-4 border-ink bg-white p-6 text-lg leading-[1.6]" style={{ boxShadow: `8px 8px 0 ${C.magenta}` }}>
+        <p><span className="font-display text-2xl tracking-[.04em] text-red">GOAL · </span>{c.goal}</p>
+        <p className="mt-3"><span className="font-display text-2xl tracking-[.04em] text-magenta">HYPOTHESIS · </span>{c.hypothesis}</p>
+      </section>
       <div className="flex flex-col gap-12">
         <Chapter n={chapters[0][0]} title={chapters[0][1]} color="cyan" rot={-0.6}><p>{c.problem}</p></Chapter>
         <Caption rot={1} className="self-start">MEANWHILE, IN THE STUDIO…</Caption>
@@ -203,6 +219,10 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
         </ul>
       </section>
       )}
+      <section className="flex flex-col items-start gap-4">
+        <Caption rot={-1}>OPEN TO NEW WORK</Caption>
+        <CopyEmail />
+      </section>
       <Link href={`/work/${next.slug}`} className="comic-link rough relative block border-4 border-ink bg-red p-6 text-white md:p-10" style={{ boxShadow: "8px 8px 0 #111", "--sh": "8px" } as CSSProperties}>
         <div className="font-display text-[clamp(32px,8vw,64px)] leading-none">NEXT CASE FILE →</div>
         <div className="font-display mt-2 text-[clamp(24px,6vw,44px)] leading-none">{next.title}</div>
