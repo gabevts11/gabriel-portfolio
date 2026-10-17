@@ -17,6 +17,8 @@ export function Hero() {
       <Art w={620} h={460} d={benDay(bg)} fill="#00B7EB" opacity={0.9} blend className="hero-print left-0 top-0" />
       <Art w={620} h={460} d={benDay(bg)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="hero-print hero-print-m left-0 top-0" />
 
+      <Art w={560} h={380} d={benDay({ ...cornerDots, origin: { x: 560, y: 0 }, falloff: 460 })} fill="#00B7EB" opacity={0.9} blend className="hero-print right-0 top-0 hidden lg:block" />
+      <Art w={560} h={380} d={benDay({ ...cornerDots, origin: { x: 560, y: 0 }, falloff: 460 })} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="hero-print right-0 top-0 hidden lg:block" />
       {/* Bottom dots straddle the Hero / About seam: biggest on the boundary, fading both ways, so the halftone flows into About */}
       <Art w={560} h={640} d={benDay(seamR)} fill="#FF2D87" opacity={0.85} blend className="-bottom-[320px] right-0 hidden origin-right scale-[.7] md:block lg:scale-100" />
       <Art w={560} h={640} d={benDay(seamR)} fill="#00B7EB" opacity={0.85} blend dx={6} dy={4} className="-bottom-[320px] right-0 hidden origin-right scale-[.7] md:block lg:scale-100" />
@@ -54,7 +56,6 @@ export function Hero() {
       {/* Comic cover: free-form on lg+ (sized in container units so it scales as one picture), a simple stack below */}
       <section className="relative isolate [container-type:inline-size]">
         <SpeedLines w={600} h={500} cx={300} cy={260} r={700} seed={5} count={60} preserve="xMidYMid slice" className="-inset-10 -z-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)]" />
-        <Art w={420} h={300} d={benDay({ ...cornerDots, width: 420, height: 300, origin: { x: 420, y: 0 }, falloff: 360 })} fill="#00B7EB" opacity={0.9} blend className="hero-print -right-6 -top-24 hidden lg:block" />
         <div className="pointer-events-none absolute bottom-0 right-0 hidden lg:block">
           <div className="relative h-[280px] w-[360px]">
             <Streams mode="load" w={360} h={280} streams={[["#111", { seed: 91, points: [[330, 250], [270, 215], [210, 190], [150, 170]], count: 9, sizeStart: 22, sizeEnd: 6, spread: 40 }]]} />
@@ -84,7 +85,7 @@ export function Hero() {
           </div>
 
           <p className="max-w-[540px] text-[clamp(17px,4.6vw,22px)] leading-[1.4] lg:absolute lg:left-[4cqw] lg:top-[38cqw] lg:w-[44cqw] lg:max-w-none lg:text-[clamp(16px,2cqw,24px)]">
-            I design web apps and products, and direct AI-assisted builds from Figma to App Store.
+            I turn ideas into apps and websites people actually use, from the first sketch to the App Store.
           </p>
 
           <div className="font-display flex flex-wrap items-center gap-x-8 gap-y-4 lg:absolute lg:left-[4cqw] lg:top-[53cqw]">
@@ -100,14 +101,14 @@ export function Hero() {
             <div className="hero-draw border-[3px] border-ink bg-yellow px-5 py-2 text-center text-[clamp(20px,5.4vw,30px)] leading-[1.05] shadow-[6px_6px_0_#111] lg:absolute lg:right-[4cqw] lg:top-[4cqw] lg:rotate-2 lg:px-[2cqw] lg:py-[1cqw] lg:text-[3cqw]">
               3 BIG
               <br />
-              CASE FILES
+              PROJECTS
               <br />
               <span className="text-red text-[.72em]">ALL NEW!</span>
             </div>
             <div className="-rotate-1 border-[3px] border-ink bg-white p-4 shadow-[8px_8px_0_#5B2BC2] sm:max-w-[360px] lg:absolute lg:bottom-[4cqw] lg:right-[4cqw] lg:w-[36cqw] lg:-rotate-2 lg:p-[1.5cqw]">
               <b className="font-display block text-[clamp(22px,5vw,28px)] leading-none text-red lg:text-[3cqw]">PLUS&hellip;</b>
               <span className="mt-1 block text-[clamp(13px,3.4vw,16px)] font-bold leading-[1.3] tracking-[.02em] lg:text-[2.1cqw]">
-                THREE OF THE EARLIEST, GREATEST, MOST-REQUESTED FULL-LENGTH CASE FILES!
+                PIXELS, PROTOTYPES, AND ONE VERY HELPFUL AI SIDEKICK!
               </span>
             </div>
           </div>
