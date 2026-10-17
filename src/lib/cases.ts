@@ -28,7 +28,7 @@ export type CaseStudy = {
 export const cases: CaseStudy[] = [
   {
     slug: "snapback-studio",
-    issue: "ISSUE #02",
+    issue: "ISSUE #01",
     kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PROTOTYPE · PERSONAL PROJECT",
     title: "SNAPBACK MOTION STUDIO",
     badge: "PROTOTYPE · BUILT ON MY OWN, NOT A CLIENT PROJECT",
@@ -57,7 +57,7 @@ export const cases: CaseStudy[] = [
     outcome:
       "125 shipped, editable designs, each in 16:9 and 9:16: stream and YouTube graphics (19), scene transitions (19), stadium and jumbotron loops (13), hat icon motion (9), brand family (4), fan events and trips (3), the Sam Houston jersey sponsorship (6), Snapback Saturday (9), Chop (2), Trivia (9), Betting (5) and Collects (6), plus 21 intros and outros across eight Snapback brands. Built to the Snapback brand guide (five colors, three typefaces), with 60 published versions of the live studio. It is a prototype made to show initiative, not a delivered or commissioned project.",
     shots: [],
-    hero: "/work/studio/studio-ui.jpg",
+    hero: "/work/studio/studio-wordwall.jpg",
     images: [
       { src: "/work/studio/jersey.jpg", w: 1600, h: 900, src2: "/work/studio/jersey-m.jpg", w2: 506, h2: 900, label: "SAM HOUSTON JERSEY REVEAL", caption: "One design, both formats (16:9 and 9:16): a frame from the jersey sponsorship package." },
       { src: "/work/studio/leaderboard.jpg", w: 1600, h: 900, src2: "/work/studio/leaderboard-m.jpg", w2: 506, h2: 900, label: "TRIVIA LEADERBOARD", caption: "Your row climbs the board while the score counts up, with the Certified Ball Knowledge verdict stamp." },
@@ -67,7 +67,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "campaign-website",
-    issue: "ISSUE #03",
+    issue: "ISSUE #02",
     kicker: "WEB DESIGN · FREELANCE · WIX",
     title: "CAMPAIGN WEBSITE",
     summary:
@@ -108,7 +108,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "snapback-experiences",
-    issue: "ISSUE #04",
+    issue: "ISSUE #03",
     kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE · PERSONAL CONCEPT",
     title: "SNAPBACK EXPERIENCES",
     badge: "CONCEPT PROTOTYPE · DESIGNS ONLY, NOT A BUILT APP",

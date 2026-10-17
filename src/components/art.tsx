@@ -95,6 +95,8 @@ export function Comic({
   style?: CSSProperties;
   children: ReactNode;
   href?: string;
+  "data-glitch-home"?: boolean;
+  "aria-label"?: string;
   target?: string;
   rel?: string;
 }) {

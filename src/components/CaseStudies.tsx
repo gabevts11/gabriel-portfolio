@@ -39,10 +39,10 @@ type Case = {
 
 const cases: Case[] = [
   {
-    issue: "ISSUE #02", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PROTOTYPE", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
+    issue: "ISSUE #01", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PROTOTYPE", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
     desc: "A quick personal prototype: a motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
     stats: [["125", "Editable motion designs", "magenta"], ["19", "Scene transitions", "cyan"]],
-    src: "/work/studio/studio-ui.jpg",
+    src: "/work/studio/studio-wordwall.jpg",
     panel: "yellow", offset: "purple", dotsA: "magenta", dotsB: "cyan", rot: -2, flip: false,
     streams: [
       ["ink", { seed: 71, points: [[40, 40], [-20, -10], [-85, -55]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],
@@ -51,7 +51,7 @@ const cases: Case[] = [
     ],
   },
   {
-    issue: "ISSUE #03", kicker: "WEB DESIGN · FREELANCE · WIX", slug: "campaign-website", title: "CAMPAIGN WEBSITE",
+    issue: "ISSUE #02", kicker: "WEB DESIGN · FREELANCE · WIX", slug: "campaign-website", title: "CAMPAIGN WEBSITE",
     desc: "A full campaign website for a local school board candidate: bio, platform, events, voter info, supporter forms and a custom district lookup tool that maps a voter's address to their seat.",
     stats: [["661", "Sessions in the first period", "cyan"], ["21", "Form submissions", "red"]],
     mock: "poster",
@@ -63,7 +63,7 @@ const cases: Case[] = [
     ],
   },
   {
-    issue: "ISSUE #04", kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
+    issue: "ISSUE #03", kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
     desc: "A quick personal concept: an app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
     stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["7", "Screens designed", "magenta"]],
     mock: "xp",
@@ -95,14 +95,14 @@ function CasePanel({ c }: { c: Case }) {
         <Art w={600} h={420} d={benDay({ ...dots, origin: { x: 0, y: 0 }, falloff: 420 })} fill={C[c.dotsB]} opacity={0.9} blend dx={3} dy={2} className="dots-print inset-0" />
         <div
           className="rough absolute overflow-hidden border-4 border-ink bg-paper"
-          style={{ left: 80, top: 95, width: 440, height: 270, boxShadow: "8px 8px 0 #111" }}
+          style={{ left: 36, top: 76, width: 528, height: 316, boxShadow: "8px 8px 0 #111" }}
         >
           {c.mock === "xp" ? (
             <XpHero />
           ) : c.mock ? (
             <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
           ) : c.src ? (
-            <Image src={c.src} alt={`${c.title} screenshot`} fill sizes="440px" className="object-cover" />
+            <Image src={c.src} alt={`${c.title} screenshot`} fill sizes="528px" className="object-cover" />
           ) : (
             <span className="font-display absolute inset-0 flex items-center justify-center text-[30px] tracking-[.04em] text-placeholder">
               SCREENSHOT

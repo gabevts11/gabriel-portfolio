@@ -87,5 +87,146 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
   72%  { clip-path: inset(-40px -60px -40px -60px); translate: 8px 0;  filter: drop-shadow(9px 0 0 #00B7EB) drop-shadow(-9px 0 0 #FF2D87); }
   88%  { clip-path: inset(-40px -60px -40px -60px); translate: -4px 0; filter: drop-shadow(-5px 0 0 #00B7EB) drop-shadow(5px 0 0 #FF2D87); }
 }
-.pg-out { animation: pg-glitch 520ms steps(1, end), pg-hide 10ms linear 520ms forwards; }
+.pg-out { animation: pg-glitch 520ms steps(1, end); } /* stays visible (now in noir) until the route swaps */
 .pg-in { animation: pg-glitch 580ms steps(1, end); }
+
+/* ===== 5. Universes: same layout, different art style (PageGlitch sets html[data-ux]); order lives in PageGlitch ===== */
+.ux-fx { position: fixed; inset: 0; z-index: 9985; pointer-events: none; display: none; overflow: hidden; }
+.ux-fx::before, .ux-fx::after { content: ""; position: absolute; inset: 0; display: none; }
+html[data-ux] .ux-fx { display: block; }
+@media (prefers-reduced-motion: reduce) { .ux-fx { display: none !important; } }
+
+/* Shared: letter spans PageGlitch creates for universes that re-letter text */
+.ux-w { white-space: inherit; }
+/* Opaque page behind the content: the transition isolates <main>, and the multiply-blended layers need a paper backdrop inside it or they turn black */
+main { background-color: var(--color-paper); }
+.ux-l, .ux-sp { display: inline-block; }
+.ux-sfx, .ux-prop { position: absolute; display: none; }
+/* Wider universe faces keep the same line breaks: no re-wrapping, scaled down to the original footprint */
+html:is([data-ux="hobie"], [data-ux="peni"], [data-ux="ham"]) main h1 { white-space: nowrap; scale: .8; transform-origin: 0 50%; }
+html[data-ux="peni"] main h1 { scale: .68; }
+html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3) { white-space: nowrap; letter-spacing: -.02em; }
+
+/* Gwen: painterly watercolor: paint blooms bleeding into paper, gradient-washed type, soft edges instead of hard ink */
+@keyframes gwen-mood { from { filter: saturate(1.1) contrast(.96) hue-rotate(0deg); } to { filter: saturate(1.1) contrast(.96) hue-rotate(35deg); } }
+html[data-ux="gwen"] { animation: gwen-mood 1.6s linear infinite alternate; }
+html[data-ux="gwen"] :is(body, main) { background-color: #f4effb; }
+html[data-ux="gwen"] .ux-fx { mix-blend-mode: multiply; background: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 700' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cfilter id='p' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='4' seed='7'/%3E%3CfeDisplacementMap in='SourceGraphic' scale='150' xChannelSelector='R' yChannelSelector='G'/%3E%3CfeGaussianBlur stdDeviation='5'/%3E%3C/filter%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 .22'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23p)'%3E%3Cellipse cx='90' cy='300' rx='240' ry='380' fill='%233f5bff' fill-opacity='.42'/%3E%3Cellipse cx='930' cy='150' rx='260' ry='260' fill='%23ff4fd0' fill-opacity='.4'/%3E%3Cellipse cx='620' cy='640' rx='330' ry='170' fill='%239b4dff' fill-opacity='.36'/%3E%3Cellipse cx='420' cy='60' rx='260' ry='120' fill='%2333b5ff' fill-opacity='.3'/%3E%3Crect x='250' y='0' width='70' height='560' fill='%236a5cff' fill-opacity='.28'/%3E%3Crect x='760' y='0' width='60' height='480' fill='%23ff6fdc' fill-opacity='.3'/%3E%3Crect x='530' y='0' width='50' height='380' fill='%234f9bff' fill-opacity='.26'/%3E%3C/g%3E%3Crect width='1000' height='700' filter='url(%23g)'/%3E%3C/svg%3E") 0 0 / 100% 100%; }
+html[data-ux="gwen"] main :is(h1, h2, h3) { color: transparent !important; background-image: linear-gradient(100deg, #3f5bff, #9b4dff 45%, #ff4fd0) !important; -webkit-background-clip: text !important; background-clip: text !important; text-shadow: none !important; filter: drop-shadow(0 0 7px rgba(155, 77, 255, .5)) blur(.3px); }
+html[data-ux="gwen"] main .rough { border-color: rgba(80, 70, 220, .55) !important; border-radius: 14px; box-shadow: 0 0 26px rgba(155, 77, 255, .38) !important; }
+html[data-ux="gwen"] main :is(.font-display, p, a) { color: #4434c9 !important; text-shadow: 0 0 6px rgba(255, 120, 210, .45) !important; }
+
+/* Hobie: punk collage: every headline and tag becomes cut-out ransom letters; body text goes typewriter on newsprint; panels get torn edges */
+@keyframes ux-jit { 0% { translate: 0 0; } 50% { translate: 4px -3px; } 100% { translate: -3px 2px; } }
+html[data-ux="hobie"] { filter: grayscale(.45) contrast(1.4) drop-shadow(3px 2px 0 rgba(255, 0, 70, .45)) drop-shadow(-3px -2px 0 rgba(0, 170, 255, .45)); }
+html[data-ux="hobie"] .ux-fx { background: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 14 -8.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1000 700%22 preserveAspectRatio=%22none%22%3E%3Cg fill=%22none%22 stroke=%22%23111%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M560 60L640 20L700 90L770 30L850 80%22/%3E%3Cpath d=%22M700 600L760 530L820 640L900 540L960 620%22/%3E%3Cpath d=%22M60 660Q140 600 220 670T360 640%22/%3E%3C/g%3E%3Cg fill=%22%23111%22%3E%3Cpath d=%22M940 300l9 22 24 2-18 16 6 24-21-13-21 13 6-24-18-16 24-2z%22/%3E%3C/g%3E%3Cpath d=%22M640 470H700V640Q700 670 670 670Q640 670 640 640Z%22 fill=%22%23e8202a%22 fill-opacity=%22.9%22/%3E%3Cpath d=%22M620 460H720V490H620Z%22 fill=%22%23e8202a%22 fill-opacity=%22.9%22/%3E%3C/svg%3E"); background-size: 300px 300px, 100% 100%; animation: ux-jit 220ms steps(2, end) infinite; }
+html[data-ux="hobie"] main :is(h1, h2, h3, .font-display) { text-shadow: none !important; }
+html[data-ux="hobie"] .ux-l { padding: .02em .07em; margin: 0 .015em; line-height: 1; box-shadow: 2px 2px 0 #111; }
+html[data-ux="hobie"] .ux-l:nth-child(5n + 1) { font-family: var(--font-ransom), Georgia, serif; background: #F4EEDC; color: #111; rotate: -4deg; }
+html[data-ux="hobie"] .ux-l:nth-child(5n + 2) { font-family: Impact, var(--font-bangers), sans-serif; background: #111; color: #F4EEDC; rotate: 3deg; }
+html[data-ux="hobie"] .ux-l:nth-child(5n + 3) { font-family: var(--font-typewriter), monospace; background: #FF2D87; color: #111; rotate: -2deg; }
+html[data-ux="hobie"] .ux-l:nth-child(5n + 4) { font-family: Georgia, serif; font-style: italic; background: #fff; color: #E8202A; rotate: 5deg; }
+html[data-ux="hobie"] .ux-l:nth-child(5n + 5) { font-family: var(--font-bangers), sans-serif; background: #00B7EB; color: #111; rotate: -6deg; }
+html[data-ux="hobie"] .ux-sp { width: .28em; }
+html[data-ux="hobie"] main p { font-family: var(--font-typewriter), monospace !important; }
+html[data-ux="hobie"] main .rough { clip-path: polygon(0 3%, 4% 0, 12% 2%, 30% 0, 52% 3%, 70% 0, 88% 2%, 100% 0, 99% 30%, 100% 62%, 98% 100%, 80% 97%, 55% 100%, 30% 97%, 8% 100%, 0 96%, 1% 60%); }
+
+/* Peni: anime: pop manga lettering with cel outlines, cel-shaded panels, hot magenta grade, speed lines, sparkles and katakana sound effects */
+@keyframes peni-spin { from { rotate: 0deg; } to { rotate: 2.5deg; } }
+@keyframes peni-twinkle { 0% { opacity: 1; scale: 1; } 50% { opacity: .35; scale: .96; } 100% { opacity: 1; scale: 1.03; } }
+@keyframes sfx-shake { 0% { translate: 0 0; } 50% { translate: 3px -3px; } 100% { translate: -3px 2px; } }
+html[data-ux="peni"] { filter: saturate(1.5) contrast(1.2) hue-rotate(-12deg); }
+html[data-ux="peni"] :is(body, main) { background-color: #ffd3ea; }
+html[data-ux="peni"] main :is(h1, h2, h3, .font-display, a, p, li) { font-family: var(--font-anime), "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif !important; }
+html[data-ux="peni"] main :is(h1, h2, h3) { color: #fff !important; -webkit-text-stroke: .06em #2a0a3a; paint-order: stroke fill; text-shadow: .06em .06em 0 #ff2d87, .11em .11em 0 #2a0a3a !important; font-style: italic; }
+html[data-ux="peni"] main .rough { border-color: #2a0a3a !important; box-shadow: 6px 6px 0 #ff2d87 !important; background-image: linear-gradient(160deg, rgba(255, 255, 255, .5) 0 22%, transparent 22% 100%) !important; }
+html[data-ux="peni"] .ux-fx { background: linear-gradient(#000 0 5vh, transparent 5vh calc(100% - 5vh), #000 calc(100% - 5vh)), radial-gradient(circle at 50% 50%, rgba(255, 40, 130, .2) 0, rgba(255, 20, 110, .45) 100%); }
+html[data-ux="peni"] .ux-fx::before { display: block; inset: -20%; background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(42, 10, 58, .9) 0 1deg, transparent 1deg 5deg); -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 78%); mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 78%); animation: peni-spin 120ms steps(2, end) infinite; }
+html[data-ux="peni"] .ux-fx::after { display: block; background: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1000 700%22 preserveAspectRatio=%22none%22%3E%3Cg fill=%22white%22%3E%3Cpath d=%22M180 140 190 180 230 190 190 200 180 240 170 200 130 190 170 180Z%22/%3E%3Cpath d=%22M820 220 828 250 858 258 828 266 820 296 812 266 782 258 812 250Z%22/%3E%3Cpath d=%22M700 520 708 548 736 556 708 564 700 592 692 564 664 556 692 548Z%22/%3E%3Cpath d=%22M300 470 306 492 328 498 306 504 300 526 294 504 272 498 294 492Z%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100%; animation: peni-twinkle 260ms steps(2, end) infinite; }
+html[data-ux="peni"] .ux-sfx { display: block; font-family: var(--font-anime), "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif; font-size: clamp(34px, 6vw, 84px); color: #fff; -webkit-text-stroke: 3px #2a0a3a; paint-order: stroke fill; text-shadow: 5px 5px 0 #ff2d87; animation: sfx-shake 140ms steps(2, end) infinite; }
+html[data-ux="peni"] .ux-sfx.s1 { left: 3%; bottom: 7%; rotate: -12deg; }
+html[data-ux="peni"] .ux-sfx.s2 { right: 5%; top: 9%; rotate: 8deg; }
+html[data-ux="peni"] .ux-sfx.s3 { right: 36%; bottom: 8%; rotate: -5deg; font-size: clamp(24px, 3.6vw, 52px); }
+
+/* Spider-Ham: Looney Tunes: bouncy cartoon lettering in red, yellow and blue, rounded inked panels, a sunny sky, the concentric-ring iris and cartoon props */
+@keyframes ham-boil { 0% { rotate: 0deg; scale: 1 1; } 50% { rotate: .15deg; scale: 1.006 .994; } 100% { rotate: -.15deg; scale: .996 1.004; } }
+@keyframes ham-bob { from { transform: translateY(-.05em); } to { transform: translateY(.05em); } }
+@keyframes ham-pop { 0% { scale: 1; rotate: -8deg; } 50% { scale: 1.2; rotate: 6deg; } 100% { scale: .95; rotate: -4deg; } }
+html[data-ux="ham"] { filter: saturate(1.4) contrast(1.08); }
+html[data-ux="ham"] :is(body, main) { background-color: #fff3b8; }
+html[data-ux="ham"] main { animation: ham-boil 150ms steps(1, end) infinite; } /* not on body: a transformed body would drag the fixed overlay with it */
+html[data-ux="ham"] main :is(h1, h2, h3, .font-display) { font-family: var(--font-cartoon), var(--font-bangers), sans-serif !important; letter-spacing: .02em; }
+html[data-ux="ham"] main :is(h1, h2, h3) { text-shadow: none !important; }
+html[data-ux="ham"] .ux-l { -webkit-text-stroke: .05em #111; paint-order: stroke fill; text-shadow: .04em .07em 0 #111; animation: ham-bob 200ms steps(2, end) infinite alternate; }
+html[data-ux="ham"] .ux-l:nth-child(3n + 1) { color: #E8202A; rotate: -6deg; }
+html[data-ux="ham"] .ux-l:nth-child(3n + 2) { color: #F7DF02; rotate: 4deg; animation-delay: 100ms; }
+html[data-ux="ham"] .ux-l:nth-child(3n + 3) { color: #2B59D6; rotate: -2deg; animation-delay: 50ms; }
+html[data-ux="ham"] main .rough { border-radius: 22px !important; border-width: 5px !important; box-shadow: 0 7px 0 #111 !important; }
+html[data-ux="ham"] .ux-fx { background: radial-gradient(circle at 50% 50%, transparent 0 76%, #111 76% 77.2%, #E8202A 77.2% 82%, #F7DF02 82% 86%, #2B59D6 86% 90%, #111 90%); }
+html[data-ux="ham"] .ux-prop { display: block; }
+html[data-ux="ham"] .ux-prop.puff { left: 2%; bottom: 3%; width: clamp(120px, 14vw, 220px); }
+html[data-ux="ham"] .ux-prop.zip { right: 10%; top: 22%; width: clamp(90px, 10vw, 160px); }
+html[data-ux="ham"] .ux-prop.bang { right: 14%; bottom: 14%; font-family: var(--font-cartoon), sans-serif; font-size: clamp(70px, 10vw, 150px); color: #E8202A; -webkit-text-stroke: 6px #111; paint-order: stroke fill; animation: ham-pop 240ms steps(2, end) infinite alternate; }
+
+/* Noir: black and white, grain, flickering vignette, and rain */
+@keyframes noir-flick { 0% { opacity: 1; } 50% { opacity: .8; } 100% { opacity: .93; } }
+@keyframes noir-rain { from { background-position: 0 0; } to { background-position: -60px 240px; } }
+html[data-ux="noir"] { filter: grayscale(1) contrast(1.5) brightness(.9); }
+html[data-ux="noir"] .grain { opacity: .3; }
+html[data-ux="noir"] .ux-fx { background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, .65) 100%), repeating-linear-gradient(90deg, transparent 0 9px, rgba(255, 255, 255, .06) 9px 10px); animation: noir-flick 140ms steps(2, end) infinite; }
+html[data-ux="noir"] .ux-fx::before { display: block; background: repeating-linear-gradient(104deg, transparent 0 22px, rgba(255, 255, 255, .4) 22px 23px, transparent 23px 41px); background-size: 120px 240px; animation: noir-rain 220ms linear infinite; }
+html[data-ux="noir"] .ux-fx::after { display: block; background: repeating-linear-gradient(104deg, transparent 0 37px, rgba(255, 255, 255, .22) 37px 38px, transparent 38px 71px); background-size: 160px 320px; animation: noir-rain 340ms linear infinite; }
+
+
+/* Element restyles per universe: panels, portrait and cards change shape and finish, but screenshots and images stay in place and visible */
+html[data-ux="gwen"] main :is(h1, h2, h3, .font-display, p, a, li) { font-family: var(--font-brush), "Segoe Script", cursive !important; letter-spacing: .01em; }
+html[data-ux="gwen"] main h1 { scale: .9; transform-origin: 0 50%; white-space: nowrap; }
+html[data-ux="gwen"] main :is(.hero-frame, .case-box) { border-radius: 46% 54% 42% 58% / 52% 44% 56% 48% !important; border-color: transparent !important; box-shadow: 0 0 44px rgba(155, 77, 255, .55) !important; }
+html[data-ux="gwen"] main .hero-portrait { border-radius: 40% 60% 46% 54% / 50% 40% 60% 50% !important; border-color: transparent !important; box-shadow: 0 0 36px rgba(255, 79, 208, .5) !important; }
+html[data-ux="gwen"] main .case-box > div:not(.dots-print) { border-radius: 22px; }
+
+html[data-ux="noir"] main :is(h1, h2, h3, .font-display) { font-family: var(--font-ransom), Georgia, serif !important; letter-spacing: .01em; text-shadow: 3px 3px 0 #bbb !important; }
+html[data-ux="noir"] main :is(p, li, a, span) { font-family: var(--font-typewriter), "Courier New", monospace !important; }
+html[data-ux="noir"] main h1 { scale: .88; transform-origin: 0 50%; white-space: nowrap; }
+html[data-ux="noir"] main :is(.hero-frame, .hero-portrait, .case-box) { border-radius: 2px !important; border: 12px solid #111 !important; outline: 2px solid #eee; outline-offset: -8px; box-shadow: 10px 10px 0 #000 !important; }
+
+html[data-ux="hobie"] main .hero-portrait { rotate: -6deg; border: 12px solid #F4EEDC !important; border-bottom-width: 44px !important; box-shadow: 6px 6px 0 #111 !important; }
+html[data-ux="hobie"] main .hero-frame { rotate: 5deg; }
+html[data-ux="hobie"] main .case-box { rotate: 1.5deg; border: 8px solid #F4EEDC !important; }
+
+html[data-ux="peni"] main :is(.hero-frame, .case-box) { clip-path: polygon(5% 0, 100% 3%, 95% 100%, 0 96%); border-width: 8px !important; border-color: #2a0a3a !important; }
+html[data-ux="peni"] main .hero-portrait { clip-path: polygon(0 4%, 96% 0, 100% 95%, 5% 100%); border-width: 7px !important; border-color: #2a0a3a !important; box-shadow: none !important; }
+
+html[data-ux="ham"] main :is(.hero-frame, .case-box, .hero-portrait) { border-radius: 38px !important; border: 7px solid #111 !important; box-shadow: 0 11px 0 #111 !important; }
+html[data-ux="ham"] main .case-box > div:not(.dots-print) { border-radius: 24px; }
+
+/* Nudge next to the home GD button: invites a click. The bubble shape is an SVG so the tail and outline stay crisp */
+.gd-nudge { position: absolute; left: calc(100% - 4px); top: -20px; white-space: nowrap; pointer-events: none; width: 220px; height: 96px; rotate: -2deg; transform-origin: 0 100%; }
+.gd-nudge svg { position: absolute; inset: 0; overflow: visible; }
+.gd-nudge span { position: absolute; left: 67px; top: 6px; width: 150px; height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--font-bangers), sans-serif; font-size: 26px; letter-spacing: .05em; color: #111; }
+@keyframes gd-wiggle { 0%, 70%, 100% { rotate: -2deg; } 76% { rotate: 2deg; } 82% { rotate: -4deg; } 88% { rotate: 1deg; } }
+@media (prefers-reduced-motion: no-preference) { .gd-nudge { animation: gd-wiggle 2.8s steps(1, end) 2.4s infinite; } }
+
+/* Responsive: the wider universe faces need smaller headline scales on tablets and phones; the nudge bubble would crash into the CONTACT button on phones */
+@media (max-width: 900px) {
+  html[data-ux="noir"] main h1 { scale: .76; }
+  html[data-ux="peni"] main h1 { scale: .58; }
+  html[data-ux="ham"] main h1 { scale: .76; }
+  html[data-ux="hobie"] main h1 { scale: .72; }
+  html[data-ux="gwen"] main h1 { scale: .86; }
+}
+@media (max-width: 520px) {
+  html[data-ux="noir"] main h1 { scale: .62; }
+  html[data-ux="peni"] main h1 { scale: .5; }
+  html[data-ux="ham"] main h1 { scale: .7; }
+  html[data-ux="hobie"] main h1 { scale: .66; }
+  html[data-ux="gwen"] main h1 { scale: .8; }
+  html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3) { white-space: normal; }
+  .gd-nudge { display: none; }
+}
+
+/* Hero cover on desktop: keep the wide universe faces clear of the "3 BIG CASE FILES" box */
+@media (min-width: 1024px) {
+  html[data-ux="peni"] main h1 { scale: .52; }
+  html[data-ux="noir"] main h1 { scale: .72; }
+}
