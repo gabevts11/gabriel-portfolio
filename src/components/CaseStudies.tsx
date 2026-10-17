@@ -41,7 +41,7 @@ const cases: Case[] = [
   {
     issue: "ISSUE #01", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PROTOTYPE", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
     desc: "A quick personal prototype: a motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, jumbotron loops, sponsor packages and intros for each sub-brand, built to their brand guide and exportable to CapCut.",
-    stats: [["84", "Approved motion designs", "magenta"], ["9", "Scene transitions", "cyan"]],
+    stats: [["44", "Approved motion designs", "magenta"], ["60", "Published versions", "cyan"]],
     src: "/work/studio/studio-boards.jpg",
     panel: "yellow", offset: "purple", dotsA: "magenta", dotsB: "cyan", rot: -2, flip: false,
     streams: [
