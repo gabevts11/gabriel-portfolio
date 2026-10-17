@@ -85,7 +85,7 @@ export function Hero() {
           </div>
 
           <p className="max-w-[540px] text-[clamp(17px,4.6vw,22px)] leading-[1.4] lg:absolute lg:left-[4cqw] lg:top-[38cqw] lg:w-[44cqw] lg:max-w-none lg:text-[clamp(16px,2cqw,24px)]">
-            I turn ideas into apps and websites people actually use, from the first sketch to the App Store.
+            I take apps and websites from wireframes to prototypes to production, designed for people who actually use them.
           </p>
 
           <div className="font-display flex flex-wrap items-center gap-x-8 gap-y-4 lg:absolute lg:left-[4cqw] lg:top-[53cqw]">
@@ -108,7 +108,7 @@ export function Hero() {
             <div className="-rotate-1 border-[3px] border-ink bg-white p-4 shadow-[8px_8px_0_#5B2BC2] sm:max-w-[360px] lg:absolute lg:bottom-[4cqw] lg:right-[4cqw] lg:w-[36cqw] lg:-rotate-2 lg:p-[1.5cqw]">
               <b className="font-display block text-[clamp(22px,5vw,28px)] leading-none text-red lg:text-[3cqw]">PLUS&hellip;</b>
               <span className="mt-1 block text-[clamp(13px,3.4vw,16px)] font-bold leading-[1.3] tracking-[.02em] lg:text-[2.1cqw]">
-                PIXELS, PROTOTYPES, AND ONE VERY HELPFUL AI SIDEKICK!
+                WIREFRAMES! PROTOTYPES! COMPONENTS! ALL IN ONE ISSUE!
               </span>
             </div>
           </div>
