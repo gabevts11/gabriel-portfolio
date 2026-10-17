@@ -19,12 +19,12 @@
 .rgb-ghost::after { background: #E8202A; translate: 8px -4px; }
 
 /* Horizontal glitch-slice bars across a heading (use sparingly). */
-.glitch-slice { position: relative; }
+.glitch-slice { position: relative; isolation: isolate; }
 .glitch-slice::before, .glitch-slice::after {
   content: "";
   position: absolute;
   pointer-events: none;
-  mix-blend-mode: multiply;
+  z-index: -1; /* behind the letters, never striking through them */
 }
 .glitch-slice::before { left: -10px; right: 22%; top: 30%; height: 10px; background: #FF2D87; translate: 14px 0; }
 .glitch-slice::after { left: 18%; right: -12px; top: 66%; height: 7px; background: #00B7EB; translate: -16px 0; }
