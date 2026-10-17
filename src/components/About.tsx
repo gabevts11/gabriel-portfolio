@@ -30,7 +30,7 @@ function Photo({ src }: { src?: string }) {
       <div className="rough relative box-border h-full w-full overflow-hidden border-[6px] border-ink bg-paper">
         <Art w={420} h={520} d={benDay({ ...dots, origin: { x: 0, y: 0 } })} fill="#00B7EB" opacity={0.9} blend className="inset-0" />
         <Art w={420} h={520} d={benDay({ ...dots, origin: { x: 420, y: 520 } })} fill="#FF2D87" opacity={0.9} blend dx={3} dy={2} className="inset-0" />
-        {src && <Image src={src} alt="Gabriel Dougherty" fill sizes="420px" className="object-cover" />}
+        {src && <Image src={src} alt="Gabe Dougherty" fill sizes="420px" className="object-cover" />}
         <Comic bg="#F7DF02" className="absolute px-[14px] py-[6px] text-[20px]" style={{ left: 24, bottom: 24 }}>
           PHOTO
         </Comic>

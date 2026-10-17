@@ -18,7 +18,7 @@ function Portrait({ src }: { src?: string }) {
     >
       <Art w={370} h={500} d={d} fill="#FF2D87" opacity={0.45} blend className="inset-0" />
       {src ? (
-        <Image src={src} alt="Portrait of Gabriel Dougherty" fill sizes="370px" className="object-cover" />
+        <Image src={src} alt="Portrait of Gabe Dougherty" fill sizes="370px" className="object-cover" />
       ) : (
         <span className="font-display absolute inset-0 flex items-center justify-center text-[36px] tracking-[.04em] text-placeholder">
           PORTRAIT
@@ -116,7 +116,7 @@ export function Hero() {
             className="hero-name font-display text-[clamp(52px,17vw,130px)] leading-[.86] tracking-[.01em] xl:text-[clamp(60px,8.4vw,130px)] min-[1440px]:text-[130px]"
             style={{ textShadow: "8px 8px 0 #FF2D87, -4px 3px 0 #00B7EB" }}
           >
-            GABRIEL
+            GABE
             <br />
             DOUGHERTY
           </h1>
