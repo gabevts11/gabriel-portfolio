@@ -106,6 +106,25 @@ function Chapter({ n, title, color, rot, children }: { n: string; title: string;
   );
 }
 
+function PageTiles({ title, items, heading, note }: { title: string; items: NonNullable<CaseStudy["sitePages"]>; heading: string; note: string }) {
+  return (
+    <section className="flex flex-col items-start gap-6">
+      <Caption rot={-1}>{heading}</Caption>
+      <p className="max-w-[640px] text-base leading-[1.6]">{note}</p>
+      <ul className="grid w-full grid-cols-2 gap-6 md:grid-cols-4">
+        {items.map((pg, i) => (
+          <li key={pg.label} className="flex flex-col gap-3">
+            <a href={pg.src} target="_blank" rel="noopener noreferrer" className="rough comic-link block aspect-[4/5] overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `6px 6px 0 ${[C.cyan, C.magenta, C.yellow, C.purple][i % 4]}` }}>
+              <Image src={pg.src} alt={`${title}: ${pg.label.toLowerCase()}`} width={pg.w} height={pg.h} sizes="(min-width:768px) 22vw, 45vw" className="h-full w-full object-cover object-top" />
+            </a>
+            <Comic bg={C.yellow} shadow={3} className="self-start px-3 py-1 text-lg">{pg.label}</Comic>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
   return (
     <div className="relative isolate mx-auto flex max-w-[1440px] flex-col gap-16 px-6 pb-16 pt-6 xl:px-20">
@@ -205,22 +224,8 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
           </ul>
         </section>
       )}
-      {c.sitePages && (
-        <section className="flex flex-col items-start gap-6">
-          <Caption rot={-1}>THE SITE, PAGE BY PAGE</Caption>
-          <p className="max-w-[640px] text-base leading-[1.6]">Every page, recreated in Figma. Text and photos are swapped for placeholders so no real names or people appear. Tap a page to see it in full.</p>
-          <ul className="grid w-full grid-cols-2 gap-6 md:grid-cols-4">
-            {c.sitePages.map((pg, i) => (
-              <li key={pg.label} className="flex flex-col gap-3">
-                <a href={pg.src} target="_blank" rel="noopener noreferrer" className="rough comic-link block aspect-[4/5] overflow-hidden border-4 border-ink bg-paper" style={{ boxShadow: `6px 6px 0 ${[C.cyan, C.magenta, C.yellow, C.purple][i % 4]}` }}>
-                  <Image src={pg.src} alt={`${c.title}: ${pg.label.toLowerCase()} page`} width={pg.w} height={pg.h} sizes="(min-width:768px) 22vw, 45vw" className="h-full w-full object-cover object-top" />
-                </a>
-                <Comic bg={C.yellow} shadow={3} className="self-start px-3 py-1 text-lg">{pg.label}</Comic>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {c.sitePages && <PageTiles title={c.title} items={c.sitePages} heading="THE SITE, PAGE BY PAGE" note="Every page, recreated in Figma. Text and photos are swapped for placeholders so no real names or people appear. Tap a page to see it in full." />}
+      {c.guidePages && <PageTiles title={c.title} items={c.guidePages} heading="THE DESIGN SYSTEM" note="The guide that keeps all seven screens consistent: brand and color, type, buttons and badges, navigation and forms, content patterns, media and layout. Tap a page to see it in full." />}
       {c.brandGuide && (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={1}>THE BRAND GUIDE</Caption>

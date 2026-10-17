@@ -27,6 +27,7 @@ export type CaseStudy = {
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
   sitePages?: { src: string; w: number; h: number; label: string }[]; // full-page screenshots, shown cropped with a link to the full image
+  guidePages?: { src: string; w: number; h: number; label: string }[]; // design-system pages, same tile treatment as sitePages
   brandGuide?: { src: string; w: number; h: number }; // tall one-page guide, shown cropped with a link to the full image
   clips?: { slug: string; label: string; caption: string; mobile?: boolean }[]; // animated exports in /work/studio/clips
   images?: { mock?: string; src?: string; w?: number; h?: number; src2?: string; w2?: number; h2?: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
@@ -164,6 +165,14 @@ export const cases: CaseStudy[] = [
       "A concept only: seven wireframed and branded screens, with no development and no user testing, so there are no results to report. Still to do: real photography (black placeholders stand in for every image), interactive prototyping between screens, and getting it in front of the people who would use it.",
     shots: [],
     heroMock: "xp",
+    guidePages: [
+      { src: "/work/experiences/brand-01-brand-color.jpg", w: 1200, h: 1383, label: "BRAND AND COLOR" },
+      { src: "/work/experiences/brand-02-typography.jpg", w: 1200, h: 2850, label: "TYPOGRAPHY" },
+      { src: "/work/experiences/brand-03-buttons-badges.jpg", w: 1200, h: 1679, label: "BUTTONS AND BADGES" },
+      { src: "/work/experiences/brand-04-navigation-forms.jpg", w: 1200, h: 2526, label: "NAVIGATION AND FORMS" },
+      { src: "/work/experiences/brand-05-content-patterns.jpg", w: 1200, h: 2292, label: "CONTENT PATTERNS" },
+      { src: "/work/experiences/brand-06-media-layout.jpg", w: 1200, h: 1763, label: "MEDIA AND LAYOUT" },
+    ],
     images: [
       { mock: "xp-discover", label: "DISCOVER", caption: "A hero card and grid of poster-style experience cards, each with a Certified rating. Redrawn in code from the Figma design, with sample content." },
       { mock: "xp-leaderboard", label: "LEADERBOARD", caption: "The original mechanic: top-rated experiences ranked, filterable by sport, team, region and time period." },
