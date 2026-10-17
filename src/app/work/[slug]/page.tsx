@@ -8,7 +8,7 @@ export const generateStaticParams = () => cases.map(({ slug }) => ({ slug }));
 
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const c = getCase((await params).slug);
-  return { title: c ? `${c.title} — Gabriel Dougherty` : "Case file", description: c?.summary };
+  return { title: c ? `${c.title} — Gabe Dougherty` : "Case file", description: c?.summary };
 }
 
 export default async function Page({ params }: PageProps<"/work/[slug]">) {

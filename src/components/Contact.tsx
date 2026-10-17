@@ -29,7 +29,7 @@ export function Contact() {
           LINKEDIN
         </Comic>
       </div>
-      <p className="relative z-10 mt-10 text-sm font-medium tracking-[.08em] text-[#4d4d4d]">© GABRIEL DOUGHERTY · YORK, SC</p>
+      <p className="relative z-10 mt-10 text-sm font-medium tracking-[.08em] text-[#4d4d4d]">© GABE DOUGHERTY · YORK, SC</p>
     </section>
   );
 }

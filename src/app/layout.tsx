@@ -11,12 +11,12 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
-// Absolute base for social images; swap for the custom domain once there is one.
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
-  title: "Gabriel Dougherty — Software Product Designer",
+  // Absolute base so social images resolve on the live domain.
+  metadataBase: new URL("https://gabedougherty.com"),
+  title: "Gabe Dougherty — Software Product Designer",
   description:
-    "Gabriel Dougherty designs web apps and products, and directs AI-assisted builds from Figma to App Store.",
+    "Gabe Dougherty designs web apps and products, and directs AI-assisted builds from Figma to App Store.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
