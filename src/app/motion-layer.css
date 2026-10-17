@@ -76,7 +76,21 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
   .cur-layer { display: none; }
 }
 
-/* ===== 4. Page glitch transition (PageGlitch toggles these on <main>); reuses dg-glitch from section 1 ===== */
-@keyframes pg-hide { to { opacity: 0; } }
-.pg-out { animation: dg-glitch 220ms steps(1, end), pg-hide 10ms linear 220ms forwards; }
-.pg-in { animation: dg-glitch 240ms steps(1, end); }
+/* ===== 4. Page transition (PageGlitch toggles these): a smooth wipe with a cyan/pink/ink edge, old page out then new page in ===== */
+@keyframes pg-out {
+  from { clip-path: inset(-60px 0 -60px 0); translate: 0 0; }
+  to   { clip-path: inset(-60px 0 -60px 100%); translate: 36px 0; }
+}
+@keyframes pg-in {
+  from { clip-path: inset(-60px 100% -60px 0); translate: -36px 0; }
+  to   { clip-path: inset(-60px -60px -60px -60px); translate: 0 0; }
+}
+.pg-out { animation: pg-out 300ms cubic-bezier(.65, 0, .35, 1) forwards; }
+.pg-in  { animation: pg-in 380ms cubic-bezier(.2, .7, .2, 1) both; }
+
+/* The edge rides along with the wipe: ink bar with cyan and pink fringes */
+.pg-edge { position: fixed; top: 0; left: 0; width: 12px; height: 100vh; z-index: 9990; pointer-events: none; display: none; background: #111; box-shadow: -14px 0 0 #00B7EB, -28px 0 0 #FF2D87; }
+@keyframes pg-edge-run { from { transform: translateX(-60px); } to { transform: translateX(calc(100vw + 40px)); } }
+.pg-edge-out { display: block; animation: pg-edge-run 300ms cubic-bezier(.65, 0, .35, 1) forwards; }
+.pg-edge-in  { display: block; animation: pg-edge-run 380ms cubic-bezier(.2, .7, .2, 1) both; }
+@media (prefers-reduced-motion: reduce) { .pg-edge { display: none !important; } }
