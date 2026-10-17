@@ -85,9 +85,12 @@ export function Hero() {
       <Art w={620} h={460} d={benDay(bg)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="hero-print hero-print-m left-0 top-0" />
 
       <nav className="relative flex items-center justify-between">
-        <Comic as="a" href="/" data-glitch-home bg="#F7DF02" shadow={4} className="comic-link px-[14px] py-[6px] text-[30px]" aria-label="Gabe Dougherty, back to top">
-          GD
-        </Comic>
+        <div className="relative">
+          <Comic as="a" href="/" data-glitch-home bg="#F7DF02" shadow={4} className="comic-link px-[14px] py-[6px] text-[30px]" aria-label="Gabe Dougherty, back to top">
+            GD
+          </Comic>
+          <span aria-hidden className="gd-nudge">PRESS ME!</span>
+        </div>
         <div className="flex items-center gap-10">
           <ul className="font-display hidden gap-10 text-2xl tracking-[.04em] md:flex">
             {nav.map(([t, h]) => (

@@ -199,3 +199,11 @@ html[data-ux="peni"] main .hero-portrait { clip-path: polygon(0 4%, 96% 0, 100% 
 
 html[data-ux="ham"] main :is(.hero-frame, .case-box, .hero-portrait) { border-radius: 38px !important; border: 7px solid #111 !important; box-shadow: 0 11px 0 #111 !important; }
 html[data-ux="ham"] main .case-box > div:not(.dots-print) { border-radius: 24px; }
+
+/* Nudge next to the home GD button: invites a click */
+.gd-nudge { position: absolute; left: calc(100% + 18px); top: 50%; translate: 0 -50%; white-space: nowrap; pointer-events: none; font-family: var(--font-bangers), sans-serif; font-size: 18px; letter-spacing: .04em; background: #fff; color: #111; border: 3px solid #111; border-radius: 14px; padding: 2px 10px; box-shadow: 3px 3px 0 #111; rotate: -3deg; }
+.gd-nudge::before { content: ""; position: absolute; left: -9px; top: 50%; translate: 0 -50%; border: 7px solid transparent; border-right: 9px solid #111; }
+.gd-nudge::after { content: ""; position: absolute; left: -5px; top: 50%; translate: 0 -50%; border: 5px solid transparent; border-right: 7px solid #fff; }
+@keyframes gd-wiggle { 0%, 70%, 100% { rotate: -3deg; } 76% { rotate: 3deg; } 82% { rotate: -5deg; } 88% { rotate: 2deg; } }
+@media (prefers-reduced-motion: no-preference) { .gd-nudge { animation: gd-wiggle 2.8s steps(1, end) 2.4s infinite; } }
+@media (max-width: 420px) { .gd-nudge { font-size: 15px; left: calc(100% + 14px); } }
