@@ -49,6 +49,6 @@
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-/* Hero name: ink drop shadow with a cyan/magenta split; scales with the cover on large screens */
-.hero-name { text-shadow: 4px 4px 0 #111, -2px 0 0 #00B7EB, 2px 0 0 #FF2D87; }
-@media (min-width: 1024px) { .hero-name { text-shadow: 1.2cqw 1.2cqw 0 #111, -.6cqw 0 0 #00B7EB, .6cqw 0 0 #FF2D87; } }
+/* Hero name: magenta drop shadow with a cyan kick, as before the cover redesign */
+.hero-name { text-shadow: 5px 5px 0 #FF2D87, -3px 2px 0 #00B7EB; }
+@media (min-width: 640px) { .hero-name { text-shadow: 8px 8px 0 #FF2D87, -4px 3px 0 #00B7EB; } }

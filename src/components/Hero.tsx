@@ -3,6 +3,8 @@ import { Art, Comic, Streams } from "./art";
 import { SpeedLines } from "./SpeedLines";
 
 const cornerDots = { width: 560, height: 380, spacing: 16, maxR: 6, minR: 1, origin: { x: 560, y: 380 }, falloff: 460 };
+const seamR = { width: 560, height: 640, spacing: 16, maxR: 6, minR: 1, origin: { x: 560, y: 320 }, falloff: 318 };
+const seamL = { width: 560, height: 640, spacing: 16, maxR: 6, minR: 1, origin: { x: 0, y: 320 }, falloff: 318 };
 const nav = [
   ["WORK", "#work"],
   ["ABOUT", "#about"],
@@ -11,9 +13,15 @@ const nav = [
 export function Hero() {
   const bg = { width: 620, height: 460, spacing: 16, maxR: 6, minR: 1, origin: { x: 0, y: 0 }, falloff: 540 };
   return (
-    <header className="relative mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pb-24 pt-9 xl:px-20">
+    <header className="relative mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pb-16 pt-9 xl:px-20">
       <Art w={620} h={460} d={benDay(bg)} fill="#00B7EB" opacity={0.9} blend className="hero-print left-0 top-0" />
       <Art w={620} h={460} d={benDay(bg)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="hero-print hero-print-m left-0 top-0" />
+
+      {/* Bottom dots straddle the Hero / About seam: biggest on the boundary, fading both ways, so the halftone flows into About */}
+      <Art w={560} h={640} d={benDay(seamR)} fill="#FF2D87" opacity={0.85} blend className="-bottom-[320px] right-0 hidden origin-right scale-[.7] md:block lg:scale-100" />
+      <Art w={560} h={640} d={benDay(seamR)} fill="#00B7EB" opacity={0.85} blend dx={6} dy={4} className="-bottom-[320px] right-0 hidden origin-right scale-[.7] md:block lg:scale-100" />
+      <Art w={560} h={640} d={benDay(seamL)} fill="#00B7EB" opacity={0.85} blend className="-bottom-[320px] left-0 origin-left scale-[.5] md:scale-[.7] lg:scale-100" />
+      <Art w={560} h={640} d={benDay(seamL)} fill="#FF2D87" opacity={0.85} blend dx={6} dy={4} className="-bottom-[320px] left-0 origin-left scale-[.5] md:scale-[.7] lg:scale-100" />
 
       <nav className="relative z-30 flex items-center justify-between">
         <div className="relative">
@@ -46,9 +54,7 @@ export function Hero() {
       {/* Comic cover: free-form on lg+ (sized in container units so it scales as one picture), a simple stack below */}
       <section className="relative isolate [container-type:inline-size]">
         <SpeedLines w={600} h={500} cx={300} cy={260} r={700} seed={5} count={60} preserve="xMidYMid slice" className="-inset-10 -z-10 h-[calc(100%+5rem)] w-[calc(100%+5rem)]" />
-        <Art w={560} h={380} d={benDay(cornerDots)} fill="#FF2D87" opacity={0.9} blend className="hero-print -bottom-6 -right-6 hidden lg:block" />
         <Art w={420} h={300} d={benDay({ ...cornerDots, width: 420, height: 300, origin: { x: 420, y: 0 }, falloff: 360 })} fill="#00B7EB" opacity={0.9} blend className="hero-print -right-6 -top-24 hidden lg:block" />
-        <Art w={420} h={300} d={benDay({ ...cornerDots, width: 420, height: 300, origin: { x: 0, y: 300 }, falloff: 360 })} fill="#00B7EB" opacity={0.9} blend className="hero-print -bottom-6 -left-6 hidden lg:block" />
         <div className="pointer-events-none absolute bottom-0 right-0 hidden lg:block">
           <div className="relative h-[280px] w-[360px]">
             <Streams mode="load" w={360} h={280} streams={[["#111", { seed: 91, points: [[330, 250], [270, 215], [210, 190], [150, 170]], count: 9, sizeStart: 22, sizeEnd: 6, spread: 40 }]]} />
