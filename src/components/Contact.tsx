@@ -3,7 +3,7 @@ import { benDay } from "@/lib/comic-art";
 import { Art, Comic } from "./art";
 import { Caption } from "./Caption";
 
-const dots = { width: 520, height: 300, spacing: 16, maxR: 6, minR: 1, origin: { x: 520, y: 300 }, falloff: 440 };
+const dots = { width: 520, height: 300, spacing: 16, maxR: 6, minR: 1, origin: { x: 520, y: 300 }, falloff: 290 };
 
 export function Contact() {
   return (

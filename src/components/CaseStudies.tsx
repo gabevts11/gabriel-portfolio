@@ -108,8 +108,8 @@ function CasePanel({ c }: { c: Case }) {
 }
 
 const dotBase = { spacing: 16, maxR: 6, minR: 1 };
-const dotsBL = { ...dotBase, width: 560, height: 320, origin: { x: 0, y: 320 }, falloff: 420 };
-const dotsBR = { ...dotBase, width: 440, height: 280, origin: { x: 440, y: 280 }, falloff: 380 };
+const dotsBL = { ...dotBase, width: 560, height: 560, origin: { x: 0, y: 280 }, falloff: 270 };
+const dotsBR = { ...dotBase, width: 440, height: 480, origin: { x: 440, y: 240 }, falloff: 230 };
 const dotsLeft = { ...dotBase, width: 360, height: 520, origin: { x: 0, y: 260 }, falloff: 330 };
 const dotsRight = { ...dotBase, width: 360, height: 520, origin: { x: 360, y: 260 }, falloff: 330 };
 const cardDots = { width: 120, height: 90, spacing: 9, maxR: 3.4, minR: 0.6, origin: { x: 120, y: 0 }, falloff: 120 };
@@ -143,10 +143,10 @@ function CaseRow({ c }: { c: Case }) {
 export function CaseStudies() {
   return (
     <section id="work" data-flip="1" className="relative mx-auto flex max-w-[1440px] flex-col gap-[100px] px-6 pb-24 pt-20 xl:gap-[140px] xl:px-[120px] xl:pb-40 xl:pt-[120px]">
-      <Art w={560} h={320} d={benDay(dotsBL)} fill="#00B7EB" opacity={0.85} blend className="bottom-0 left-0" />
-      <Art w={560} h={320} d={benDay({ ...dotsBL, falloff: 360 })} fill="#FF2D87" opacity={0.85} blend dx={6} dy={4} className="bottom-0 left-0" />
-      <Art w={440} h={280} d={benDay(dotsBR)} fill="#F7DF02" opacity={0.9} blend className="bottom-0 right-0" />
-      <Art w={440} h={280} d={benDay(dotsBR)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="bottom-0 right-0" />
+      <Art w={560} h={560} d={benDay(dotsBL)} fill="#00B7EB" opacity={0.85} blend className="-bottom-[280px] left-0" />
+      <Art w={560} h={560} d={benDay({ ...dotsBL, falloff: 230 })} fill="#FF2D87" opacity={0.85} blend dx={6} dy={4} className="-bottom-[280px] left-0" />
+      <Art w={440} h={480} d={benDay(dotsBR)} fill="#F7DF02" opacity={0.9} blend className="-bottom-[240px] right-0" />
+      <Art w={440} h={480} d={benDay(dotsBR)} fill="#FF2D87" opacity={0.9} blend dx={6} dy={4} className="-bottom-[240px] right-0" />
       <Art w={360} h={520} d={benDay(dotsLeft)} fill="#FF2D87" opacity={0.55} className="left-0 top-[36%] hidden md:block" />
       <Art w={360} h={520} d={benDay(dotsRight)} fill="#00B7EB" opacity={0.55} className="right-0 top-[62%] hidden md:block" />
       <header className="flex flex-col items-start gap-[22px]">
