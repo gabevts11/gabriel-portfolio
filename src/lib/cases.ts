@@ -163,7 +163,7 @@ export const cases: CaseStudy[] = [
     ],
     did: ["Product design", "UX flows", "Wireframes", "Visual design", "Shared components"],
     tools: ["Claude Code", "Figma", "my brain"],
-    related: { label: "WHAT SNAPBACK HAS SAID", text: "Snapback's founder has said in a public newsletter that the end of the road is a Snapback Experiences product: one place to book travel, tickets and dinner, buy team merch and bet, guided by Snapback's own recommendations and its fans'. A later newsletter calls Snapback Experiences the company's North Star. This concept is my take on that direction, made on my own, and nobody at Snapback asked for it.", href: "https://jacksettleman.beehiiv.com/p/can-i-invest-in-snapback-sports-1680", cta: "READ THE NEWSLETTER" },
+    related: { label: "WHAT SNAPBACK HAS SAID", text: "Snapback's founder has said in a public newsletter that the end of the road is a Snapback Experiences product: one place to book travel, tickets and dinner, buy team merch and bet, guided by Snapback's own recommendations and its fans'. A later newsletter calls Snapback Experiences the company's North Star. This concept is my own take on that direction, made on my own initiative.", href: "https://jacksettleman.beehiiv.com/p/can-i-invest-in-snapback-sports-1680", cta: "READ THE NEWSLETTER" },
     goal: "One place for fans to log, rate and discover game experiences, and plan the trip around them.",
     hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard and a trip planner make it easy to learn, and turn a great game into a weekend people actually plan. Not tested with users.",
     outcome:
