@@ -169,7 +169,7 @@ export const cases: CaseStudy[] = [
     outcome:
       "16 wireframed and branded screens, a complete concept from discovery to checkout. Trips use sample inventory. Next: interactive prototyping between screens, real partner inventory, and testing with the fans who would use it.",
     shots: [],
-    hero: "/work/experiences/card.jpg",
+    hero: "/work/experiences/card-fan.jpg",
     guidePages: [
       { src: "/work/experiences/brand-01-brand-color.jpg", w: 1200, h: 1398, label: "BRAND AND COLOR" },
       { src: "/work/experiences/brand-02-typography.jpg", w: 1200, h: 2850, label: "TYPOGRAPHY" },
