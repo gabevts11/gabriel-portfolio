@@ -9,7 +9,7 @@ export default function Home() {
     <main className="overflow-x-clip">
       <Grain />
       <Hero />
-      <About />
+      <About photoSrc="/gabe-photo.jpg" />
       <CaseStudies />
       <Contact />
     </main>
