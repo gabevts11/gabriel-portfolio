@@ -36,7 +36,6 @@ function Hero({ c }: { c: CaseStudy }) {
             {c.badge ?? "CONCEPT · WIREFRAMES & MOCKUPS ONLY, NOT A LIVE PRODUCT"}
           </Comic>
         )}
-        <div className="font-display text-xl tracking-[.06em] text-red">LONG STORY SHORT</div>
         <p className="max-w-[560px] text-xl font-medium leading-[1.5]">{c.summary}</p>
         {c.disclaimer && (
           <p className="rough max-w-[560px] border-[3px] border-ink bg-white px-4 py-3 text-sm font-medium leading-snug" style={{ boxShadow: `4px 4px 0 ${C.magenta}` }}>
