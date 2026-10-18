@@ -30,6 +30,7 @@ export type CaseStudy = {
   screens?: { src: string; w: number; h: number; label: string }[]; // app screens, phone-shaped tiles
   guidePages?: { src: string; w: number; h: number; label: string }[]; // design-system pages, same tile treatment as sitePages
   brandGuide?: { src: string; w: number; h: number }; // tall one-page guide, shown cropped with a link to the full image
+  heroClip?: string; // slug of a clip in /work/studio/clips that loops in the hero panel instead of a still
   clips?: { slug: string; label: string; caption: string; mobile?: boolean }[]; // animated exports in /work/studio/clips
   images?: { mock?: string; src?: string; w?: number; h?: number; src2?: string; w2?: number; h2?: number; label: string; caption: string; staged?: boolean }[]; // replaces the placeholder shots
 };
@@ -63,7 +64,7 @@ export const cases: CaseStudy[] = [
     outcome:
       "44 approved, editable designs, each in 16:9 and 9:16, including 4 intros and outros across two Snapback brands, built to the brand guide's colors and type. 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
     shots: [],
-    hero: "/work/studio/studio-boards.jpg",
+    heroClip: "wordwall",
     clips: [
       { slug: "ticket", label: "TRANSITION · TICKET TEAR", caption: "A ticket tears open and the camera pushes through, covering the cut.", mobile: true },
       { slug: "wordwall", label: "CHANNELS · WORD WALL", caption: "A wall of channel names scrolls behind the hat.", mobile: true },

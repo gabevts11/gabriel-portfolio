@@ -5,6 +5,7 @@ import { benDay, type StreamOpts } from "@/lib/comic-art";
 import { CountUp } from "./CountUp";
 import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
+import { ClipVideo } from "./ClipVideo";
 import { XpHero } from "./ExperiencesMock";
 import { LookupMock } from "./LookupMock";
 import { SpeedLines } from "./SpeedLines";
@@ -34,6 +35,7 @@ type Case = {
   flip: boolean;
   streams: [Color, StreamOpts][];
   src?: string;
+  clip?: string; // looping clip in /work/studio/clips
   mock?: string;
 };
 
@@ -42,7 +44,7 @@ const cases: Case[] = [
     issue: "ISSUE #01", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PROTOTYPE", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
     desc: "A quick personal prototype: a motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, stadium and jumbotron loops, game-day slates and brand intros, built to their brand guide and exportable to CapCut.",
     stats: [["44", "Approved motion designs", "magenta"], ["60", "Published versions", "cyan"]],
-    src: "/work/studio/studio-boards.jpg",
+    clip: "wordwall",
     panel: "yellow", offset: "purple", dotsA: "magenta", dotsB: "cyan", rot: -2, flip: false,
     streams: [
       ["ink", { seed: 71, points: [[40, 40], [-20, -10], [-85, -55]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],
@@ -97,7 +99,9 @@ function CasePanel({ c }: { c: Case }) {
           className="rough absolute overflow-hidden border-4 border-ink bg-paper"
           style={{ left: 36, top: 76, width: 528, height: 316, boxShadow: "8px 8px 0 #111" }}
         >
-          {c.mock === "xp" ? (
+          {c.clip ? (
+            <ClipVideo slug={c.clip} loop label={`${c.title}: motion design preview`} className="absolute inset-0 h-full w-full object-cover" />
+          ) : c.mock === "xp" ? (
             <XpHero />
           ) : c.mock ? (
             <LookupMock kind="poster" slice className="absolute inset-0 h-full w-full" />
