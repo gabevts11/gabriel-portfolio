@@ -68,7 +68,7 @@ const cases: Case[] = [
     issue: "ISSUE #03", kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
     desc: "A self-initiated concept: Expedia for sports, built around Snapback's fan community. Plan the whole weekend with sample travel, tickets, dining and merch, guided by what fans recommend, and log and rank the games you go to.",
     stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["16", "Screens designed", "magenta"]],
-    src: "/work/experiences/card.jpg",
+    src: "/work/experiences/card-fan.jpg",
     panel: "magenta", offset: "cyan", dotsA: "yellow", dotsB: "cyan", rot: -2, flip: false,
     streams: [
       ["ink", { seed: 91, points: [[40, 410], [-20, 450], [-85, 490]], count: 9, sizeStart: 26, sizeEnd: 6, spread: 52 }],
