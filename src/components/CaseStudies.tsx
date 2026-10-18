@@ -65,7 +65,7 @@ const cases: Case[] = [
   {
     issue: "ISSUE #03", kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
     desc: "A quick personal concept: an app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, and see what fans recommend doing at each one.",
-    stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["7", "Screens designed", "magenta"]],
+    stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["16", "Screens designed", "magenta"]],
     mock: "xp",
     panel: "magenta", offset: "cyan", dotsA: "yellow", dotsB: "cyan", rot: -2, flip: false,
     streams: [
