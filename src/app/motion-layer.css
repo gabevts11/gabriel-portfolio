@@ -101,6 +101,7 @@ html[data-ux] .ux-fx { display: block; }
 /* Opaque page behind the content: the transition isolates <main>, and the multiply-blended layers need a paper backdrop inside it or they turn black */
 main { background-color: var(--color-paper); }
 .ux-l, .ux-sp { display: inline-block; }
+.ux-sp { white-space: pre; } /* a lone space inside an inline-block collapses to nothing, which glued the words together in the Ham universe */
 .ux-sfx, .ux-prop { position: absolute; display: none; }
 /* Wider universe faces keep the same line breaks: no re-wrapping, scaled down to the original footprint */
 html:is([data-ux="hobie"], [data-ux="peni"], [data-ux="ham"]) main h1 { white-space: nowrap; scale: .8; transform-origin: 0 50%; }

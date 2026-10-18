@@ -46,7 +46,7 @@ export const cases: CaseStudy[] = [
     meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal prototype"]],
     stats: [["44", "Approved, editable motion designs", "magenta"], ["60", "Published iterations of the live studio", "red"]],
     problem:
-      "I picked Snapback Sports as a real brand to prototype against. They publish a steady stream of broadcast and social motion graphics, so I wanted to see whether one tool could keep that whole library on-brand and quick to customize, without re-rendering a new video for every variant.",
+      "I picked Snapback Sports as a real brand to prototype against. They publish a steady stream of broadcast and social motion graphics, so I wanted to see whether one tool could keep that whole library on-brand and quick to customize: stream graphics, stadium loops, game-day slates and brand intros, without re-rendering a new video for every variant.",
     disclaimer: "Personal prototype, made quickly on my own to show initiative. It was not commissioned, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
     process:
       "I storyboarded concepts with several variants, then built one self-contained browser tool with 44 editable designs, each in 16:9 and 9:16, with element-level editing and autosave. I iterated on feedback round by round, republishing the live studio 60 times, and checked every change in both formats. I also recreated part of the system, the word wall, in Figma with brand variables and components.",
@@ -61,7 +61,7 @@ export const cases: CaseStudy[] = [
     goal: "One tool that keeps a brand's whole motion library consistent and quick to customize.",
     hypothesis: "If every design is editable, ships in both formats and follows the brand guide, a small team could make on-brand variants without re-rendering from scratch. Not tested with a real team.",
     outcome:
-      "44 approved, editable designs, each in 16:9 and 9:16, including 4 intros and outros across two Snapback brands, built to the brand guide (five colors, three typefaces). 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
+      "44 approved, editable designs, each in 16:9 and 9:16, including 4 intros and outros across two Snapback brands, built to the brand guide's colors and type. 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
     shots: [],
     hero: "/work/studio/studio-boards.jpg",
     clips: [
@@ -147,25 +147,28 @@ export const cases: CaseStudy[] = [
     meta: [["ROLE", "Product designer"], ["STATUS", "Quick concept, not built"]],
     stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["16", "Screens designed", "magenta"], ["4", "Core ideas: two borrowed, two original", "cyan"]],
     problem:
-      "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue. I explored \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
+      "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue, and no easy way to turn a great game into a trip. Snapback has said its long-term goal is one Snapback Experiences product, so I took that as the brief: \"the Yelp for sports\" first, then a trip planner on top.",
     disclaimer: "Personal concept, made quickly on my own to show initiative. No one at Snapback has seen or approved it, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
       "A concept, not a shipped product. I started with low-fidelity wireframes, then built the screens as branded designs in Figma using Snapback's colors and type. It borrows two ideas and adds two: a diary of attended experiences with ratings (from Letterboxd), detail pages with reviews and tips (from Yelp), an original leaderboard of top-rated experiences, and a trip planner that turns an experience into a weekend plan with travel, stay, tickets, dining and merch. All inventory and prices are sample data, and nothing is bookable.",
     flow: ["DISCOVER", "EXPERIENCE", "LOG", "LEADERBOARD", "PLAN TRIP", "CHECKOUT", "PROFILE"],
     decisions: [
       "Made the rating a \"Certified\" stamp that echoes the verdict stamp in Snapback Trivia, so Experiences reads as part of the family.",
-      "Made the leaderboard the original mechanic: filterable by sport, team, region and time, with a trophy for the top spot.",
+      "Made the leaderboard an original mechanic: filterable by sport, team, region and time, with a trophy for the top spot.",
+      "Labeled every trip as a sample, not live inventory, so no screen implies a real booking.",
+      "Kept betting out of the main flow: it appears only as an optional partner service, gated by age and location, with responsible-gambling help.",
       "Pulled colors and type from Snapback's brand guide instead of inventing a look, and left out the hat-logo artwork.",
       "Built shared components once (nav bar, rating stamp, button) so a change updates all 16 screens.",
     ],
     did: ["Product design", "UX flows", "Wireframes", "Visual design", "Shared components"],
     tools: ["Claude Code", "Figma", "my brain"],
+    related: { label: "WHAT SNAPBACK HAS SAID", text: "Snapback's founder has said in a public newsletter that the end of the road is a Snapback Experiences product: one place to book travel, tickets and dinner, buy team merch and bet, guided by Snapback's own recommendations and its fans'. A later newsletter calls Snapback Experiences the company's North Star. This concept is my take on that direction, made on my own, and nobody at Snapback asked for it.", href: "https://jacksettleman.beehiiv.com/p/can-i-invest-in-snapback-sports-1680", cta: "READ THE NEWSLETTER" },
     goal: "One place for fans to log, rate and discover game experiences, and plan the trip around them.",
-    hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard make it easy to learn and give people a reason to come back. Not tested with users.",
+    hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard and a trip planner make it easy to learn, and turn a great game into a weekend people actually plan. Not tested with users.",
     outcome:
       "A concept only: 16 wireframed and branded screens, with no development and no user testing, so there are no results to report. Trips use sample inventory, and no partner has been contacted. Still to do: interactive prototyping between screens, real partner inventory, and getting it in front of the people who would use it.",
     shots: [],
-    heroMock: "xp",
+    hero: "/work/experiences/card.jpg",
     guidePages: [
       { src: "/work/experiences/brand-01-brand-color.jpg", w: 1200, h: 1383, label: "BRAND AND COLOR" },
       { src: "/work/experiences/brand-02-typography.jpg", w: 1200, h: 2850, label: "TYPOGRAPHY" },
