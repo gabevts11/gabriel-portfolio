@@ -49,3 +49,6 @@ next-env.d.ts
 # local tool state
 /.claude/
 /.omc/
+
+# the public-safe resume is meant to ship (no address or phone)
+!public/Gabe-Dougherty-Resume.pdf
