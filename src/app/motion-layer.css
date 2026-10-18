@@ -100,13 +100,13 @@ html[data-ux] .ux-fx { display: block; }
 .ux-w { white-space: inherit; }
 /* Opaque page behind the content: the transition isolates <main>, and the multiply-blended layers need a paper backdrop inside it or they turn black */
 main { background-color: var(--color-paper); }
-.ux-l, .ux-sp { display: inline-block; }
-.ux-sp { white-space: pre; } /* a lone space inside an inline-block collapses to nothing, which glued the words together in the Ham universe */
+.ux-l, .ux-word { display: inline-block; }
+.ux-word { white-space: nowrap; }
 .ux-sfx, .ux-prop { position: absolute; display: none; }
 /* Wider universe faces keep the same line breaks: no re-wrapping, scaled down to the original footprint */
 html:is([data-ux="hobie"], [data-ux="peni"], [data-ux="ham"]) main h1 { white-space: nowrap; scale: .8; transform-origin: 0 50%; }
 html[data-ux="peni"] main h1 { scale: .68; }
-html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3) { white-space: nowrap; letter-spacing: -.02em; }
+html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3, .hero-draw, .hero-draw *, [class*="lg:absolute"]) { white-space: nowrap; letter-spacing: -.02em; }
 
 /* Gwen: painterly watercolor: paint blooms bleeding into paper, gradient-washed type, soft edges instead of hard ink */
 @keyframes gwen-mood { from { filter: saturate(1.1) contrast(.96) hue-rotate(0deg); } to { filter: saturate(1.1) contrast(.96) hue-rotate(35deg); } }
@@ -123,12 +123,12 @@ html[data-ux="hobie"] { filter: grayscale(.45) contrast(1.4) drop-shadow(3px 2px
 html[data-ux="hobie"] .ux-fx { background: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 14 -8.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1000 700%22 preserveAspectRatio=%22none%22%3E%3Cg fill=%22none%22 stroke=%22%23111%22 stroke-width=%225%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M560 60L640 20L700 90L770 30L850 80%22/%3E%3Cpath d=%22M700 600L760 530L820 640L900 540L960 620%22/%3E%3Cpath d=%22M60 660Q140 600 220 670T360 640%22/%3E%3C/g%3E%3Cg fill=%22%23111%22%3E%3Cpath d=%22M940 300l9 22 24 2-18 16 6 24-21-13-21 13 6-24-18-16 24-2z%22/%3E%3C/g%3E%3Cpath d=%22M640 470H700V640Q700 670 670 670Q640 670 640 640Z%22 fill=%22%23e8202a%22 fill-opacity=%22.9%22/%3E%3Cpath d=%22M620 460H720V490H620Z%22 fill=%22%23e8202a%22 fill-opacity=%22.9%22/%3E%3C/svg%3E"); background-size: 300px 300px, 100% 100%; animation: ux-jit 220ms steps(2, end) infinite; }
 html[data-ux="hobie"] main :is(h1, h2, h3, .font-display) { text-shadow: none !important; }
 html[data-ux="hobie"] .ux-l { padding: .02em .07em; margin: 0 .015em; line-height: 1; box-shadow: 2px 2px 0 #111; }
-html[data-ux="hobie"] .ux-l:nth-child(5n + 1) { font-family: var(--font-ransom), Georgia, serif; background: #F4EEDC; color: #111; rotate: -4deg; }
-html[data-ux="hobie"] .ux-l:nth-child(5n + 2) { font-family: Impact, var(--font-bangers), sans-serif; background: #111; color: #F4EEDC; rotate: 3deg; }
-html[data-ux="hobie"] .ux-l:nth-child(5n + 3) { font-family: var(--font-typewriter), monospace; background: #FF2D87; color: #111; rotate: -2deg; }
-html[data-ux="hobie"] .ux-l:nth-child(5n + 4) { font-family: Georgia, serif; font-style: italic; background: #fff; color: #E8202A; rotate: 5deg; }
-html[data-ux="hobie"] .ux-l:nth-child(5n + 5) { font-family: var(--font-bangers), sans-serif; background: #00B7EB; color: #111; rotate: -6deg; }
-html[data-ux="hobie"] .ux-sp { width: .28em; }
+html[data-ux="hobie"] .ux-l.a1 { font-family: var(--font-ransom), Georgia, serif; background: #F4EEDC; color: #111; rotate: -4deg; }
+html[data-ux="hobie"] .ux-l.a2 { font-family: Impact, var(--font-bangers), sans-serif; background: #111; color: #F4EEDC; rotate: 3deg; }
+html[data-ux="hobie"] .ux-l.a3 { font-family: var(--font-typewriter), monospace; background: #FF2D87; color: #111; rotate: -2deg; }
+html[data-ux="hobie"] .ux-l.a4 { font-family: Georgia, serif; font-style: italic; background: #fff; color: #E8202A; rotate: 5deg; }
+html[data-ux="hobie"] .ux-l.a5 { font-family: var(--font-bangers), sans-serif; background: #00B7EB; color: #111; rotate: -6deg; }
+html[data-ux="hobie"] .ux-w { word-spacing: .12em; }
 html[data-ux="hobie"] main p { font-family: var(--font-typewriter), monospace !important; }
 html[data-ux="hobie"] main .rough { clip-path: polygon(0 3%, 4% 0, 12% 2%, 30% 0, 52% 3%, 70% 0, 88% 2%, 100% 0, 99% 30%, 100% 62%, 98% 100%, 80% 97%, 55% 100%, 30% 97%, 8% 100%, 0 96%, 1% 60%); }
 
@@ -159,9 +159,9 @@ html[data-ux="ham"] main { animation: ham-boil 150ms steps(1, end) infinite; } /
 html[data-ux="ham"] main :is(h1, h2, h3, .font-display) { font-family: var(--font-cartoon), var(--font-bangers), sans-serif !important; letter-spacing: .02em; }
 html[data-ux="ham"] main :is(h1, h2, h3) { text-shadow: none !important; }
 html[data-ux="ham"] .ux-l { -webkit-text-stroke: .05em #111; paint-order: stroke fill; text-shadow: .04em .07em 0 #111; animation: ham-bob 200ms steps(2, end) infinite alternate; }
-html[data-ux="ham"] .ux-l:nth-child(3n + 1) { color: #E8202A; rotate: -6deg; }
-html[data-ux="ham"] .ux-l:nth-child(3n + 2) { color: #F7DF02; rotate: 4deg; animation-delay: 100ms; }
-html[data-ux="ham"] .ux-l:nth-child(3n + 3) { color: #2B59D6; rotate: -2deg; animation-delay: 50ms; }
+html[data-ux="ham"] .ux-l.b1 { color: #E8202A; rotate: -6deg; }
+html[data-ux="ham"] .ux-l.b2 { color: #F7DF02; rotate: 4deg; animation-delay: 100ms; }
+html[data-ux="ham"] .ux-l.b3 { color: #2B59D6; rotate: -2deg; animation-delay: 50ms; }
 html[data-ux="ham"] main .rough { border-radius: 22px !important; border-width: 5px !important; box-shadow: 0 7px 0 #111 !important; }
 html[data-ux="ham"] .ux-fx { background: radial-gradient(circle at 50% 50%, transparent 0 76%, #111 76% 77.2%, #E8202A 77.2% 82%, #F7DF02 82% 86%, #2B59D6 86% 90%, #111 90%); }
 html[data-ux="ham"] .ux-prop { display: block; }
@@ -225,7 +225,6 @@ html[data-gd-clicked] .gd-nudge .gd-b { display: flex; }
   html[data-ux="ham"] main h1 { scale: .7; }
   html[data-ux="hobie"] main h1 { scale: .66; }
   html[data-ux="gwen"] main h1 { scale: .8; }
-  html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3) { white-space: normal; }
   .gd-nudge { display: none; }
 }
 
@@ -233,4 +232,12 @@ html[data-gd-clicked] .gd-nudge .gd-b { display: flex; }
 @media (min-width: 1024px) {
   html[data-ux="peni"] main h1 { scale: .52; }
   html[data-ux="noir"] main h1 { scale: .72; }
+}
+
+/* Tablets and phones: long titles ("SNAPBACK EXPERIENCES") wrap between words, and labels wrap, instead of running off the screen in the wide universe faces */
+@media (max-width: 900px) {
+  html[data-ux="peni"] main :is(h2, h3) { scale: .82; transform-origin: 0 50%; }
+  html[data-ux="hobie"] main :is(h2, h3) { scale: .92; transform-origin: 0 50%; }
+  html:is([data-ux="peni"], [data-ux="ham"]) main .font-display:not(h1, h2, h3, .hero-draw, .hero-draw *, [class*="lg:absolute"]) { white-space: normal; }
+  html[data-ux] main h1 { white-space: normal; }
 }

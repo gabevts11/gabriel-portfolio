@@ -33,11 +33,21 @@ function letterize(kind: string | undefined): Swap[] {
       if (t.parentElement?.closest(".ux-w")) continue;
       const w = document.createElement("span");
       w.className = "ux-w";
+      // Letters sit inside nowrap word boxes and spaces stay plain text, so lines only ever break between words.
+      let word: HTMLElement | null = null;
+      let i = 0;
       for (const ch of t.data) {
-        const s = document.createElement("span");
-        s.className = ch === " " ? "ux-sp" : "ux-l";
-        s.textContent = ch;
-        w.append(s);
+        if (/\s/.test(ch)) {
+          word = null;
+          w.append(ch);
+        } else {
+          if (!word) w.append((word = Object.assign(document.createElement("span"), { className: "ux-word" })));
+          const s = document.createElement("span");
+          s.className = `ux-l a${(i % 5) + 1} b${(i % 3) + 1}`;
+          s.textContent = ch;
+          word.append(s);
+        }
+        i++;
       }
       t.replaceWith(w);
       swaps.push([w, t]);

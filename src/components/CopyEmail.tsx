@@ -23,7 +23,7 @@ export function CopyEmail() {
     setTimeout(() => setCopied(false), 2200);
   };
   return (
-    <Comic as="button" type="button" onClick={copy} bg="#E8202A" shadow={6} className="comic-link cursor-pointer px-6 py-3 text-2xl text-white">
+    <Comic as="button" type="button" onClick={copy} bg="#E8202A" shadow={6} className="comic-link max-w-full cursor-pointer px-6 py-3 text-[clamp(14px,4.4vw,24px)] text-white [overflow-wrap:anywhere]">
       <span aria-live="polite">{copied ? "EMAIL COPIED!" : EMAIL.toUpperCase()}</span>
     </Comic>
   );
