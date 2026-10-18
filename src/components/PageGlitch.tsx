@@ -76,6 +76,15 @@ export function PageGlitch() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onClick = (e: MouseEvent) => {
+      if (document.documentElement.hasAttribute("data-calm") && !e.defaultPrevented && e.button === 0) {
+        // Calm mode: no glitch. The home GD button just scrolls back to the top; everything else is a plain link.
+        const g = (e.target as Element).closest<HTMLElement>("a[data-glitch-home]");
+        if (g && new URL((g as HTMLAnchorElement).href, location.href).pathname === location.pathname) {
+          e.preventDefault();
+          window.scrollTo({ top: 0 });
+        }
+        return;
+      }
       if (reduce.matches || busy.current || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       const a = (e.target as Element).closest("a");
       if (!a || a.target || a.hasAttribute("download")) return;

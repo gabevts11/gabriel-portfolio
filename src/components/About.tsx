@@ -4,7 +4,7 @@ import { Art, Comic, Fit, Streams } from "./art";
 import { Caption } from "./Caption";
 
 const panels = [
-  ["USERS FIRST", "Anyone can build with AI now. I make sure people can actually use what gets built.", "#00B7EB", -1.5],
+  ["USERS FIRST", "AI speeds up building. I make sure what gets built works for people.", "#00B7EB", -1.5],
   ["FIGMA TO LIVE", "Wireframes, prototypes and components, then shipped as a real site or app.", "#FF2D87", 1],
   ["OFF THE CLOCK", "College football, F1, movies, and the occasional snowboard run.", "#5B2BC2", -0.8],
 ] as const;
@@ -62,11 +62,11 @@ export function About({ photoSrc }: { photoSrc?: string }) {
           </h2>
           <div className="flex max-w-[600px] flex-col gap-4 text-[19px] leading-normal">
             <p>
-              I&apos;m a product designer in York, SC. I care about how people actually use a product and how to make it work for them. I
+              I&apos;m a software product designer in York, SC. I care about how people actually use a product and how to make it work for them. I
               start with the person on the other side of the screen, then work backward to the layout, the flow and the details.
             </p>
             <p>
-              I work mostly in Figma, from full site layouts to product UI. I use tools like Claude and Cursor to prototype faster and
+              I work mostly in Figma, from full site layouts to product UI. I use AI tools like Claude to prototype faster and
               test ideas sooner, but what to build and how it should work is always my call.
             </p>
           </div>

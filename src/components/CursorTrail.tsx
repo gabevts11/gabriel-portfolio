@@ -18,7 +18,7 @@ export function CursorTrail() {
     const setup = () => {
       teardown?.();
       teardown = undefined;
-      if (!fine.matches || calm.matches) return;
+      if (!fine.matches || calm.matches || document.documentElement.hasAttribute("data-calm")) return;
 
       const layer = document.createElement("div");
       layer.className = "cur-layer";
@@ -120,9 +120,11 @@ export function CursorTrail() {
     setup();
     fine.addEventListener("change", setup);
     calm.addEventListener("change", setup);
+    window.addEventListener("calmchange", setup);
     return () => {
       fine.removeEventListener("change", setup);
       calm.removeEventListener("change", setup);
+      window.removeEventListener("calmchange", setup);
       teardown?.();
     };
   }, []);

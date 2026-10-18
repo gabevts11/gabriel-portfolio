@@ -20,7 +20,7 @@ export function ScrollGlitch() {
     const start = () => {
       teardown();
       teardown = () => {};
-      if (motion.matches) return;
+      if (motion.matches || document.documentElement.hasAttribute("data-calm")) return;
 
       const timers = new Set<number>();
       const later = (fn: () => void, ms: number) => {
@@ -117,9 +117,11 @@ export function ScrollGlitch() {
     // Wait a beat so hydration has finished before any attribute is touched.
     const t = window.setTimeout(start, 300);
     motion.addEventListener("change", start);
+    window.addEventListener("calmchange", start);
     return () => {
       window.clearTimeout(t);
       motion.removeEventListener("change", start);
+      window.removeEventListener("calmchange", start);
       teardown();
     };
   }, []);
