@@ -66,7 +66,7 @@ const cases: Case[] = [
   },
   {
     issue: "ISSUE #03", kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
-    desc: "A self-initiated concept: an app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, see what fans recommend, then plan the whole weekend with sample travel, tickets, dining and merch.",
+    desc: "A self-initiated concept: Expedia for sports, built around Snapback's fan community. Plan the whole weekend with sample travel, tickets, dining and merch, guided by what fans recommend, and log and rank the games you go to.",
     stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["16", "Screens designed", "magenta"]],
     src: "/work/experiences/card.jpg",
     panel: "magenta", offset: "cyan", dotsA: "yellow", dotsB: "cyan", rot: -2, flip: false,

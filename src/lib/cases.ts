@@ -144,14 +144,14 @@ export const cases: CaseStudy[] = [
     badge: "CONCEPT PROTOTYPE · DESIGNS ONLY, NOT A BUILT APP",
     concept: true,
     summary:
-      "A self-initiated concept for a Snapback fan app: log the games you go to, rate them, see what fans recommend, then plan the whole weekend, from travel and tickets to dining and merch. Sixteen screens, designed in Figma.",
+      "A self-initiated concept for a Snapback fan app, an Expedia for sports: plan the whole weekend, from travel and tickets to dining and merch, guided by what fans recommend, and log and rate the games you go to. Sixteen screens, designed in Figma.",
     meta: [["ROLE", "Product designer"], ["STATUS", "Concept, designed in Figma"]],
     stats: [["CONCEPT", "Wireframes and designs, ready to prototype", "purple"], ["16", "Screens designed", "magenta"], ["4", "Core ideas: two borrowed, two original", "cyan"]],
     problem:
-      "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue, and no easy way to turn a great game into a trip. Snapback has said its long-term goal is one Snapback Experiences product, so I took that as the brief: \"the Yelp for sports\" first, then a trip planner on top.",
+      "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue, and no easy way to turn a great game into a trip. Snapback has said its long-term goal is one Snapback Experiences product, so I took that as the brief: an Expedia for sports, where fan recommendations (the Yelp side) guide every booking and a diary (the Letterboxd side) keeps the memories.",
     disclaimer: "Personal concept, made on my own initiative. No one at Snapback has seen or approved it, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
-      "A concept, not a shipped product. I started with low-fidelity wireframes, then built the screens as branded designs in Figma using Snapback's colors and type. It borrows two ideas and adds two: a diary of attended experiences with ratings (from Letterboxd), detail pages with reviews and tips (from Yelp), an original leaderboard of top-rated experiences, and a trip planner that turns an experience into a weekend plan with travel, stay, tickets, dining and merch. All inventory and prices are sample data, and nothing is bookable.",
+      "A concept, not a shipped product. I started with low-fidelity wireframes, then built the screens as branded designs in Figma using Snapback's colors and type. It works like a sports Expedia: a trip planner turns an experience into a weekend plan with travel, stay, tickets, dining and merch. Fan recommendations guide the plan, borrowing Yelp's reviews and tips and Letterboxd's diary of attended experiences, and an original leaderboard ranks what is worth doing. All inventory and prices are sample data, and nothing is bookable.",
     flow: ["DISCOVER", "EXPERIENCE", "LOG", "LEADERBOARD", "PLAN TRIP", "CHECKOUT", "PROFILE"],
     decisions: [
       "Made the rating a \"Certified\" stamp that echoes the verdict stamp in Snapback Trivia, so Experiences reads as part of the family.",
@@ -163,9 +163,9 @@ export const cases: CaseStudy[] = [
     ],
     did: ["Product design", "UX flows", "Wireframes", "Visual design", "Shared components"],
     tools: ["Claude Code", "Figma", "my brain"],
-    related: { label: "WHAT SNAPBACK HAS SAID", text: "Snapback's founder has said in a public newsletter that the end of the road is a Snapback Experiences product: one place to book travel, tickets and dinner, buy team merch and bet, guided by Snapback's own recommendations and its fans'. A later newsletter calls Snapback Experiences the company's North Star. This concept is my own take on that direction, made on my own initiative.", href: "https://jacksettleman.beehiiv.com/p/can-i-invest-in-snapback-sports-1680", cta: "READ THE NEWSLETTER" },
+    related: { label: "WHAT SNAPBACK HAS SAID", text: "Snapback's founder has said in a public newsletter that the end of the road is a Snapback Experiences product: one place to book travel, tickets and dinner, buy team merch and bet, guided by Snapback's own recommendations and its fans', a product he compares to an Expedia for sports. A later newsletter calls Snapback Experiences the company's North Star. This concept is my own take on that direction, made on my own initiative.", href: "https://jacksettleman.beehiiv.com/p/can-i-invest-in-snapback-sports-1680", cta: "READ THE NEWSLETTER" },
     goal: "One place for fans to log, rate and discover game experiences, and plan the trip around them.",
-    hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard and a trip planner make it easy to learn, and turn a great game into a weekend people actually plan. Next step: test it with fans.",
+    hypothesis: "Pairing an Expedia-style trip planner with fan recommendations (Yelp-style reviews, a Letterboxd-style diary) and an original leaderboard makes it easy to learn, and turns a great game into a weekend people actually plan. Next step: test it with fans.",
     outcome:
       "16 wireframed and branded screens, a complete concept from discovery to checkout. Trips use sample inventory. Next: interactive prototyping between screens, real partner inventory, and testing with the fans who would use it.",
     shots: [],
