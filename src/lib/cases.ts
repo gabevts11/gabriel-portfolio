@@ -27,6 +27,7 @@ export type CaseStudy = {
   hardParts?: string[]; // extra list under the process
   flow?: string[]; // "how it works" steps
   sitePages?: { src: string; w: number; h: number; label: string }[]; // full-page screenshots, shown cropped with a link to the full image
+  screens?: { src: string; w: number; h: number; label: string }[]; // app screens, phone-shaped tiles
   guidePages?: { src: string; w: number; h: number; label: string }[]; // design-system pages, same tile treatment as sitePages
   brandGuide?: { src: string; w: number; h: number }; // tall one-page guide, shown cropped with a link to the full image
   clips?: { slug: string; label: string; caption: string; mobile?: boolean }[]; // animated exports in /work/studio/clips
@@ -134,27 +135,27 @@ export const cases: CaseStudy[] = [
     badge: "CONCEPT PROTOTYPE · DESIGNS ONLY, NOT A BUILT APP",
     concept: true,
     summary:
-      "A quick concept for a Snapback fan app: log the games you go to, rate them, and see what fans recommend at each one. Seven screens, designed in Figma, not built.",
+      "A quick concept for a Snapback fan app: log the games you go to, rate them, see what fans recommend, then plan the whole weekend, from travel and tickets to dining and merch. Sixteen screens, designed in Figma, not built.",
     meta: [["ROLE", "Product designer"], ["STATUS", "Quick concept, not built"]],
-    stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["7", "Screens designed", "magenta"], ["3", "Core mechanics: two borrowed, one original", "cyan"]],
+    stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["16", "Screens designed", "magenta"], ["4", "Core ideas: two borrowed, two original", "cyan"]],
     problem:
       "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue. I explored \"the Yelp for sports\": treat every game, tailgate or stadium visit like a place worth reviewing.",
     disclaimer: "Personal concept, made quickly on my own to show initiative. No one at Snapback has seen or approved it, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
-      "A concept, not a shipped product. I started with low-fidelity wireframes for seven screens, then built them as branded designs in Figma using Snapback's colors and type. It borrows two mechanics and adds one: a diary of attended experiences with ratings (from Letterboxd), detail pages with reviews and tips (from Yelp), and an original leaderboard of top-rated experiences.",
-    flow: ["DISCOVER", "SEARCH", "LEADERBOARD", "EXPERIENCE", "COMMENTS", "LOG", "PROFILE"],
+      "A concept, not a shipped product. I started with low-fidelity wireframes, then built the screens as branded designs in Figma using Snapback's colors and type. It borrows two ideas and adds two: a diary of attended experiences with ratings (from Letterboxd), detail pages with reviews and tips (from Yelp), an original leaderboard of top-rated experiences, and a trip planner that turns an experience into a weekend plan with travel, stay, tickets, dining and merch. All inventory and prices are sample data, and nothing is bookable.",
+    flow: ["DISCOVER", "EXPERIENCE", "LOG", "LEADERBOARD", "PLAN TRIP", "CHECKOUT", "PROFILE"],
     decisions: [
       "Made the rating a \"Certified\" stamp that echoes the verdict stamp in Snapback Trivia, so Experiences reads as part of the family.",
       "Made the leaderboard the original mechanic: filterable by sport, team, region and time, with a trophy for the top spot.",
       "Pulled colors and type from Snapback's brand guide instead of inventing a look, and left out the hat-logo artwork.",
-      "Built shared components once (nav bar, rating stamp, button) so a change updates all seven screens.",
+      "Built shared components once (nav bar, rating stamp, button) so a change updates all 16 screens.",
     ],
     did: ["Product design", "UX flows", "Wireframes", "Visual design", "Shared components"],
     tools: ["Claude Code", "Figma", "my brain"],
-    goal: "One place for fans to log, rate and discover game experiences.",
+    goal: "One place for fans to log, rate and discover game experiences, and plan the trip around them.",
     hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard make it easy to learn and give people a reason to come back. Not tested with users.",
     outcome:
-      "A concept only: seven wireframed and branded screens, with no development and no user testing, so there are no results to report. Still to do: real photography (black placeholders stand in for every image), interactive prototyping between screens, and getting it in front of the people who would use it.",
+      "A concept only: 16 wireframed and branded screens, with no development and no user testing, so there are no results to report. Trips use sample inventory, and no partner has been contacted. Still to do: interactive prototyping between screens, real partner inventory, and getting it in front of the people who would use it.",
     shots: [],
     heroMock: "xp",
     guidePages: [
@@ -165,11 +166,23 @@ export const cases: CaseStudy[] = [
       { src: "/work/experiences/brand-05-content-patterns.jpg", w: 1200, h: 2292, label: "CONTENT PATTERNS" },
       { src: "/work/experiences/brand-06-media-layout.jpg", w: 1200, h: 1763, label: "MEDIA AND LAYOUT" },
     ],
-    images: [
-      { mock: "xp-discover", label: "DISCOVER", caption: "A hero card and grid of poster-style experience cards, each with a Certified rating. Redrawn in code from the Figma design, with sample content." },
-      { mock: "xp-leaderboard", label: "LEADERBOARD", caption: "The original mechanic: top-rated experiences ranked, filterable by sport, team, region and time period." },
-      { mock: "xp-detail", label: "EXPERIENCE DETAIL", caption: "An aggregate rating, a log button and recommendations from people who were there." },
-      { mock: "xp-log", label: "LOG AN EXPERIENCE", caption: "The diary side: star rating, a written review and tags like tailgate, food and seating." },
+    screens: [
+      { src: "/work/experiences/screen-01-discover.jpg", w: 750, h: 2466, label: "DISCOVER" },
+      { src: "/work/experiences/screen-02-search.jpg", w: 750, h: 1920, label: "SEARCH" },
+      { src: "/work/experiences/screen-03-experience-detail.jpg", w: 750, h: 1934, label: "EXPERIENCE DETAIL" },
+      { src: "/work/experiences/screen-04-comments.jpg", w: 750, h: 1920, label: "COMMENTS" },
+      { src: "/work/experiences/screen-05-trips-dashboard.jpg", w: 750, h: 2620, label: "TRIPS DASHBOARD" },
+      { src: "/work/experiences/screen-06-weekend-plan.jpg", w: 750, h: 3014, label: "WEEKEND PLAN" },
+      { src: "/work/experiences/screen-07-travel-stay.jpg", w: 750, h: 2608, label: "TRAVEL AND STAY" },
+      { src: "/work/experiences/screen-08-tickets-seats.jpg", w: 750, h: 2528, label: "TICKETS AND SEATS" },
+      { src: "/work/experiences/screen-09-dining.jpg", w: 750, h: 2620, label: "DINING" },
+      { src: "/work/experiences/screen-10-team-shop.jpg", w: 750, h: 2624, label: "TEAM SHOP" },
+      { src: "/work/experiences/screen-11-eligibility.jpg", w: 750, h: 2478, label: "GAME DAY ELIGIBILITY" },
+      { src: "/work/experiences/screen-12-itinerary.jpg", w: 750, h: 2994, label: "ITINERARY" },
+      { src: "/work/experiences/screen-13-checkout.jpg", w: 750, h: 4150, label: "REVIEW AND CHECKOUT" },
+      { src: "/work/experiences/screen-14-leaderboard.jpg", w: 750, h: 1920, label: "LEADERBOARD" },
+      { src: "/work/experiences/screen-15-log-review.jpg", w: 750, h: 1920, label: "LOG AND REVIEW" },
+      { src: "/work/experiences/screen-16-profile.jpg", w: 750, h: 2192, label: "PROFILE" },
     ],
   },
 ];
