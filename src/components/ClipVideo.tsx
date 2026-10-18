@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 // Loads and plays only while on screen, so the page stays light. Reduced-motion users get a poster with controls.
-export function ClipVideo({ slug, mobile, label, className = "" }: { slug: string; mobile?: boolean; label: string; className?: string }) {
+export function ClipVideo({ slug, mobile, label, className = "", loop }: { slug: string; mobile?: boolean; label: string; className?: string; loop?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [still, setStill] = useState(false);
   const name = mobile ? `${slug}-m` : slug;
@@ -31,10 +31,11 @@ export function ClipVideo({ slug, mobile, label, className = "" }: { slug: strin
       width={mobile ? 540 : 960}
       height={mobile ? 960 : 540}
       muted
-      onEnded={(e) => { const v = e.currentTarget; setTimeout(() => { if (!still) v.play().catch(() => {}); }, 900); }} // short beat before each replay, so quick transitions read
+      loop={loop}
+      onEnded={loop ? undefined : (e) => { const v = e.currentTarget; setTimeout(() => { if (!still) v.play().catch(() => {}); }, 900); }} // short beat before each replay, so quick transitions read
       playsInline
       preload="none"
-      controls={still}
+      controls={still && !loop}
       aria-label={label}
       className={className}
     />
