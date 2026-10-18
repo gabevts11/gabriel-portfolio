@@ -42,8 +42,8 @@ type Case = {
 const cases: Case[] = [
   {
     issue: "ISSUE #01", kicker: "MOTION DESIGN SYSTEM · BROWSER TOOL · PROTOTYPE", slug: "snapback-studio", title: "SNAPBACK MOTION STUDIO",
-    desc: "A quick personal prototype: a motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, stadium and jumbotron loops, game-day slates and brand intros, built to their brand guide and exportable to CapCut.",
-    stats: [["44", "Approved motion designs", "magenta"], ["60", "Published versions", "cyan"]],
+    desc: "A self-initiated prototype: a motion design system for Snapback Sports, and the browser-based studio that runs it: stream graphics, stadium and jumbotron loops, game-day slates and brand intros, built to their brand guide and exportable to CapCut.",
+    stats: [["44", "Finished motion designs", "magenta"], ["60", "Published versions", "cyan"]],
     clip: "wordwall",
     panel: "yellow", offset: "purple", dotsA: "magenta", dotsB: "cyan", rot: -2, flip: false,
     streams: [
@@ -66,7 +66,7 @@ const cases: Case[] = [
   },
   {
     issue: "ISSUE #03", kicker: "PRODUCT DESIGN · MOBILE APP · PROTOTYPE", slug: "snapback-experiences", title: "SNAPBACK EXPERIENCES",
-    desc: "A quick personal concept: an app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, see what fans recommend, then plan the whole weekend with sample travel, tickets, dining and merch.",
+    desc: "A self-initiated concept: an app for Snapback's sports-experience community, part Letterboxd and part Yelp: log the games you go to, rate them, rank them, see what fans recommend, then plan the whole weekend with sample travel, tickets, dining and merch.",
     stats: [["CONCEPT", "Wireframes and mockups, not built", "purple"], ["16", "Screens designed", "magenta"]],
     src: "/work/experiences/card.jpg",
     panel: "magenta", offset: "cyan", dotsA: "yellow", dotsB: "cyan", rot: -2, flip: false,

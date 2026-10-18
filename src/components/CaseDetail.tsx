@@ -208,7 +208,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
       {c.clips && (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={-1}>FROM THE STUDIO…</Caption>
-          <p className="max-w-[640px] text-base leading-[1.6]">Animated exports from the studio, from the approved set of designs. Where a design has both formats, the 16:9 and 9:16 versions play side by side.</p>
+          <p className="max-w-[640px] text-base leading-[1.6]">Animated exports from the studio, from the finished set of designs. Where a design has both formats, the 16:9 and 9:16 versions play side by side.</p>
           <ul className="grid w-full items-start gap-8 md:grid-cols-2">
             {c.clips.map((cl, i) => (
               <li key={cl.slug} className="flex flex-col gap-3">
@@ -227,7 +227,7 @@ export function CaseDetail({ c, next }: { c: CaseStudy; next: CaseStudy }) {
       )}
       {c.sitePages && <PageTiles title={c.title} items={c.sitePages} heading="THE SITE, PAGE BY PAGE" note="Every page, recreated in Figma. Text and photos are swapped for placeholders so no real names or people appear. Tap a page to see it in full." />}
       {c.screens && <PageTiles phone title={c.title} items={c.screens} heading="THE APP, SCREEN BY SCREEN" note="All 16 screens, designed in Figma. Trips use sample inventory and nothing is bookable. Tap a screen to see it in full." />}
-      {c.guidePages && <PageTiles title={c.title} items={c.guidePages} heading="THE DESIGN SYSTEM" note="The guide that keeps all 16 screens consistent: brand and color, type, buttons and badges, navigation and forms, content patterns, media and layout. Tap a page to see it in full." />}
+      {c.guidePages && <PageTiles title={c.title} items={c.guidePages} heading="THE DESIGN SYSTEM" note="The guide that keeps all 16 screens consistent, from brand, color and type to booking, checkout and partner safety, plus the component library. Tap a page to see it in full." />}
       {c.brandGuide && (
         <section className="flex flex-col items-start gap-6">
           <Caption tone="white" rot={1}>THE BRAND GUIDE</Caption>

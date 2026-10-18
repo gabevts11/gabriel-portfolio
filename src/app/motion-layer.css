@@ -71,6 +71,10 @@ body [data-live="1"] { animation: dg-mini 240ms steps(1, end); }
   a.comic-link:hover, .hero-cta:hover { rotate: var(--tx-r, 0deg); }
 }
 
+/* Calm mode (the toggle): same rules as reduced motion, plus every looping animation off */
+html[data-calm] [data-glitch], html[data-calm] [data-live], html[data-calm] svg.crk-load path, html[data-calm] svg.crk-scroll path, html[data-calm] svg.dots-print, html[data-calm] svg.hero-print, html[data-calm] svg.hero-print-m, html[data-calm] .gd-nudge, html[data-calm] .rgb-split, html[data-calm] .glitch-slice, html[data-calm] .glitch-slice::before, html[data-calm] .glitch-slice::after { animation: none !important; }
+html[data-calm] .cur-layer, html[data-calm] .ux-fx { display: none !important; }
+
 @media (prefers-reduced-motion: reduce) {
   [data-glitch], [data-live], svg.crk-load path, svg.crk-scroll path, svg.dots-print, svg.hero-print, svg.hero-print-m { animation: none !important; }
   .cur-layer { display: none; }

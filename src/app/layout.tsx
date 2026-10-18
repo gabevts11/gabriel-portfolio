@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Abril_Fatface, Bangers, Caveat_Brush, Luckiest_Guy, Mochiy_Pop_One, Space_Grotesk, Special_Elite } from "next/font/google";
 import "./globals.css";
+import { CalmToggle } from "@/components/CalmToggle";
 import { CursorTrail } from "@/components/CursorTrail";
 import { PageGlitch } from "@/components/PageGlitch";
 import { ScrollGlitch } from "@/components/ScrollGlitch";
@@ -26,13 +27,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://gabedougherty.com"),
   title: "Gabe Dougherty — Software Product Designer",
   description:
-    "Gabe Dougherty designs web apps and products, and directs AI-assisted builds from Figma to App Store.",
+    "Gabe Dougherty is a software product designer who takes apps and websites from wireframes to prototypes to production, designed for people who actually use them.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${bangers.variable} ${spaceGrotesk.variable} ${ransom.variable} ${typewriter.variable} ${anime.variable} ${cartoon.variable} ${brush.variable} antialiased`}>
-      <body className="min-h-screen overflow-x-clip">{children}
+    <html lang="en" suppressHydrationWarning className={`${bangers.variable} ${spaceGrotesk.variable} ${ransom.variable} ${typewriter.variable} ${anime.variable} ${cartoon.variable} ${brush.variable} antialiased`}>
+      <body className="min-h-screen overflow-x-clip">
+        <script dangerouslySetInnerHTML={{ __html: 'try{if(localStorage.getItem("calm-mode")==="1")document.documentElement.setAttribute("data-calm","")}catch(e){}' }} />
+        {children}
+        <CalmToggle />
         <PageGlitch />
         <ScrollGlitch />
         <CursorTrail />

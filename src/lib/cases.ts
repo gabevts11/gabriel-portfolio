@@ -43,12 +43,12 @@ export const cases: CaseStudy[] = [
     title: "SNAPBACK MOTION STUDIO",
     badge: "PROTOTYPE · BUILT ON MY OWN, NOT A CLIENT PROJECT",
     summary:
-      "I built a motion design system for Snapback Sports and the browser studio that runs it: 44 editable designs, each in 16:9 and 9:16, held to their brand guide. A personal prototype, not a client project.",
+      "I built a motion design system for Snapback Sports and the browser studio that runs it: 44 editable designs, each in 16:9 and 9:16, held to their brand guide.",
     meta: [["ROLE", "Designer & builder"], ["PROJECT", "Personal prototype"]],
-    stats: [["44", "Approved, editable motion designs", "magenta"], ["60", "Published iterations of the live studio", "red"]],
+    stats: [["44", "Finished, editable motion designs", "magenta"], ["60", "Published iterations of the live studio", "red"]],
     problem:
       "I picked Snapback Sports as a real brand to prototype against. They publish a steady stream of broadcast and social motion graphics, so I wanted to see whether one tool could keep that whole library on-brand and quick to customize: stream graphics, stadium loops, game-day slates and brand intros, without re-rendering a new video for every variant.",
-    disclaimer: "Personal prototype, made quickly on my own to show initiative. It was not commissioned, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
+    disclaimer: "Personal prototype, made on my own initiative. It was not commissioned, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback and partner names, logos and brand assets belong to their owners and appear only to show the work.",
     process:
       "I storyboarded concepts with several variants, then built one self-contained browser tool with 44 editable designs, each in 16:9 and 9:16, with element-level editing and autosave. I iterated on feedback round by round, republishing the live studio 60 times, and checked every change in both formats. I also recreated part of the system, the word wall, in Figma with brand variables and components.",
     decisions: [
@@ -60,9 +60,9 @@ export const cases: CaseStudy[] = [
     did: ["Motion design system", "Browser-based tool", "Brand guide compliance", "16:9 and 9:16 formats", "QA and iteration"],
     tools: ["Claude Code", "Figma", "my brain"],
     goal: "One tool that keeps a brand's whole motion library consistent and quick to customize.",
-    hypothesis: "If every design is editable, ships in both formats and follows the brand guide, a small team could make on-brand variants without re-rendering from scratch. Not tested with a real team.",
+    hypothesis: "If every design is editable, ships in both formats and follows the brand guide, a small team could make on-brand variants without re-rendering from scratch. Next step: test it with a real team.",
     outcome:
-      "44 approved, editable designs, each in 16:9 and 9:16, including 4 intros and outros across two Snapback brands, built to the brand guide's colors and type. 60 published versions of the live studio. A prototype made to show initiative, not a delivered or commissioned project.",
+      "44 finished, editable designs, each in 16:9 and 9:16, including 4 intros and outros across two Snapback brands, built to the brand guide's colors and type. 60 published versions of the live studio. Next step: put it in front of a real team.",
     shots: [],
     heroClip: "wordwall",
     clips: [
@@ -91,12 +91,12 @@ export const cases: CaseStudy[] = [
     title: "CAMPAIGN WEBSITE",
     summary:
       "I designed and launched a full campaign website for a local school board candidate, plus a custom tool that maps a voter's address to their seat. 661 sessions and 21 form submissions in the first period.",
-    meta: [["ROLE", "Freelance designer & developer"], ["COMPLETED", "Oct 2026"]],
+    meta: [["ROLE", "Freelance designer & developer"], ["YEAR", "2026"]],
     stats: [["661", "Sessions in the first period", "cyan"], ["506", "Unique visitors", "purple"], ["21", "Form submissions, 11 of them volunteer sign-ups", "red"]],
     problem:
       "A local school board candidate needed one place online to reach voters: who they are, how to vote, and ways to volunteer, donate or stay in touch. It had to work on a phone, and give each voter a quick way to find their own district.",
     process:
-      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. I researched the official boundary map, which was only a PDF, turned its shapes into georeferenced GeoJSON, and matched an address's coordinates against the five district polygons. I led the research, direction, interface, debugging and testing, building the tool with ChatGPT over about 25 versions.",
+      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. I researched the official boundary map, which was only a PDF, turned its shapes into georeferenced GeoJSON, and matched an address's coordinates against the five district polygons. I led the research, direction, interface, debugging and testing, and directed the build with ChatGPT's help over about 25 versions.",
     hardParts: [
       "Usable geometry: the source was a PDF map, so the district shapes had to be extracted, rebuilt and georeferenced.",
       "Address accuracy: the lookup uses coordinates, not ZIP codes. Edge-case addresses are a known limit.",
@@ -112,7 +112,7 @@ export const cases: CaseStudy[] = [
     did: ["Website design", "Mobile-first layout", "Forms and sign-ups", "Custom district lookup tool", "Research and testing"],
     tools: ["Wix", "Figma", "Claude", "ChatGPT", "my brain"],
     goal: "Give voters one place to learn about the candidate, check how to vote and take action. The county had no tool for finding which seat you vote in, and looking it up was hard, so I built one.",
-    hypothesis: "An address lookup makes finding your seat easier than working from the county's PDF map. I do not have usage numbers for the lookup tool.",
+    hypothesis: "An address lookup makes finding your seat easier than working from the county's PDF map. Next step: track how many voters use it.",
     outcome:
       "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
@@ -144,12 +144,12 @@ export const cases: CaseStudy[] = [
     badge: "CONCEPT PROTOTYPE · DESIGNS ONLY, NOT A BUILT APP",
     concept: true,
     summary:
-      "A quick concept for a Snapback fan app: log the games you go to, rate them, see what fans recommend, then plan the whole weekend, from travel and tickets to dining and merch. Sixteen screens, designed in Figma, not built.",
-    meta: [["ROLE", "Product designer"], ["STATUS", "Quick concept, not built"]],
-    stats: [["CONCEPT", "Wireframes and mockups only, no live product", "purple"], ["16", "Screens designed", "magenta"], ["4", "Core ideas: two borrowed, two original", "cyan"]],
+      "A self-initiated concept for a Snapback fan app: log the games you go to, rate them, see what fans recommend, then plan the whole weekend, from travel and tickets to dining and merch. Sixteen screens, designed in Figma.",
+    meta: [["ROLE", "Product designer"], ["STATUS", "Concept, designed in Figma"]],
+    stats: [["CONCEPT", "Wireframes and designs, ready to prototype", "purple"], ["16", "Screens designed", "magenta"], ["4", "Core ideas: two borrowed, two original", "cyan"]],
     problem:
       "Fans have no shared place to record the games they attend, rate them, or find what is worth doing at a venue, and no easy way to turn a great game into a trip. Snapback has said its long-term goal is one Snapback Experiences product, so I took that as the brief: \"the Yelp for sports\" first, then a trip planner on top.",
-    disclaimer: "Personal concept, made quickly on my own to show initiative. No one at Snapback has seen or approved it, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
+    disclaimer: "Personal concept, made on my own initiative. No one at Snapback has seen or approved it, and I am not affiliated with, employed by, or endorsed by Snapback Sports. Snapback names, colors and brand assets belong to their owners and appear only to show the concept.",
     process:
       "A concept, not a shipped product. I started with low-fidelity wireframes, then built the screens as branded designs in Figma using Snapback's colors and type. It borrows two ideas and adds two: a diary of attended experiences with ratings (from Letterboxd), detail pages with reviews and tips (from Yelp), an original leaderboard of top-rated experiences, and a trip planner that turns an experience into a weekend plan with travel, stay, tickets, dining and merch. All inventory and prices are sample data, and nothing is bookable.",
     flow: ["DISCOVER", "EXPERIENCE", "LOG", "LEADERBOARD", "PLAN TRIP", "CHECKOUT", "PROFILE"],
@@ -165,18 +165,23 @@ export const cases: CaseStudy[] = [
     tools: ["Claude Code", "Figma", "my brain"],
     related: { label: "WHAT SNAPBACK HAS SAID", text: "Snapback's founder has said in a public newsletter that the end of the road is a Snapback Experiences product: one place to book travel, tickets and dinner, buy team merch and bet, guided by Snapback's own recommendations and its fans'. A later newsletter calls Snapback Experiences the company's North Star. This concept is my own take on that direction, made on my own initiative.", href: "https://jacksettleman.beehiiv.com/p/can-i-invest-in-snapback-sports-1680", cta: "READ THE NEWSLETTER" },
     goal: "One place for fans to log, rate and discover game experiences, and plan the trip around them.",
-    hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard and a trip planner make it easy to learn, and turn a great game into a weekend people actually plan. Not tested with users.",
+    hypothesis: "Two familiar mechanics (a Letterboxd-style diary, Yelp-style reviews) plus an original leaderboard and a trip planner make it easy to learn, and turn a great game into a weekend people actually plan. Next step: test it with fans.",
     outcome:
-      "A concept only: 16 wireframed and branded screens, with no development and no user testing, so there are no results to report. Trips use sample inventory, and no partner has been contacted. Still to do: interactive prototyping between screens, real partner inventory, and getting it in front of the people who would use it.",
+      "16 wireframed and branded screens, a complete concept from discovery to checkout. Trips use sample inventory. Next: interactive prototyping between screens, real partner inventory, and testing with the fans who would use it.",
     shots: [],
     hero: "/work/experiences/card.jpg",
     guidePages: [
-      { src: "/work/experiences/brand-01-brand-color.jpg", w: 1200, h: 1383, label: "BRAND AND COLOR" },
+      { src: "/work/experiences/brand-01-brand-color.jpg", w: 1200, h: 1398, label: "BRAND AND COLOR" },
       { src: "/work/experiences/brand-02-typography.jpg", w: 1200, h: 2850, label: "TYPOGRAPHY" },
       { src: "/work/experiences/brand-03-buttons-badges.jpg", w: 1200, h: 1679, label: "BUTTONS AND BADGES" },
       { src: "/work/experiences/brand-04-navigation-forms.jpg", w: 1200, h: 2526, label: "NAVIGATION AND FORMS" },
       { src: "/work/experiences/brand-05-content-patterns.jpg", w: 1200, h: 2292, label: "CONTENT PATTERNS" },
       { src: "/work/experiences/brand-06-media-layout.jpg", w: 1200, h: 1763, label: "MEDIA AND LAYOUT" },
+      { src: "/work/experiences/brand-07-trip-booking.jpg", w: 1200, h: 2775, label: "TRIP AND BOOKING" },
+      { src: "/work/experiences/brand-08-journey-commerce.jpg", w: 1200, h: 2574, label: "JOURNEY AND COMMERCE" },
+      { src: "/work/experiences/brand-09-checkout-pricing.jpg", w: 1200, h: 2531, label: "CHECKOUT AND PRICING" },
+      { src: "/work/experiences/brand-10-status-safety.jpg", w: 1200, h: 1654, label: "STATUS AND PARTNER SAFETY" },
+      { src: "/work/experiences/brand-11-component-library.jpg", w: 1600, h: 2188, label: "COMPONENT LIBRARY" },
     ],
     screens: [
       { src: "/work/experiences/screen-01-discover.jpg", w: 750, h: 2466, label: "DISCOVER" },

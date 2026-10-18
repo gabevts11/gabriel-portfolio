@@ -27,6 +27,9 @@ export function Contact() {
         <Comic as="a" href="https://www.linkedin.com/in/gabe-dougherty" target="_blank" rel="noopener noreferrer" bg="#00B7EB" shadow={6} className="comic-link px-6 py-3 text-2xl">
           LINKEDIN
         </Comic>
+        <Comic as="a" href="/Gabe-Dougherty-Resume.pdf" target="_blank" rel="noopener noreferrer" bg="#F7DF02" shadow={6} className="comic-link px-6 py-3 text-2xl">
+          RESUME
+        </Comic>
       </div>
       <p className="relative z-10 mt-10 text-sm font-medium tracking-[.08em] text-[#4d4d4d]">© GABE DOUGHERTY · YORK, SC</p>
     </section>
