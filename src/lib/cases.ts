@@ -96,7 +96,7 @@ export const cases: CaseStudy[] = [
     problem:
       "A local school board candidate needed one place online to reach voters: who they are, how to vote, and ways to volunteer, donate or stay in touch. It had to work on a phone, and give each voter a quick way to find their own district.",
     process:
-      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. I researched the official boundary map, which was only a PDF, turned its shapes into georeferenced GeoJSON, and matched an address's coordinates against the five district polygons. I led the research, direction, interface, debugging and testing, and directed the build with ChatGPT's help over about 25 versions.",
+      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude Code: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. I researched the official boundary map, which was only a PDF, turned its shapes into georeferenced GeoJSON, and matched an address's coordinates against the five district polygons. I led the research, direction, interface, debugging and testing, and directed the build with ChatGPT's help over about 25 versions.",
     hardParts: [
       "Usable geometry: the source was a PDF map, so the district shapes had to be extracted, rebuilt and georeferenced.",
       "Address accuracy: the lookup uses coordinates, not ZIP codes. Edge-case addresses are a known limit.",
@@ -110,7 +110,7 @@ export const cases: CaseStudy[] = [
       "Added an outside-boundaries message and a beta note pointing to official county resources, since wrong district information could mislead voters.",
     ],
     did: ["Website design", "Mobile-first layout", "Forms and sign-ups", "Custom district lookup tool", "Research and testing"],
-    tools: ["Wix", "Figma", "Claude", "ChatGPT", "my brain"],
+    tools: ["Wix", "Figma", "Claude Code", "ChatGPT", "my brain"],
     goal: "Give voters one place to learn about the candidate, check how to vote and take action. The county had no tool for finding which seat you vote in, and looking it up was hard, so I built one.",
     hypothesis: "An address lookup makes finding your seat easier than working from the county's PDF map. Next step: track how many voters use it.",
     outcome:
