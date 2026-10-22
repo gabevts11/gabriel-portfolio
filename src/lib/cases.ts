@@ -96,9 +96,10 @@ export const cases: CaseStudy[] = [
     problem:
       "A local school board candidate needed one place online to reach voters: who they are, how to vote, and ways to volunteer, donate or stay in touch. It had to work on a phone, and give each voter a quick way to find their own district.",
     process:
-      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude Code: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. I researched the official boundary map, which was only a PDF, turned its shapes into georeferenced GeoJSON, and matched an address's coordinates against the five district polygons. I led the research, direction, interface, debugging and testing, and directed the build with ChatGPT's help over about 25 versions.",
+      "I designed and launched a responsive multi-page site in Wix and Figma, prototyping with Claude Code: a Donate button in the navigation, supporter forms, and one look on every page (blue, cream and orange with a serif heading). The one custom piece is the district lookup tool on the voter info page. The district's official boundary map was only a PDF. My first version used shapes I traced from it by hand, and in my own testing they were shifted about 1.4 miles, wrong for roughly one in three test addresses. When I opened the PDF's internal structure I found it was a GeoPDF carrying the real boundaries as vector data with real-world coordinates, so I extracted those directly instead of tracing: about 5,000 points across the five districts, georeferenced, then matched an address's coordinates against them. I led the research, direction, interface, debugging and testing, and directed the build with ChatGPT's help over about 25 versions.",
     hardParts: [
-      "Usable geometry: the source was a PDF map, so the district shapes had to be extracted, rebuilt and georeferenced.",
+      "Usable geometry: the source was a PDF map. Hand tracing was slightly wrong everywhere, so I pulled the PDF's own vector layer and coordinate system instead.",
+      "Proving it was right: I checked for gaps and overlaps with a flood-fill test over about 250,000 points, compared the boundaries against street maps, and confirmed addresses I knew by hand.",
       "Address accuracy: the lookup uses coordinates, not ZIP codes. Edge-case addresses are a known limit.",
       "Browser limits: cross-origin rules shaped which services were practical, and one map tile source was dropped after an access problem.",
     ],
@@ -107,6 +108,7 @@ export const cases: CaseStudy[] = [
       "Organized the site around what a voter needs to do: learn, check how to vote, and take action, with forms and Donate reachable from every page.",
       "Built the district lookup as an interactive tool so each voter gets a personal answer.",
       "Matched on coordinates and district polygons, not ZIP code, because neighboring streets can sit in different seats.",
+      "Rebuilt the tool as one self-contained page that geocodes with the free Census geocoder and matches the seat in the browser, with no backend, API key or recurring cost, replacing a third-party embed. It checks its own boundary data on load so a bad future edit shows up immediately.",
       "Added an outside-boundaries message and a beta note pointing to official county resources, since wrong district information could mislead voters.",
     ],
     did: ["Website design", "Mobile-first layout", "Forms and sign-ups", "Custom district lookup tool", "Research and testing"],
@@ -114,7 +116,7 @@ export const cases: CaseStudy[] = [
     goal: "Give voters one place to learn about the candidate, check how to vote and take action. The county had no tool for finding which seat you vote in, and looking it up was hard, so I built one.",
     hypothesis: "An address lookup makes finding your seat easier than working from the county's PDF map. Next step: track how many voters use it.",
     outcome:
-      "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
+      "661 sessions from 506 unique visitors in the site's first period, primarily mobile and organic Facebook traffic. 21 form submissions, including 11 volunteer sign-ups. In my tests the corrected boundaries resolved every test address to exactly one seat, and an address outside the district was correctly turned away. The lookup tool is a campaign aid, not an official government service, and it does not determine voter eligibility.",
     shots: [],
     heroMock: "poster",
     brandGuide: { src: "/work/campaign/brand-guide.jpg", w: 1200, h: 3419 },
